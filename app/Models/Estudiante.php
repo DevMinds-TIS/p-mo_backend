@@ -8,24 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Estudiante extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idEstudiante';
+    protected $primaryKey = 'idestudiante';
     protected $fillable = [
-        'idActor',       
-        'idEquipo',      
-        'idGrupo',       
+        'idactor',
+        'idequipo',
+        'idgrupo',
     ];
 
     public function actor()
     {
-        return $this->belongsTo(Actor::class, 'idActor');
+        return $this->belongsTo(Actor::class, 'idactor');
     }
     public function equipo()
     {
-        return $this->belongsTo(Equipo::class, 'idEquipo');
+        return $this->belongsTo(Equipo::class, 'idequipo');
     }
 
     public function grupo()
     {
-        return $this->belongsTo(Grupo::class, 'idGrupo');
+        return $this->belongsTo(Grupo::class, 'idgrupo');
     }
 }
