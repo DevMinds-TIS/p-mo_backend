@@ -14,7 +14,8 @@ class CreateEstudianteTable extends Migration
     public function up()
     {
         Schema::create('estudiante', function (Blueprint $table) {
-            $table->integer('idestudiante')->primary();
+            $table->timestamps();
+            $table->bigIncrements('idestudiante')->primary();
             $table->integer('idactor')->nullable()->index('relationship_2_fk');
             $table->integer('idequipo')->nullable()->index('relationship_5_fk');
             $table->integer('idreceptor')->nullable()->index('relationship_22_fk');
