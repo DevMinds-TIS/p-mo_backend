@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmisorTable extends Migration
+class CreateEquiposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateEmisorTable extends Migration
      */
     public function up()
     {
-        Schema::create('emisor', function (Blueprint $table) {
-            $table->integer('idemisor')->unique('emisor_pk');
-            $table->date('fechaemisor')->nullable();
+        Schema::create('equipos', function (Blueprint $table) {
+            $table->timestamps();
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateEmisorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emisor');
+        Schema::dropIfExists('equipos');
     }
 }

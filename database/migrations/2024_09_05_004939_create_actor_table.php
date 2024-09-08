@@ -14,7 +14,8 @@ class CreateActorTable extends Migration
     public function up()
     {
         Schema::create('actor', function (Blueprint $table) {
-            $table->integer('idactor')->unique('actor_pk');
+            $table->timestamps();
+            $table->bigIncrements('idactor')->unique('actor_pk');
             $table->string('nombreactor', 60)->nullable();
             $table->string('apellidoactor', 60)->nullable();
             $table->string('correoactor', 60)->nullable();
@@ -23,13 +24,10 @@ class CreateActorTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('actor');
     }
+
+
 }
