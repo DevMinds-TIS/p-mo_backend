@@ -14,7 +14,8 @@ class CreateDocenteTable extends Migration
     public function up()
     {
         Schema::create('docente', function (Blueprint $table) {
-            $table->integer('iddocente')->unique('docente_pk');
+            $table->timestamps();
+            $table->bigIncrements('iddocente')->unique('docente_pk');
             $table->integer('idactor')->nullable()->index('relationship_1_fk');
             $table->integer('idgrupo')->nullable()->index('relationship_3_fk');
             $table->integer('idreceptor')->nullable()->index('relationship_21_fk');
