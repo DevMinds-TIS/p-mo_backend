@@ -8,21 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Docente extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idDocente';
+    protected $primaryKey = 'iddocente';
 
     protected $fillable = [
-        'idActor',
-        'idGrupo',
+        'idactor',
+        'idgrupo',
     ];
 
     public function actor()
     {
-        return $this->belongsTo(Actor::class, 'idActor');
+        return $this->belongsTo(Actor::class, 'idactor');
     }
 
     public function grupo()
     {
-        return $this->belongsTo(Grupo::class, 'idGrupo');
+        return $this->belongsTo(Grupo::class, 'idgrupo');
     }
 
 }
