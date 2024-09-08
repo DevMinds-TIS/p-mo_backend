@@ -8,17 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Grupo extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idGrupo';
+    protected $primaryKey = 'idgrupo';
     protected $fillable = [
-        'nombreGrupo',
+        'nombregrupo',
     ];
-    public function estudiante()
-    {
-        return $this->hasMany(Estudiante::class, 'idGrupo');
-    }
-    public function docente()
-    {
-        return $this->hasMany(Docente::class, 'idGrupo');
-    }
 
 }
