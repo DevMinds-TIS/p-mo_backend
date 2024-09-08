@@ -14,6 +14,7 @@ class CreateGrupoTable extends Migration
     public function up()
     {
         Schema::create('grupo', function (Blueprint $table) {
+            $table->timestamps();
             $table->integer('idgrupo')->unique('grupo_pk');
         });
     }
