@@ -8,23 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Actor extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idActor';
+    protected $table = 'actor';
+    protected $primaryKey = 'idactor';
+    public $incrementing = true;
     protected $fillable = [
-        'nombreActor',
-        'apellidoActor',
-        'correoActor',
-        'claveActor',
-        'fotoPerfilActor',
+        'nombreactor',
+        'apellidoactor',
+        'correoactor',
+        'claveactor',
+        'fotoperfilactor',
     ];
-
-    public function docente()
-    {
-        return $this->hasOne(Docente::class, 'idActor');
-    }
-
-    public function estudiante()
-    {
-        return $this->hasOne(Estudiante::class, 'idActor');
-    }
 
 }
