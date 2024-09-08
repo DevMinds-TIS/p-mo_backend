@@ -9,14 +9,15 @@ class Equipo extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'idEquipo';
+    protected $primaryKey = 'idequipo';
 
     protected $fillable = [
-        'nombreEquipo',
+        'nombreequipo',
+        'idestudiante',
     ];
 
     public function estudiante()
     {
-        return $this->hasMany(Estudiante::class, 'idEquipo');
+        return $this->hasMany(Estudiante::class, 'idestudiante');
     }
 }
