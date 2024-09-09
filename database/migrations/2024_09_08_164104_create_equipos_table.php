@@ -14,9 +14,9 @@ class CreateEquiposTable extends Migration
     public function up()
     {
         Schema::create('equipos', function (Blueprint $table) {
-            $table->timestamps();
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('nombre')->unique(); // Por ejemplo, un campo para el nombre del equipo
+            $table->timestamps(); // Esta línea agrega automáticamente `created_at` y `updated_at`
         });
     }
 

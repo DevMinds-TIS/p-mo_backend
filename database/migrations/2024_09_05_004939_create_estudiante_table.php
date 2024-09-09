@@ -14,15 +14,13 @@ class CreateEstudianteTable extends Migration
     public function up()
     {
         Schema::create('estudiante', function (Blueprint $table) {
-            $table->timestamps();
-            $table->bigIncrements('idestudiante')->primary();
+            $table->bigIncrements('idestudiante'); // Esta línea ya define la clave primaria
             $table->integer('idactor')->nullable()->index('relationship_2_fk');
             $table->integer('idequipo')->nullable()->index('relationship_5_fk');
             $table->integer('idreceptor')->nullable()->index('relationship_22_fk');
             $table->integer('idemisor')->nullable()->index('relationship_25_fk');
             $table->integer('idgrupo')->nullable()->index('relationship_29_fk');
-
-            $table->unique(['idestudiante'], 'estudiante_pk');
+            $table->timestamps(); // Mueve esta línea al final
         });
     }
 
