@@ -14,7 +14,7 @@ class AddForeignKeysToProyectoTable extends Migration
     public function up()
     {
         Schema::table('proyecto', function (Blueprint $table) {
-            $table->foreign(['idgrupo'], 'fk_proyecto_relations_grupo')->references(['idgrupo'])->on('grupo')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+           // $table->foreign(['idgrupo'], 'fk_proyecto_relations_grupo')->references(['idgrupo'])->on('grupo')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

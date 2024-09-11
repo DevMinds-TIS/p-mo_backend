@@ -8,9 +8,10 @@ use App\Http\Controllers\ActorController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\EquipoController;
 
-
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -23,26 +24,15 @@ Route::put('/actores/{id}', [ActorController::class, 'update']);
 Route::patch('/actores/{id}', [ActorController::class, 'updatePartial']);
 Route::delete('/actores/{id}', [ActorController::class, 'delete']);
 
-// // Rutas para DocenteController
-// Route::get('/docentes', [DocenteController::class, 'index']);
-// Route::get('/docentes/{id}', [DocenteController::class, 'show']);
-// Route::post('/docentes', [DocenteController::class, 'store']);
-// Route::put('/docentes/{id}', [DocenteController::class, 'update']);
-// Route::patch('/docentes/{id}', [DocenteController::class, 'updatePartial']);
-// Route::delete('/docentes/{id}', [DocenteController::class, 'delete']);
+//login 
+Route::post('/login', [AuthController::class, 'login']);
 
-// // Rutas para EstudianteController
-// Route::get('/estudiantes', [EstudianteController::class, 'index']);
-// Route::get('/estudiantes/{id}', [EstudianteController::class, 'show']);
-// Route::post('/estudiantes', [EstudianteController::class, 'store']);
-// Route::put('/estudiantes/{id}', [EstudianteController::class, 'update']);
-// Route::patch('/estudiantes/{id}', [EstudianteController::class, 'updatePartial']);
-// Route::delete('/estudiantes/{id}', [EstudianteController::class, 'delete']);
 
-// // Rutas para GrupoController
-// Route::get('/grupos', [GrupoController::class, 'index']);
-// Route::get('/grupos/{id}', [GrupoController::class, 'show']);
-// Route::post('/grupos', [GrupoController::class, 'store']);
-// Route::put('/grupos/{id}', [GrupoController::class, 'update']);
-// Route::patch('/grupos/{id}', [GrupoController::class, 'updatePartial']);
-// Route::delete('/grupos/{id}', [GrupoController::class, 'delete']);
+//rutas para PROYECTO
+
+Route::get('/proyecto', [ProjectController::class, 'index']);
+Route::post('/proyecto', [ProjectController::class, 'store']);
+
+//rutas para Equipo
+Route::get('/equipo', [EquipoController::class, 'index']);
+Route::post('/equipo', [EquipoController::class, 'store']);
