@@ -8,9 +8,10 @@ use App\Http\Controllers\ActorController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\EquipoController;
 
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ProjectController;
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -22,4 +23,16 @@ Route::post('/actores', [ActorController::class, 'store']);
 Route::put('/actores/{id}', [ActorController::class, 'update']);
 Route::patch('/actores/{id}', [ActorController::class, 'updatePartial']);
 Route::delete('/actores/{id}', [ActorController::class, 'delete']);
+
+//login 
 Route::post('/login', [AuthController::class, 'login']);
+
+
+//rutas para PROYECTO
+
+Route::get('/proyecto', [ProjectController::class, 'index']);
+Route::post('/proyecto', [ProjectController::class, 'store']);
+
+//rutas para Equipo
+Route::get('/equipo', [EquipoController::class, 'index']);
+Route::post('/equipo', [EquipoController::class, 'store']);
