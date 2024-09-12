@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\FileUploadController;
 
-
-Route::get('/csrf-token', function () {
-    return response()->json(['csrf_token' => csrf_token()]);
-});
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
+
+Route::get('/upload-file', [FileUploadController::class, 'create']);
+Route::post('/upload-file', [FileUploadController::class, 'store']);
 
 require __DIR__.'/auth.php';
