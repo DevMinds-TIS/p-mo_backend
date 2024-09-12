@@ -16,16 +16,17 @@ class CreateProyectoTable extends Migration
         Schema::create('proyecto', function (Blueprint $table) {
             $table->timestamps();
             $table->bigIncrements('idproyecto')->unique('proyecto_pk');
-            $table->integer('idgrupo')->nullable()->index('relationship_4_fk');
+            //$table->integer('idgrupo')->nullable()->index('relationship_4_fk');
             $table->string('nombreproyecto', 60)->nullable();
-            $table->string('invitacionproyecto')->nullable();
-            $table->string('pliegoproyecto')->nullable();
-            $table->date('fechainicioproyecto')->nullable();
-            $table->date('fechafinproyecto')->nullable();
+            $table->string('codigo')->nullable();
+            $table->string('invitacionproyecto', 255)->nullable();
+            $table->string('pliegoproyecto', 255)->nullable();
+            // $table->date('fechainicioproyecto')->nullable();
+            // $table->date('fechafinproyecto')->nullable();
         });
     }
 
-    /**
+    /**s
      * Reverse the migrations.
      *
      * @return void

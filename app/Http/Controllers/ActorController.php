@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Actor;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
 
 class ActorController extends Controller
 {
@@ -49,7 +51,7 @@ class ActorController extends Controller
             'nombreactor' => $request->nombreactor,
             'apellidoactor' => $request->apellidoactor,
             'correoactor' => $request->correoactor,
-            'claveactor' => $request->claveactor,
+            'claveactor' => Hash::make($request->claveactor),//agregado
             'fotoperfilactor' => $request->fotoperfilactor
         ]);
 
@@ -139,7 +141,7 @@ class ActorController extends Controller
         $actor->nombreactor = $request->nombreactor;
         $actor->apellidoactor = $request->apellidoactor;
         $actor->correoactor = $request->correoactor;
-        $actor->claveactor = $request->claveactor;
+        $actor->claveactor = Hash::make($request->claveactor);
         $actor->fotoperfilactor = $request->fotoperfilactor;
         $actor->save();
 
@@ -190,7 +192,7 @@ class ActorController extends Controller
             $actor->correoactor = $request->correoactor;
         }
         if ($request->has('claveactor')) {
-            $actor->claveactor = $request->claveactor;
+            $actor->claveactor = Hash::make($request->claveactor);
         }
         if ($request->has('fotoperfilactor')) {
             $actor->fotoperfilactor = $request->fotoperfilactor;
@@ -204,5 +206,32 @@ class ActorController extends Controller
             'status' => 200
         ];
         return response()->json($data, 200);
+    }
+    public function search(Request $request)
+    {
+        // Obtener el nombre o correo para buscar en la base de datos
+        $query = Actor::query();
+
+        if ($request->has('nombreactor')) {
+            $query->where('nombreactor', 'like', '%' . $request->nombreactor . '%');
+        }
+
+        if ($request->has('correoactor')) {
+            $query->where('correoactor', 'like', '%' . $request->correoactor . '%');
+        }
+
+        $actors = $query->get();
+
+        if ($actors->isEmpty()) {
+            return response()->json([
+                'message' => 'No se encontraron actores',
+                'status' => 404
+            ], 404);
+        }
+
+        return response()->json([
+            'actors' => $actors,
+            'status' => 200
+        ], 200);
     }
 }
