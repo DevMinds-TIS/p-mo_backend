@@ -23,6 +23,7 @@ Route::post('/actores', [ActorController::class, 'store']);
 Route::put('/actores/{id}', [ActorController::class, 'update']);
 Route::patch('/actores/{id}', [ActorController::class, 'updatePartial']);
 Route::delete('/actores/{id}', [ActorController::class, 'delete']);
+Route::get('/actores/buscar', [ActorController::class, 'search']);
 
 //login 
 Route::post('/login', [AuthController::class, 'login']);
@@ -36,3 +37,7 @@ Route::post('/proyecto', [ProjectController::class, 'store']);
 //rutas para Equipo
 Route::get('/equipo', [EquipoController::class, 'index']);
 Route::post('/equipo', [EquipoController::class, 'store']);
+Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
+Route::put('/equipos/{id}', [EquipoController::class, 'update']);
+Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
+Route::get('/equipos/buscar', [EquipoController::class, 'search']);
