@@ -1,0 +1,30 @@
+2024-09-17 12:32:14.903 GMT [26948] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-09-17 12:32:14.907 GMT [26948] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-17 12:32:14.907 GMT [26948] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-17 12:32:14.967 GMT [21228] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-09-17 11:04:50 GMT
+2024-09-17 12:32:16.337 GMT [21228] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-09-17 12:32:16.350 GMT [21228] LOG:  redo comienza en 0/1B54860
+2024-09-17 12:32:16.355 GMT [21228] LOG:  largo de registro no válido en 0/1B55308: se esperaba 24, se obtuvo 0
+2024-09-17 12:32:16.355 GMT [21228] LOG:  redo listo en 0/1B552D0
+2024-09-17 12:32:16.448 GMT [26948] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-17 12:34:19.793 GMT [16128] FATAL:  la autentificación password falló para el usuario «postgres»
+2024-09-17 12:34:19.793 GMT [16128] DETALLE:  La contraseña no coincide para el usuario «postgres».
+	La conexión coincidió con la línea 86 de pg_hba.conf: «host    all             all             ::1/128                 password»
+2024-09-17 12:34:19.920 GMT [20188] FATAL:  la autentificación password falló para el usuario «postgres»
+2024-09-17 12:34:19.920 GMT [20188] DETALLE:  La contraseña no coincide para el usuario «postgres».
+	La conexión coincidió con la línea 86 de pg_hba.conf: «host    all             all             ::1/128                 password»
+2024-09-17 12:34:19.941 GMT [32916] FATAL:  la autentificación password falló para el usuario «postgres»
+2024-09-17 12:34:19.941 GMT [32916] DETALLE:  La contraseña no coincide para el usuario «postgres».
+	La conexión coincidió con la línea 86 de pg_hba.conf: «host    all             all             ::1/128                 password»
+2024-09-17 12:34:19.962 GMT [19716] FATAL:  la autentificación password falló para el usuario «postgres»
+2024-09-17 12:34:19.962 GMT [19716] DETALLE:  La contraseña no coincide para el usuario «postgres».
+	La conexión coincidió con la línea 86 de pg_hba.conf: «host    all             all             ::1/128                 password»
+2024-09-17 12:34:20.090 GMT [32944] FATAL:  la autentificación password falló para el usuario «postgres»
+2024-09-17 12:34:20.090 GMT [32944] DETALLE:  La contraseña no coincide para el usuario «postgres».
+	La conexión coincidió con la línea 86 de pg_hba.conf: «host    all             all             ::1/128                 password»
+2024-09-18 17:40:33.906 GMT [19880] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-18 17:40:33.906 GMT [22012] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-18 17:40:33.906 GMT [6040] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	

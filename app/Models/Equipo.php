@@ -16,6 +16,7 @@ class Equipo extends Model
         'Nombredelequipo',
         'nombre_equipo_largo',
         'idestudiante',
+        'idproyecto',
         'miembro_1',
         'miembro_2',
         'miembro_3',

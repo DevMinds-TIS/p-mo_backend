@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipo;
+use App\Models\Proyecto;
 use Illuminate\Support\Facades\Validator;
 
 class EquipoController extends Controller
@@ -43,6 +44,7 @@ class EquipoController extends Controller
             'nombre_equipo_largo' => 'nullable|string|max:100',
             'correoequipo' => 'nullable|string|email|max:60',
             'fotodelogoEquipo' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'idproyecto' => 'required|exists:proyecto,idproyecto',
         ]);
 
         if ($validator->fails()) {
@@ -60,6 +62,7 @@ class EquipoController extends Controller
 
         $equipo = Equipo::create([
             'Nombredelequipo' => $request->Nombredelequipo,
+            'idproyecto' => $request->idproyecto,
             'nombre_equipo_largo' => $request->nombre_equipo_largo,
             'correoequipo' => $request->correoequipo,
             'fotodelogoEquipo' => $logoPath,
@@ -79,7 +82,7 @@ class EquipoController extends Controller
         ];
         return response()->json($data, 201);
     }
-    
+
     //recuperar equipo por id
     public function show($id)// agregado
     {
@@ -87,17 +90,17 @@ class EquipoController extends Controller
 
         if (!$equipo) {
             return response()->json([
-            'message' => 'Equipo no encontrado',
-            'status' => 404
+                'message' => 'Equipo no encontrado',
+                'status' => 404
             ], 404);
         }
 
         return response()->json([
-        'equipo' => $equipo,
-        'status' => 200
+            'equipo' => $equipo,
+            'status' => 200
         ], 200);
     }
-    
+
     //buscar equipos por nombre o correo 
     public function search(Request $request)
     {
@@ -115,8 +118,8 @@ class EquipoController extends Controller
 
         if ($equipos->isEmpty()) {
             return response()->json([
-            'message' => 'No se encontraron equipos',
-            'status' => 404
+                'message' => 'No se encontraron equipos',
+                'status' => 404
             ], 404);
         }
 
@@ -135,9 +138,9 @@ class EquipoController extends Controller
                 'message' => 'Equipo no encontrado',
                 'status' => 404
             ], 404);
-         }
+        }
 
-         $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'Nombredelequipo' => 'nullable|string|max:60',
             'nombre_equipo_largo' => 'nullable|string|max:100',
             'correoequipo' => 'nullable|string|email|max:60',

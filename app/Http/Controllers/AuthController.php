@@ -20,8 +20,8 @@ class AuthController extends Controller
         $actor = Actor::where('correoactor', $request->correoactor)->first();
 
         // Verificar si el actor existe y si la contraseña es correcta
-        //if ($actor && Hash::check($request->claveactor, $actor->claveactor)) {
-            if ($actor && $request->claveactor === $actor->claveactor) {
+        if ($actor && Hash::check($request->claveactor, $actor->claveactor)) {
+            //    if ($actor && $request->claveactor === $actor->claveactor) {
             // Generar una respuesta exitosa
             return response()->json([
                 'message' => 'Inicio de sesión exitoso',
@@ -34,4 +34,6 @@ class AuthController extends Controller
             'message' => 'Credenciales incorrectas',
         ], 401);
     }
+
+    
 }
