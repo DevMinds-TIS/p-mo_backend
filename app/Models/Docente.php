@@ -9,10 +9,9 @@ class Docente extends Model
 {
     use HasFactory;
     protected $primaryKey = 'iddocente';
-
+    protected $table = 'docente';
     protected $fillable = [
         'idactor',
-        'idgrupo',
     ];
 
     public function actor()
@@ -20,9 +19,9 @@ class Docente extends Model
         return $this->belongsTo(Actor::class, 'idactor');
     }
 
-    public function grupo()
-    {
-        return $this->belongsTo(Grupo::class, 'idgrupo');
-    }
+    // public function grupo()
+    // {
+    //     return $this->belongsTo(Grupo::class, 'idgrupo');
+    // }
 
 }

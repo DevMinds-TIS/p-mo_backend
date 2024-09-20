@@ -8,9 +8,52 @@ use App\Models\Actor;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Docente;
+use App\Models\Estudiante;
 
 class ActorController extends Controller
 {
+
+    public function getActorsWithType()
+    {
+        $actors = Actor::all()->map(function ($actor) {
+            // Comprobar si el actor es un docente
+            $docente = Docente::where('idactor', $actor->idactor)->first();
+            if ($docente) {
+                return [
+                    'id' => $actor->idactor,
+                    'nombreactor' => $actor->nombreactor,
+                    'apellidoactor' => $actor->apellidoactor,
+                    'correoactor' => $actor->correoactor,
+                    'tipo' => 'docente'
+                ];
+            }
+
+            // Comprobar si el actor es un estudiante
+            $estudiante = Estudiante::where('idactor', $actor->idactor)->first();
+            if ($estudiante) {
+                return [
+                    'id' => $actor->idactor,
+                    'nombreactor' => $actor->nombreactor,
+                    'apellidoactor' => $actor->apellidoactor,
+                    'correoactor' => $actor->correoactor,
+                    'tipo' => 'estudiante'
+                ];
+            }
+
+            // Si no es ni docente ni estudiante
+            return [
+                'id' => $actor->idactor,
+                'nombreactor' => $actor->nombreactor,
+                'apellidoactor' => $actor->apellidoactor,
+                'correoactor' => $actor->correoactor,
+                'tipo' => 'ninguno'
+            ];
+        });
+
+        return response()->json($actors, 200);
+    }
+
     public function index()
     {
         $actor = Actor::all();

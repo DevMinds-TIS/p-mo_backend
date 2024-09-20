@@ -41,3 +41,17 @@ Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
 Route::put('/equipos/{id}', [EquipoController::class, 'update']);
 Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
 Route::get('/equipos/buscar', [EquipoController::class, 'search']);
+
+
+//rutas para docente
+
+Route::get('/docentes', [DocenteController::class, 'index']);
+Route::post('/docentes', [DocenteController::class, 'store']);
+
+//rutas para ESTUDIANTE
+
+Route::get('/estudiantes', [EstudianteController::class, 'index']);
+Route::post('/estudiantes', [EstudianteController::class, 'store']);
+
+//vista completa de docemte
+Route::get('/actors', [ActorController::class, 'getActorsWithType']);
