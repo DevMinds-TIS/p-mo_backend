@@ -19,4 +19,10 @@ class Actor extends Model
         'fotoperfilactor',
     ];
 
+    // Relación uno a uno con Docente
+    public function docente()
+    {
+        return $this->hasOne(Docente::class, 'idactor');
+    }
+
 }
