@@ -28,3 +28,32 @@
 	
 2024-09-18 17:40:33.906 GMT [6040] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
 	
+2024-09-20 02:05:43.074 GMT [7132] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-09-20 02:05:43.083 GMT [7132] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-20 02:05:43.083 GMT [7132] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-20 02:05:43.238 GMT [36312] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-09-19 18:15:04 GMT
+2024-09-20 02:05:48.210 GMT [36312] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-09-20 02:05:48.221 GMT [36312] LOG:  redo comienza en 0/1B620C0
+2024-09-20 02:05:48.222 GMT [36312] LOG:  largo de registro no válido en 0/1B621A8: se esperaba 24, se obtuvo 0
+2024-09-20 02:05:48.222 GMT [36312] LOG:  redo listo en 0/1B62170
+2024-09-20 02:05:48.309 GMT [7132] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-20 14:31:01.753 GMT [7132] LOG:  proceso de servidor (PID 24888) fue terminado por una excepción 0x40010004
+2024-09-20 14:31:01.753 GMT [7132] HINT:  Vea el archivo «ntstatus.h» para una descripción del valor hexadecimal.
+2024-09-20 14:31:01.804 GMT [7132] LOG:  terminando todos los otros procesos de servidor activos
+2024-09-20 14:31:02.002 GMT [22440] WARNING:  terminando la conexiÃ³n debido a una falla en otro proceso servidor
+2024-09-20 14:31:02.002 GMT [22440] DETALLE:  Postmaster ha ordenado que este proceso servidor cancele la transacciÃ³n en curso y finalice la conexiÃ³n, porque otro proceso servidor ha terminado anormalmente y podrÃ­a haber corrompido la memoria compartida.
+2024-09-20 14:31:02.002 GMT [22440] HINT:  Dentro de un momento deberÃ­a poder reconectarse y repetir la consulta.
+2024-09-20 14:31:02.002 GMT [752] WARNING:  terminando la conexiÃ³n debido a una falla en otro proceso servidor
+2024-09-20 14:31:02.002 GMT [752] DETALLE:  Postmaster ha ordenado que este proceso servidor cancele la transacciÃ³n en curso y finalice la conexiÃ³n, porque otro proceso servidor ha terminado anormalmente y podrÃ­a haber corrompido la memoria compartida.
+2024-09-20 14:31:02.002 GMT [752] HINT:  Dentro de un momento deberÃ­a poder reconectarse y repetir la consulta.
+2024-09-20 14:31:02.108 GMT [34456] WARNING:  terminando la conexiÃ³n debido a una falla en otro proceso servidor
+2024-09-20 14:31:02.108 GMT [34456] DETALLE:  Postmaster ha ordenado que este proceso servidor cancele la transacciÃ³n en curso y finalice la conexiÃ³n, porque otro proceso servidor ha terminado anormalmente y podrÃ­a haber corrompido la memoria compartida.
+2024-09-20 14:31:02.108 GMT [34456] HINT:  Dentro de un momento deberÃ­a poder reconectarse y repetir la consulta.
+2024-09-20 14:31:02.291 GMT [29832] WARNING:  terminando la conexión debido a una falla en otro proceso servidor
+2024-09-20 14:31:02.291 GMT [29832] DETALLE:  Postmaster ha ordenado que este proceso servidor cancele la transacción en curso y finalice la conexión, porque otro proceso servidor ha terminado anormalmente y podría haber corrompido la memoria compartida.
+2024-09-20 14:31:02.291 GMT [29832] HINT:  Dentro de un momento debería poder reconectarse y repetir la consulta.
+2024-09-20 14:31:02.562 GMT [7132] LOG:  todos los procesos fueron terminados; reinicializando
+2024-09-20 14:31:02.733 GMT [7132] LOG:  proceso de inicio (PID 20120) fue terminado por una excepción 0xC000026B
+2024-09-20 14:31:02.733 GMT [7132] HINT:  Vea el archivo «ntstatus.h» para una descripción del valor hexadecimal.
+2024-09-20 14:31:02.733 GMT [7132] LOG:  abortando el inicio debido a una falla en el procesamiento de inicio
+2024-09-20 14:31:02.766 GMT [7132] LOG:  el sistema de bases de datos está apagado
