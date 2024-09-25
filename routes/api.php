@@ -33,6 +33,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/proyecto', [ProjectController::class, 'index']);
 Route::post('/proyecto', [ProjectController::class, 'store']);
+Route::get('/proyecto/{id}', [ProjectController::class, 'show']);
+
 
 //rutas para Equipo
 Route::get('/equipo', [EquipoController::class, 'index']);
