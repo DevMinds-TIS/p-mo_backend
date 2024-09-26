@@ -74,4 +74,26 @@ class ProjectController extends Controller
         ];
         return response()->json($data, 201);
     }
+
+   
+        public function getEquiposByProyecto($id)
+        {
+            $proyecto = Proyecto::find($id);
+
+             if (!$proyecto) {
+                return response()->json([
+                    'message' => 'Proyecto no encontrado',
+                    'status' => 404
+                ], 404);
+            }
+
+        // Obtén los equipos asociados a este proyecto en base a las fechas de inicio y fin
+            $equipos = $proyecto->equipos()->whereBetween('fecha', [$proyecto->inicio, $proyecto->fin])->get();
+
+            return response()->json([
+                'proyecto' => $proyecto,
+                'equipos' => $equipos,
+                'status' => 200
+            ], 200);
+        }
 }

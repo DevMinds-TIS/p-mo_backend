@@ -55,3 +55,6 @@ Route::post('/estudiantes', [EstudianteController::class, 'store']);
 
 //vista completa de docemte
 Route::get('/actors', [ActorController::class, 'getActorsWithType']);
+
+
+Route::get('/proyectos/{id}/equipos', [ProyectoController::class, 'getEquiposByProyecto']);
