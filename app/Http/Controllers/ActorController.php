@@ -277,4 +277,67 @@ class ActorController extends Controller
             'status' => 200
         ], 200);
     }
+
+    public function showE($id)
+    {
+        // Buscar el actor por su ID
+        $actor = Actor::find($id);
+
+        // Verificar si no se encontró el actor
+        if (!$actor) {
+            return response()->json([
+                'message' => 'Actor no encontrado',
+                'status' => 404
+            ], 404);
+        }
+
+        // Comprobar si el actor es un docente
+        $docente = Docente::where('idactor', $actor->idactor)->first();
+        if ($docente) {
+            $actorData = [
+                'id' => $actor->idactor,
+                'nombreactor' => $actor->nombreactor,
+                'apellidoactor' => $actor->apellidoactor,
+                'correoactor' => $actor->correoactor,
+                'tipo' => 'docente'
+            ];
+
+            return response()->json([
+                'actor' => $actorData,
+                'status' => 200
+            ], 200);
+        }
+
+        // Comprobar si el actor es un estudiante
+        $estudiante = Estudiante::where('idactor', $actor->idactor)->first();
+        if ($estudiante) {
+            $actorData = [
+                'id' => $actor->idactor,
+                'nombreactor' => $actor->nombreactor,
+                'apellidoactor' => $actor->apellidoactor,
+                'correoactor' => $actor->correoactor,
+                'tipo' => 'estudiante'
+            ];
+
+            return response()->json([
+                'actor' => $actorData,
+                'status' => 200
+            ], 200);
+        }
+
+        // Si no es ni docente ni estudiante
+        $actorData = [
+            'id' => $actor->idactor,
+            'nombreactor' => $actor->nombreactor,
+            'apellidoactor' => $actor->apellidoactor,
+            'correoactor' => $actor->correoactor,
+            'tipo' => 'ninguno'
+        ];
+
+        return response()->json([
+            'actor' => $actorData,
+            'status' => 200
+        ], 200);
+    }
+
 }
