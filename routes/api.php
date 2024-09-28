@@ -9,6 +9,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\SprintController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
@@ -57,4 +58,19 @@ Route::post('/estudiantes', [EstudianteController::class, 'store']);
 Route::get('/actors', [ActorController::class, 'getActorsWithType']);
 
 
-Route::get('/proyectos/{id}/equipos', [ProyectoController::class, 'getEquiposByProyecto']);
+// Rutas para Proyectos
+Route::resource('proyectos', ProjectController::class);
+
+// Obtener equipos de un proyecto específico
+Route::get('/proyectos/{id}/equipos', [ProjectController::class, 'getEquiposByProyecto']);
+
+// Rutas para Sprints
+Route::get('/sprints', [SprintController::class, 'index']); // Obtener todos los sprints
+Route::post('/sprints', [SprintController::class, 'store']); // Crear un nuevo sprint
+
+// Obtener sprints de un proyecto específico
+Route::get('/proyectos/{projectId}/sprints', [SprintController::class, 'index']);
+
+// Actualizar y eliminar sprints
+Route::put('/sprints/{id}', [SprintController::class, 'update']);
+Route::delete('/sprints/{id}', [SprintController::class, 'destroy']);
