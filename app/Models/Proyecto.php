@@ -23,8 +23,12 @@ class Proyecto extends Model
         'nombreproyecto',        // Nombre del proyecto
         'codigo',                // Código del proyecto
         'invitacionproyecto',    // Ruta para el archivo de invitación
-        'pliegoproyecto',        // Ruta para el archivo del pliego de especificaciones
-        //'fechainicioproyecto',   // Fecha de inicio del proyecto
-        //'fechafinproyecto'       // Fecha de fin del proyecto
+        'pliegoproyecto',    // Ruta para el archivo del pliego de especificaciones
+        'listaInscrito',    // Ruta para el archivo del pliego de especificaciones
+        'fechainicioproyecto',   // Fecha de inicio del proyecto
+        'fechafinproyecto',      // Fecha de fin del proyecto
+        'fechainicioinscripcion',   // Fecha de inicio del proyecto
+        'fechafininscripcion'
+
     ];
 }

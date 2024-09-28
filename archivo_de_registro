@@ -92,3 +92,76 @@
 	FROM information_schema.columns
 	WHERE table_name = 'docente
 	
+2024-09-20 22:38:19.453 GMT [17900] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-20 22:38:19.453 GMT [19012] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-20 22:38:19.453 GMT [32324] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-20 22:38:19.454 GMT [25512] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-20 22:38:19.453 GMT [29172] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-22 16:36:15.496 GMT [7960] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-09-22 16:36:15.503 GMT [7960] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-22 16:36:15.503 GMT [7960] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-22 16:36:15.692 GMT [23648] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-09-20 22:26:33 GMT
+2024-09-22 16:36:17.251 GMT [23648] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-09-22 16:36:17.258 GMT [23648] LOG:  redo comienza en 0/1BD3548
+2024-09-22 16:36:17.258 GMT [23648] LOG:  largo de registro no válido en 0/1BD3630: se esperaba 24, se obtuvo 0
+2024-09-22 16:36:17.258 GMT [23648] LOG:  redo listo en 0/1BD35F8
+2024-09-22 16:36:17.308 GMT [7960] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-22 17:04:54.652 GMT [26076] FATAL:  terminando la conexiÃ³n debido al tÃ©rmino inesperado de postmaster
+2024-09-22 17:04:54.653 GMT [36396] FATAL:  terminando la conexiÃ³n debido al tÃ©rmino inesperado de postmaster
+2024-09-22 17:04:54.653 GMT [30480] FATAL:  terminando la conexiÃ³n debido al tÃ©rmino inesperado de postmaster
+2024-09-25 12:59:37.675 GMT [11420] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-09-25 12:59:37.685 GMT [11420] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-25 12:59:37.686 GMT [11420] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-25 12:59:37.899 GMT [33532] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-09-25 02:52:32 GMT
+2024-09-25 12:59:40.612 GMT [33532] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-09-25 12:59:40.622 GMT [33532] LOG:  redo comienza en 0/1BDF370
+2024-09-25 12:59:40.622 GMT [33532] LOG:  largo de registro no válido en 0/1BDF458: se esperaba 24, se obtuvo 0
+2024-09-25 12:59:40.622 GMT [33532] LOG:  redo listo en 0/1BDF420
+2024-09-25 12:59:40.699 GMT [11420] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-25 14:39:02.703 GMT [23648] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-25 14:39:02.703 GMT [11284] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-25 14:39:02.703 GMT [12724] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-26 20:17:29.963 GMT [32044] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-09-26 20:17:29.985 GMT [32044] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-26 20:17:29.985 GMT [32044] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-26 20:17:30.326 GMT [10632] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-09-25 22:39:34 GMT
+2024-09-26 20:17:39.355 GMT [10632] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-09-26 20:17:39.371 GMT [10632] LOG:  redo comienza en 0/1BE72D8
+2024-09-26 20:17:39.371 GMT [10632] LOG:  largo de registro no válido en 0/1BE73C0: se esperaba 24, se obtuvo 0
+2024-09-26 20:17:39.371 GMT [10632] LOG:  redo listo en 0/1BE7388
+2024-09-26 20:17:39.461 GMT [32044] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-26 22:52:40.240 GMT [20184] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-26 22:52:40.240 GMT [10084] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-26 22:52:40.243 GMT [29360] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-27 02:05:17.483 GMT [11832] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-09-27 02:05:17.525 GMT [11832] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-09-27 02:05:17.525 GMT [11832] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-09-27 02:05:17.644 GMT [25464] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-09-26 22:52:39 GMT
+2024-09-27 02:05:20.708 GMT [25464] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-09-27 02:05:20.716 GMT [25464] LOG:  redo comienza en 0/1BF1FA0
+2024-09-27 02:05:20.716 GMT [25464] LOG:  largo de registro no válido en 0/1BF2068: se esperaba 24, se obtuvo 0
+2024-09-27 02:05:20.716 GMT [25464] LOG:  redo listo en 0/1BF1FD8
+2024-09-27 02:05:20.784 GMT [11832] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-09-27 02:35:39.139 GMT [15368] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-27 02:35:39.139 GMT [15800] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-27 02:35:39.139 GMT [1760] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-27 22:34:25.082 GMT [17320] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-27 22:34:25.083 GMT [30992] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-09-27 22:34:25.084 GMT [14596] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
