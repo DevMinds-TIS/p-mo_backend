@@ -8,38 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class Equipo extends Model
 {
     use HasFactory;
+
+    // Definimos la tabla que este modelo representará
     protected $table = 'equipo_empresa';
+    
+    // Clave primaria personalizada
     protected $primaryKey = 'idequipo';
 
+    // Campos asignables masivamente
     protected $fillable = [
         'fotodelogoEquipo',
         'Nombredelequipo',
         'nombre_equipo_largo',
-        'idestudiante',
-        'idproyecto',
-        'miembro_1',
-        'miembro_2',
-        'miembro_3',
-        'miembro_4',
-        'miembro_5',
-        'miembro_6',
+        'idproyecto'
     ];
 
-    public function estudiante()
+    // Relación con el modelo Proyecto: un equipo pertenece a un proyecto
+    public function proyecto()
     {
-        return $this->hasMany(Estudiante::class, 'idestudiante');
+        return $this->belongsTo(Proyecto::class, 'idproyecto');
     }
 
+    // Relación con el modelo MiembroEquipo: Un equipo tiene muchos miembros
     public function miembros()
     {
-        return $this->hasMany(Estudiante::class, 'idestudiante', 'idequipo')
-            ->whereIn('idestudiante', [
-                $this->miembro_1,
-                $this->miembro_2,
-                $this->miembro_3,
-                $this->miembro_4,
-                $this->miembro_5,
-                $this->miembro_6
-            ]);
+        return $this->hasMany(MiembroEquipo::class, 'idequipo');
     }
 }

@@ -27,8 +27,22 @@ class Proyecto extends Model
         'listaInscrito',    // Ruta para el archivo del pliego de especificaciones
         'fechainicioproyecto',   // Fecha de inicio del proyecto
         'fechafinproyecto',      // Fecha de fin del proyecto
-        'fechainicioinscripcion',   // Fecha de inicio del proyecto
-        'fechafininscripcion'
-
+        'nombre',                // Nombre del proyecto (de la tabla 'projects')
+        'logo',                  // URL del logo (de la tabla 'projects')
+        'descripcion'            // Descripción del proyecto (de la tabla 'projects')
+        //'fechainicioinscripcion',   // Fecha de inicio del proyecto
+        //'fechafininscripcion'
     ];
+
+    // Relación con el modelo Sprint: un proyecto tiene muchos sprints
+    public function sprint()
+    {
+        return $this->hasMany(Sprint::class);
+    }
+
+    // Relación con el modelo TeamMember: un proyecto tiene muchos miembros del equipo
+    public function miembrosequipo()
+    {
+        return $this->hasMany(miembrosequipo::class);
+    }
 }

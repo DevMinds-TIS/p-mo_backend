@@ -12,6 +12,19 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        // Traer proyectos con sus relaciones
+        $proyectos = Proyecto::with('sprint', 'miembrosequipo')->get();
+        if ($proyectos->isEmpty()) {
+            return response()->json([
+                'message' => 'No existen proyectos',
+                'status' => 200
+            ], 200);
+        }
+        return response()->json([
+            'proyectos' => $proyectos,
+            'status' => 200
+        ], 200);
+
         $proyecto = Proyecto::all();
         if ($proyecto->isEmpty()) {
             $data = [
@@ -69,7 +82,8 @@ class ProjectController extends Controller
             ? $request->file('listaInscrito')->store('lista', 'public')
             : null;
 
-        $proyecto = Proyecto::create([
+        // Creación del proyecto
+            $proyecto = Proyecto::create([
             'nombreproyecto' => $request->nombreproyecto,
             'codigo' => $request->codigo,
             'invitacionproyecto' => $invitacionPath,
@@ -96,6 +110,11 @@ class ProjectController extends Controller
 
     public function show($id)
     {
+
+        // Mostrar un proyecto específico
+        $proyecto = Proyecto::with('sprint', 'miembrosequipo')->findOrFail($id);
+        return response()->json($proyecto, 200);
+
         // Obtener el proyecto por ID
         $proyecto = Proyecto::find($id);
 
@@ -248,8 +267,31 @@ class ProjectController extends Controller
         return response()->json(['message' => 'Proyecto actualizado parcialmente', 'proyecto' => $proyecto, 'status' => 200], 200);
     }
 
-
-
-
-
+    // Método para obtener equipos por proyecto basado en fechas de inicio y fin
+    public function getEquiposByProyecto($id)
+    {
+        $proyecto = Proyecto::find($id);
+        if (!$proyecto) {
+            return response()->json([
+                'message' => 'Proyecto no encontrado',
+                'status' => 404
+            ], 404);
+        }
+        // Obtén los equipos asociados a este proyecto en base a las fechas de inicio y fin
+        $equipos = $proyecto->equipos()->whereBetween('fecha', [$proyecto->inicio, $proyecto->fin])->get();
+        return response()->json([
+            'proyecto' => $proyecto,
+            'equipos' => $equipos,
+            'status' => 200
+        ], 200);
+    }
+    // Eliminar un proyecto
+    public function destroy($id)
+    {
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->delete();
+        return response()->json(['message' => 'Proyecto eliminado exitosamente'], 200);
+    }
 }
+
+

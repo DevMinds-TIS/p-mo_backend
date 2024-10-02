@@ -14,12 +14,17 @@ class CreateProyectoTable extends Migration
     public function up()
     {
         Schema::create('proyecto', function (Blueprint $table) {
-            $table->timestamps();
+            $table->id(); // Identificador único
             $table->bigIncrements('idproyecto')->unique('proyecto_pk');
             $table->string('nombreproyecto', 60)->nullable();
+            $table->string('logo')->nullable(); // URL del logo de la empresa/equipo
+            $table->text('descripcion')->nullable(); // Descripción del proyecto
             $table->string('codigo')->nullable();
+            $table->date('inicio')->nullable(); // Fecha de inicio del proyecto
+            $table->date('fin')->nullable(); // Fecha de fin del proyecto
             $table->string('invitacionproyecto', 255)->nullable();
             $table->string('pliegoproyecto', 255)->nullable();
+            $table->timestamps();
             
         });
     }

@@ -16,8 +16,12 @@ class CreateSprintTable extends Migration
         Schema::create('sprint', function (Blueprint $table) {
             $table->integer('idsprint')->unique('sprint_pk');
             $table->integer('idequipo')->nullable()->index('relationship_13_fk');
+            $table->foreignId('idproyecto')->constrained('Proyecto')->onDelete('cascade');
+            $table->string('nombre'); // Nombre del Sprint
+            $table->text('descripcion')->nullable(); // Descripción del Sprint
             $table->date('fechainiciosprint')->nullable();
             $table->date('fechafinsprint')->nullable();
+            $table->timestamps();  // created_at y updated_at
         });
     }
 

@@ -18,73 +18,59 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::all();
         if ($equipos->isEmpty()) {
-            $data = [
+            return response()->json([
                 'message' => 'No existen equipos',
                 'status' => 200
-            ];
-            return response()->json($data, 200);
+            ], 200);
         }
-        $data = [
+
+        return response()->json([
             'equipos' => $equipos,
             'status' => 200
-        ];
-        return response()->json($data, 200);
+        ], 200);
     }
 
-    /**
-     * Almacena un nuevo equipo en la base de datos.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+    // Crear un nuevo equipo
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'Nombredelequipo' => 'required|string|max:60',
+            'nombre_equipo' => 'required|string|max:60',
             'nombre_equipo_largo' => 'nullable|string|max:100',
-            'correoequipo' => 'nullable|string|email|max:60',
-            'fotodelogoEquipo' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
-            'idproyecto' => 'required|exists:proyecto,idproyecto',
+            'correo_equipo' => 'nullable|string|email|max:60',
+            'logo_equipo' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'proyecto_id' => 'required|exists:proyectos,id',
         ]);
 
         if ($validator->fails()) {
-            $data = [
+            return response()->json([
                 'message' => 'La validación ha fallado',
                 'errors' => $validator->errors(),
                 'status' => 400
-            ];
-            return response()->json($data, 400);
+            ], 400);
         }
 
-        $logoPath = $request->file('fotodelogoEquipo')
-            ? $request->file('fotodelogoEquipo')->store('logos', 'public')
-            : null;
+        // Subir logo si existe
+        $logoPath = $request->file('logo_equipo') 
+                    ? $request->file('logo_equipo')->store('logos', 'public')
+                    : null;
 
+        // Crear equipo
         $equipo = Equipo::create([
-            'Nombredelequipo' => $request->Nombredelequipo,
-            'idproyecto' => $request->idproyecto,
+            'nombre_equipo' => $request->nombre_equipo,
+            'proyecto_id' => $request->proyecto_id,
             'nombre_equipo_largo' => $request->nombre_equipo_largo,
-            'correoequipo' => $request->correoequipo,
-            'fotodelogoEquipo' => $logoPath,
+            'correo_equipo' => $request->correo_equipo,
+            'logo_equipo' => $logoPath,
         ]);
 
-        if (!$equipo) {
-            $data = [
-                'message' => 'Error al crear el equipo',
-                'status' => 501
-            ];
-            return response()->json($data, 501);
-        }
-
-        $data = [
+        return response()->json([
             'equipo' => $equipo,
             'status' => 201
-        ];
-        return response()->json($data, 201);
+        ], 201);
     }
 
-    //recuperar equipo por id
-    public function show($id)// agregado
+    // Mostrar un equipo por ID
+    public function show($id)
     {
         $equipo = Equipo::find($id);
 
@@ -101,17 +87,17 @@ class EquipoController extends Controller
         ], 200);
     }
 
-    //buscar equipos por nombre o correo 
+    // Buscar equipos por nombre o correo
     public function search(Request $request)
     {
         $query = Equipo::query();
 
-        if ($request->has('Nombredelequipo')) {
-            $query->where('Nombredelequipo', 'like', '%' . $request->Nombredelequipo . '%');
+        if ($request->has('nombre_equipo')) {
+            $query->where('nombre_equipo', 'like', '%' . $request->nombre_equipo . '%');
         }
 
-        if ($request->has('correoequipo')) {
-            $query->where('correoequipo', 'like', '%' . $request->correoequipo . '%');
+        if ($request->has('correo_equipo')) {
+            $query->where('correo_equipo', 'like', '%' . $request->correo_equipo . '%');
         }
 
         $equipos = $query->get();
@@ -128,7 +114,8 @@ class EquipoController extends Controller
             'status' => 200
         ], 200);
     }
-    //editar un equipo
+
+    // Actualizar equipo
     public function update(Request $request, $id)
     {
         $equipo = Equipo::find($id);
@@ -141,10 +128,10 @@ class EquipoController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'Nombredelequipo' => 'nullable|string|max:60',
+            'nombre_equipo' => 'nullable|string|max:60',
             'nombre_equipo_largo' => 'nullable|string|max:100',
-            'correoequipo' => 'nullable|string|email|max:60',
-            'fotodelogoEquipo' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'correo_equipo' => 'nullable|string|email|max:60',
+            'logo_equipo' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -155,23 +142,24 @@ class EquipoController extends Controller
             ], 400);
         }
 
-        if ($request->hasFile('fotodelogoEquipo')) {
-            $logoPath = $request->file('fotodelogoEquipo')->store('logos', 'public');
-            $equipo->fotodelogoEquipo = $logoPath;
+        if ($request->hasFile('logo_equipo')) {
+            $logoPath = $request->file('logo_equipo')->store('logos', 'public');
+            $equipo->logo_equipo = $logoPath;
         }
 
-        $equipo->Nombredelequipo = $request->Nombredelequipo ?? $equipo->Nombredelequipo;
+        $equipo->nombre_equipo = $request->nombre_equipo ?? $equipo->nombre_equipo;
         $equipo->nombre_equipo_largo = $request->nombre_equipo_largo ?? $equipo->nombre_equipo_largo;
-        $equipo->correoequipo = $request->correoequipo ?? $equipo->correoequipo;
+        $equipo->correo_equipo = $request->correo_equipo ?? $equipo->correo_equipo;
         $equipo->save();
 
         return response()->json([
-            'message' => 'Equipo actualizado',
+            'message' => 'Equipo actualizado con éxito',
             'equipo' => $equipo,
             'status' => 200
         ], 200);
     }
-    //Eliminar un equipo
+
+    // Eliminar equipo
     public function delete($id)
     {
         $equipo = Equipo::find($id);
