@@ -32,6 +32,7 @@ Route::post('/login', [AuthController::class, 'login']);
 //rutas para PROYECTO
 
 Route::get('/proyectos', [ProjectController::class, 'index']);
+
 Route::post('/proyecto', [ProjectController::class, 'store']);
 Route::get('/proyecto/{id}', [ProjectController::class, 'show']);
 Route::get('/proyectos/{id}', [ProjectController::class, 'show2']);
@@ -43,8 +44,8 @@ Route::post('/equipo', [EquipoController::class, 'store']);
 Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
 Route::put('/equipos/{id}', [EquipoController::class, 'update']);
 Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
-Route::get('/equipos/buscar', [EquipoController::class, 'search']);
-
+Route::get('/equiposS/buscar', [EquipoController::class, 'search']);
+Route::get('/equipotable', [EquipoController::class, 'indexTabla']);
 
 //rutas para docente
 
@@ -59,3 +60,4 @@ Route::post('/estudiantes', [EstudianteController::class, 'store']);
 //vista completa de docemte
 Route::get('/actors', [ActorController::class, 'getActorsWithType']);
 Route::get('/actors/{id}', [ActorController::class, 'showE']);
+Route::get('/summary', [ActorController::class, 'showSummary']);
