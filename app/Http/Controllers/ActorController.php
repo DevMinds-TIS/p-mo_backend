@@ -340,4 +340,21 @@ class ActorController extends Controller
         ], 200);
     }
 
+    public function showSummary()
+    {
+        // Obtener todos los actores
+        $actores = Actor::all();
+
+        // Mapear los actores para obtener solo el ID y el correo
+        $resumenActores = $actores->map(function ($actor) {
+            return [
+                'id' => $actor->idactor,
+                'correoactor' => $actor->correoactor,
+            ];
+        });
+
+        return response()->json($resumenActores, 200);
+    }
+
+
 }

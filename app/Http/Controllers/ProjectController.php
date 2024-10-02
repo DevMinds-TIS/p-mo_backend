@@ -99,6 +99,8 @@ class ProjectController extends Controller
         // Obtener el proyecto por ID
         $proyecto = Proyecto::find($id);
 
+
+
         if (!$proyecto) {
             return response()->json([
                 'message' => 'Proyecto no encontrado',
@@ -160,6 +162,18 @@ class ProjectController extends Controller
     public function show2($id)
     {
         $proyecto = Proyecto::find($id);
+
+        $proyecto->invitacionproyecto = $proyecto->invitacionproyecto
+            ? Storage::url($proyecto->invitacionproyecto)
+            : null;
+
+        $proyecto->pliegoproyecto = $proyecto->pliegoproyecto
+            ? Storage::url($proyecto->pliegoproyecto)
+            : null;
+
+        $proyecto->listaInscrito = $proyecto->listaInscrito
+            ? Storage::url($proyecto->listaInscrito)
+            : null;
 
         if (!$proyecto) {
             $data = [
