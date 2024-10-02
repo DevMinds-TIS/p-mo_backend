@@ -17,12 +17,6 @@ class Equipo extends Model
         'nombre_equipo_largo',
         'idestudiante',
         'idproyecto',
-        'miembro_1',
-        'miembro_2',
-        'miembro_3',
-        'miembro_4',
-        'miembro_5',
-        'miembro_6',
     ];
 
     public function estudiante()
@@ -30,16 +24,26 @@ class Equipo extends Model
         return $this->hasMany(Estudiante::class, 'idestudiante');
     }
 
-    public function miembros()
+    // public function miembros()
+    // {
+    //     return $this->hasMany(Estudiante::class, 'idestudiante', 'idequipo')
+    //         ->whereIn('idestudiante', [
+    //             $this->miembro_1,
+    //             $this->miembro_2,
+    //             $this->miembro_3,
+    //             $this->miembro_4,
+    //             $this->miembro_5,
+    //             $this->miembro_6
+    //         ]);
+    // }
+
+    // Relación muchos a muchos con Actor, usando la tabla pivot equipo_actor
+    public function actores()
     {
-        return $this->hasMany(Estudiante::class, 'idestudiante', 'idequipo')
-            ->whereIn('idestudiante', [
-                $this->miembro_1,
-                $this->miembro_2,
-                $this->miembro_3,
-                $this->miembro_4,
-                $this->miembro_5,
-                $this->miembro_6
-            ]);
+        return $this->belongsToMany(Actor::class, 'equipo_miembro', 'equipo_id', 'actor_id')
+            ->withPivot('rol')  // Incluye el rol del actor
+            ->withTimestamps();  // Incluye las marcas de tiempo
     }
+
+
 }
