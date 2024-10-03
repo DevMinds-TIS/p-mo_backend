@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSprintTable extends Migration
 {
+   
     /**
      * Run the migrations.
      *
@@ -13,11 +14,13 @@ class CreateSprintTable extends Migration
      */
     public function up()
     {
-        Schema::create('sprint', function (Blueprint $table) {
-            $table->integer('idsprint')->unique('sprint_pk');
-            $table->integer('idequipo')->nullable()->index('relationship_13_fk');
+        Schema::create('sprints', function (Blueprint $table) {
+            $table->bigIncrements('idsprint');
+            $table->unsignedBigInteger('idequipo')->nullable()->index('relationship_13_fk');
+            $table->text('descripcion')->nullable();
             $table->date('fechainiciosprint')->nullable();
             $table->date('fechafinsprint')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +31,6 @@ class CreateSprintTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sprint');
+        Schema::dropIfExists('sprints');
     }
 }

@@ -12,6 +12,8 @@ use App\Http\Controllers\EquipoController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\SprintController;
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -61,3 +63,9 @@ Route::post('/estudiantes', [EstudianteController::class, 'store']);
 Route::get('/actors', [ActorController::class, 'getActorsWithType']);
 Route::get('/actors/{id}', [ActorController::class, 'showE']);
 Route::get('/summary', [ActorController::class, 'showSummary']);
+
+
+// Rutas para gestionar los sprints
+Route::resource('sprints', SprintController::class);
+
+Route::post('/documentos', [DocumentoController::class, 'store']);
