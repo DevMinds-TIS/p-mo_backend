@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,8 @@ class ProjectController extends Controller
     public function index()
     {
         //
+        $admin = Admin::all();
+        return $admin;
     }
 
     /**
@@ -36,15 +38,23 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //
+        $admin = new Admin();
+        $admin->nameadmin = $request->nameadmin;
+        $admin->lastnameadmin = $request->lastnameadmin;
+        $admin->emailadmin = $request->emailadmin;
+        $admin->passwdadmin = $request->passwdadmin;
+        $admin->profileadmin = $request->profileadmin;
+
+        $admin->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Admin $admin)
     {
         //
     }
@@ -52,10 +62,10 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -64,22 +74,34 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request)
     {
         //
+        $admin = Admin::findOrFail($request->id);
+
+        $admin->nameadmin = $request->nameadmin;
+        $admin->lastnameadmin = $request->lastnameadmin;
+        $admin->emailadmin = $request->emailadmin;
+        $admin->passwdadmin = $request->passwdadmin;
+        $admin->profileadmin = $request->profileadmin;
+
+        $admin->save();
+        return $admin;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Request $request)
     {
         //
+        $admin = Admin::destroy($request->id);
+        return $admin;
     }
 }

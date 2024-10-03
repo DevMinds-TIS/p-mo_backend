@@ -15,7 +15,6 @@ use App\Http\Controllers\ProjectController;
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-//prueva
 // Rutas para ActorController
 Route::get('/actores', [ActorController::class, 'index']);
 Route::get('/actores/{id}', [ActorController::class, 'show']);
@@ -41,3 +40,13 @@ Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
 Route::put('/equipos/{id}', [EquipoController::class, 'update']);
 Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
 Route::get('/equipos/buscar', [EquipoController::class, 'search']);
+
+Route::get('/admin', 'App\Http\Controllers\AdminController@index');
+Route::post('/admin', 'App\Http\Controllers\AdminController@store');
+Route::put('/admin/{id}', 'App\Http\Controllers\AdminController@update');
+Route::delete('/admin/{id}', 'App\Http\Controllers\AdminController@destroy');
+
+Route::get('/teacher', 'App\Http\Controllers\TeacherController@index');
+Route::post('/teacher', 'App\Http\Controllers\TeacherController@store');
+Route::put('/teacher/{id}', 'App\Http\Controllers\TeacherController@update');
+Route::delete('/teacher/{id}', 'App\Http\Controllers\TeacherController@destroy');
