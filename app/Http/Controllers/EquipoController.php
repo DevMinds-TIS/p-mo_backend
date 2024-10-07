@@ -65,7 +65,7 @@ class EquipoController extends Controller
             'correoequipo' => 'nullable|string|email|max:60',
             'fotodelogoEquipo' => 'nullable|file|mimes:jpg,jpeg,png|max:2048', // Acepta imágenes de hasta 2MB
             'idproyecto' => 'required|exists:proyecto,idproyecto',
-            'idestudiante' => 'nullable|exists:estudiantes,id', // Asegúrate de validar el id del estudiante si es necesario
+            'idestudiante' => 'nullable|exists:estudiante,idestudiante', // Asegúrate de validar el id del estudiante si es necesario
 
         ]);
 
@@ -84,14 +84,31 @@ class EquipoController extends Controller
             : null;
 
         // Crear el equipo
-        $equipo = Equipo::create([
-            'Nombredelequipo' => $request->Nombredelequipo,
-            'idproyecto' => $request->idproyecto,
-            'nombre_equipo_largo' => $request->nombre_equipo_largo,
-            'correoequipo' => $request->correoequipo,
-            'fotodelogoEquipo' => $logoPath,
-            'idestudiante' => $request->idestudiante,
-        ]);
+        // $equipo = Equipo::create([
+        //     'Nombredelequipo' => $request->Nombredelequipo,
+        //     'idproyecto' => $request->idproyecto,
+        //     'nombre_equipo_largo' => $request->nombre_equipo_largo,
+        //     'correoequipo' => $request->correoequipo,
+        //     'fotodelogoEquipo' => $logoPath,
+        //     'idestudiante' => $request->idestudiante,
+        // ]);
+        try {
+            $equipo = Equipo::create([
+                'Nombredelequipo' => $request->Nombredelequipo,
+                'idproyecto' => $request->idproyecto,
+                'nombre_equipo_largo' => $request->nombre_equipo_largo,
+                'correoequipo' => $request->correoequipo,
+                'fotodelogoEquipo' => $logoPath,
+                'idestudiante' => $request->idestudiante,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear el equipo',
+                'error' => $e->getMessage(),
+                'status' => 501
+            ], 501);
+        }
+
 
         // Manejo de errores al crear el equipo
         if (!$equipo) {
@@ -223,4 +240,17 @@ class EquipoController extends Controller
             'status' => 200
         ], 200);
     }
+
+
+    public function obtenerEquiposPorUsuario($id)
+    {
+        // Obtener todos los registros de EquipoMiembro donde el actor_id es igual al ID proporcionado
+        $equipos = EquipoMiembro::with(['equipo', 'equipo.actores']) // Cargar la relación del equipo y los actores del equipo
+            ->where('actor_id', $id)
+            ->get();
+
+        // Retornar los equipos en formato JSON
+        return response()->json($equipos);
+    }
+
 }
