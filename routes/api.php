@@ -47,6 +47,8 @@ Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
 Route::get('/equiposS/buscar', [EquipoController::class, 'search']);
 Route::get('/equipotable', [EquipoController::class, 'indexTabla']);
 
+Route::get('/equipos/usuario/{id}', [EquipoController::class, 'obtenerEquiposPorUsuario']);
+
 //rutas para docente
 
 Route::get('/docentes', [DocenteController::class, 'index']);
