@@ -14,16 +14,17 @@ class CreateSprintTrackingSpreadsheetTable extends Migration
     public function up()
     {
         Schema::create('sprint_tracking_spreadsheet', function (Blueprint $table) {
-            $table->integer('idsts')->primary();
+            // $table->integer('idsts')->primary();
+            $table->increments('idsts');
             $table->integer('idsprint')->nullable()->index('relationship_11_fk');
             $table->string('documentsts', 255)->nullable();
             $table->date('deliverysts')->nullable();
             $table->date('returnsts')->nullable();
             $table->string('statussts', 60)->nullable();
             $table->string('commetsts', 120)->nullable();
-
-            $table->unique(['idsts'], 'sprint_tracking_spreadsheet_pk');
             $table->timestamps();
+
+            // $table->unique(['idsts'], 'sprint_tracking_spreadsheet_pk');
         });
     }
 

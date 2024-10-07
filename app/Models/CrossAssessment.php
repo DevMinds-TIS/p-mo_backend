@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idca
  * @property int|null $idac
- * @property int|null $idsprint
+ * @property int|null $idplanning
  * @property int|null $idevaluation_team
  * @property int|null $idevaluated_team
  * @property Carbon|null $dateca
  * 
  * @property AssessmentCriterion|null $assessment_criterion
- * @property Sprint|null $sprint
+ * @property Planning|null $planning
  * @property Team|null $team
  *
  * @package App\Models
@@ -35,7 +35,7 @@ class CrossAssessment extends Model
 	protected $casts = [
 		'idca' => 'int',
 		'idac' => 'int',
-		'idsprint' => 'int',
+		'idplanning' => 'int',
 		'idevaluation_team' => 'int',
 		'idevaluated_team' => 'int',
 		'dateca' => 'datetime'
@@ -43,7 +43,7 @@ class CrossAssessment extends Model
 
 	protected $fillable = [
 		'idac',
-		'idsprint',
+		'idplanning',
 		'idevaluation_team',
 		'idevaluated_team',
 		'dateca'
@@ -54,9 +54,9 @@ class CrossAssessment extends Model
 		return $this->belongsTo(AssessmentCriterion::class, 'idac');
 	}
 
-	public function sprint()
+	public function planning()
 	{
-		return $this->belongsTo(Sprint::class, 'idsprint');
+		return $this->belongsTo(Planning::class, 'idplanning');
 	}
 
 	public function team()

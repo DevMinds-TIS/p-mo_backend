@@ -14,14 +14,13 @@ class CreateWeeklyEvaSpreadsheetTable extends Migration
     public function up()
     {
         Schema::create('weekly_eva_spreadsheet', function (Blueprint $table) {
-            $table->integer('idwes')->primary();
+            // $table->integer('idwes')->unique('weekly_eva_spreadsheet_pk');
+            $table->increments('idwes');
             $table->integer('idsprint')->nullable()->index('relationship_12_fk');
             $table->string('goalwes', 120)->nullable();
             $table->date('startwes')->nullable();
             $table->date('endwes')->nullable();
             $table->string('statuswes', 60)->nullable();
-
-            $table->unique(['idwes'], 'weekly_eva_spreadsheet_pk');
             $table->timestamps();
         });
     }

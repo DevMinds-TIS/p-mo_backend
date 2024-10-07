@@ -20,8 +20,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $paymentplanning
  * 
  * @property Team|null $team
- * @property Collection|Sprint[] $sprints
+ * @property Collection|CrossAssessment[] $cross_assessments
  * @property Collection|Team[] $teams
+ * @property Collection|PeerToPeerEvaluation[] $peer_to_peer_evaluations
+ * @property Collection|SelfAssessment[] $self_assessments
+ * @property Collection|Sprint[] $sprints
  *
  * @package App\Models
  */
@@ -50,13 +53,28 @@ class Planning extends Model
 		return $this->belongsTo(Team::class, 'idteam');
 	}
 
-	public function sprints()
+	public function cross_assessments()
 	{
-		return $this->hasMany(Sprint::class, 'idplanning');
+		return $this->hasMany(CrossAssessment::class, 'idplanning');
 	}
 
 	public function teams()
 	{
 		return $this->hasMany(Team::class, 'idplanning');
+	}
+
+	public function peer_to_peer_evaluations()
+	{
+		return $this->hasMany(PeerToPeerEvaluation::class, 'idplanning');
+	}
+
+	public function self_assessments()
+	{
+		return $this->hasMany(SelfAssessment::class, 'idplanning');
+	}
+
+	public function sprints()
+	{
+		return $this->hasMany(Sprint::class, 'idplanning');
 	}
 }

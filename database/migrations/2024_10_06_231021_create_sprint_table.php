@@ -14,7 +14,8 @@ class CreateSprintTable extends Migration
     public function up()
     {
         Schema::create('sprint', function (Blueprint $table) {
-            $table->integer('idsprint')->unique('sprint_pk');
+            // $table->integer('idsprint')->unique('sprint_pk');
+            $table->increments('idsprint');
             $table->integer('idplanning')->nullable()->index('relationship_9_fk');
             $table->date('startsprint')->nullable();
             $table->date('endsprint')->nullable();

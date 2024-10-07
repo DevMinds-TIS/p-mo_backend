@@ -14,13 +14,16 @@ class CreateAdminTable extends Migration
     public function up()
     {
         Schema::create('admin', function (Blueprint $table) {
-            $table->integer('idadmin')->unique('admin_pk');
+            // $table->integer('idadmin')->primary();
+            $table->increments('idadmin');
             $table->string('nameadmin', 60)->nullable();
             $table->string('lastnameadmin', 60)->nullable();
-            $table->string('emailadmin', 120)->unique();
+            $table->string('emailadmin', 120)->nullable();
             $table->string('passwdadmin', 255)->nullable();
             $table->string('profileadmin', 255)->nullable();
             $table->timestamps();
+
+            // $table->unique(['idadmin'], 'admin_pk');
         });
     }
 

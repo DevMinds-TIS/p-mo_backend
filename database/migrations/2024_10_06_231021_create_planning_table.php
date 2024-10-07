@@ -14,14 +14,13 @@ class CreatePlanningTable extends Migration
     public function up()
     {
         Schema::create('planning', function (Blueprint $table) {
-            $table->integer('idplanning')->primary();
+            // $table->integer('idplanning')->unique('planning_pk');
+            $table->increments('idplanning');
             $table->integer('idteam')->nullable()->index('relationship_31_fk');
             $table->string('partaplanning', 255)->nullable();
             $table->string('partbplanning', 255)->nullable();
             $table->string('contractplanning', 255)->nullable();
             $table->string('paymentplanning', 255)->nullable();
-
-            $table->unique(['idplanning'], 'planning_pk');
             $table->timestamps();
         });
     }

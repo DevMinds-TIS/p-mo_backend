@@ -14,7 +14,8 @@ class CreateTeamTable extends Migration
     public function up()
     {
         Schema::create('team', function (Blueprint $table) {
-            $table->integer('idteam')->unique('team_pk');
+            // $table->integer('idteam')->unique('team_pk');
+            $table->increments('idteam');
             $table->integer('idspace')->nullable()->index('relationship_6_fk');
             $table->integer('idplanning')->nullable()->index('relationship_8_fk');
             $table->string('nameteam', 60)->nullable();

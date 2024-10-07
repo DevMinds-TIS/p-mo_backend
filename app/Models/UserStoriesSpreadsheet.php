@@ -28,8 +28,8 @@ class UserStoriesSpreadsheet extends Model
 {
 	protected $table = 'user_stories_spreadsheet';
 	protected $primaryKey = 'iduss';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'iduss' => 'int',

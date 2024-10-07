@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AssessmentCriterion;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class AssessmentCriterionController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,8 @@ class AssessmentCriterionController extends Controller
     public function index()
     {
         //
+        $student = Student::all();
+        return $student;
     }
 
     /**
@@ -41,10 +43,10 @@ class AssessmentCriterionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AssessmentCriterion  $assessmentCriterion
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(AssessmentCriterion $assessmentCriterion)
+    public function show(Student $student)
     {
         //
     }
@@ -52,10 +54,10 @@ class AssessmentCriterionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AssessmentCriterion  $assessmentCriterion
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(AssessmentCriterion $assessmentCriterion)
+    public function edit(Student $student)
     {
         //
     }
@@ -64,10 +66,10 @@ class AssessmentCriterionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AssessmentCriterion  $assessmentCriterion
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AssessmentCriterion $assessmentCriterion)
+    public function update(Request $request, Student $student)
     {
         //
     }
@@ -75,10 +77,10 @@ class AssessmentCriterionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AssessmentCriterion  $assessmentCriterion
+     * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AssessmentCriterion $assessmentCriterion)
+    public function destroy(Student $student)
     {
         //
     }

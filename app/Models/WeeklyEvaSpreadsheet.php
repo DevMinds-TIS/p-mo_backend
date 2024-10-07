@@ -29,8 +29,8 @@ class WeeklyEvaSpreadsheet extends Model
 {
 	protected $table = 'weekly_eva_spreadsheet';
 	protected $primaryKey = 'idwes';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idwes' => 'int',

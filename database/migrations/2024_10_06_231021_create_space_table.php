@@ -14,7 +14,8 @@ class CreateSpaceTable extends Migration
     public function up()
     {
         Schema::create('space', function (Blueprint $table) {
-            $table->integer('idspace')->unique('space_pk');
+            // $table->integer('idspace')->unique('space_pk');
+            $table->increments('idspace');
             $table->integer('idproject')->nullable()->index('relationship_4_fk');
             $table->integer('idteacher')->nullable()->index('relationship_5_fk');
             $table->date('startspace')->nullable();

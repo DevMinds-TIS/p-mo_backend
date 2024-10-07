@@ -14,12 +14,12 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idsa
  * @property int|null $idac
- * @property int|null $idsprint
+ * @property int|null $idplanning
  * @property int|null $idstudent
  * @property Carbon|null $datesa
  * 
  * @property AssessmentCriterion|null $assessment_criterion
- * @property Sprint|null $sprint
+ * @property Planning|null $planning
  * @property Student|null $student
  *
  * @package App\Models
@@ -34,14 +34,14 @@ class SelfAssessment extends Model
 	protected $casts = [
 		'idsa' => 'int',
 		'idac' => 'int',
-		'idsprint' => 'int',
+		'idplanning' => 'int',
 		'idstudent' => 'int',
 		'datesa' => 'datetime'
 	];
 
 	protected $fillable = [
 		'idac',
-		'idsprint',
+		'idplanning',
 		'idstudent',
 		'datesa'
 	];
@@ -51,9 +51,9 @@ class SelfAssessment extends Model
 		return $this->belongsTo(AssessmentCriterion::class, 'idac');
 	}
 
-	public function sprint()
+	public function planning()
 	{
-		return $this->belongsTo(Sprint::class, 'idsprint');
+		return $this->belongsTo(Planning::class, 'idplanning');
 	}
 
 	public function student()

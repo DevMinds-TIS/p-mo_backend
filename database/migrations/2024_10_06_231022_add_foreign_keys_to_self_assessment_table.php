@@ -15,7 +15,7 @@ class AddForeignKeysToSelfAssessmentTable extends Migration
     {
         Schema::table('self_assessment', function (Blueprint $table) {
             $table->foreign(['idac'], 'fk_self_ass_relations_assessme')->references(['idac'])->on('assessment_criteria')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign(['idsprint'], 'fk_self_ass_relations_sprint')->references(['idsprint'])->on('sprint')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idplanning'], 'fk_self_ass_relations_planning')->references(['idplanning'])->on('planning')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idstudent'], 'fk_self_ass_relations_student')->references(['idstudent'])->on('student')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
@@ -29,7 +29,7 @@ class AddForeignKeysToSelfAssessmentTable extends Migration
     {
         Schema::table('self_assessment', function (Blueprint $table) {
             $table->dropForeign('fk_self_ass_relations_assessme');
-            $table->dropForeign('fk_self_ass_relations_sprint');
+            $table->dropForeign('fk_self_ass_relations_planning');
             $table->dropForeign('fk_self_ass_relations_student');
         });
     }

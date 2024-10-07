@@ -23,8 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Space|null $space
  * @property Planning|null $planning
  * @property Collection|CrossAssessment[] $cross_assessments
- * @property Collection|Student[] $students
  * @property Collection|Planning[] $plannings
+ * @property Collection|Student[] $students
  *
  * @package App\Models
  */
@@ -65,13 +65,13 @@ class Team extends Model
 		return $this->hasMany(CrossAssessment::class, 'idevaluated_team');
 	}
 
-	public function students()
-	{
-		return $this->hasMany(Student::class, 'idteam');
-	}
-
 	public function plannings()
 	{
 		return $this->hasMany(Planning::class, 'idteam');
+	}
+
+	public function students()
+	{
+		return $this->hasMany(Student::class, 'idteam');
 	}
 }

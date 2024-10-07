@@ -14,11 +14,14 @@ class CreateAssessmentCriteriaTable extends Migration
     public function up()
     {
         Schema::create('assessment_criteria', function (Blueprint $table) {
-            $table->integer('idac')->unique('assessment_criteria_pk');
+            // $table->integer('idac')->primary();
+            $table->increments('idac');
             $table->string('nameac', 60)->nullable();
             $table->integer('scoreac')->nullable();
             $table->string('commetnac', 220)->nullable();
             $table->timestamps();
+
+            // $table->unique(['idac'], 'assessment_criteria_pk');
         });
     }
 

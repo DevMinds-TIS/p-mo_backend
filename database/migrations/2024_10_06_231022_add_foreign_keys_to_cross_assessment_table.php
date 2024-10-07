@@ -15,7 +15,7 @@ class AddForeignKeysToCrossAssessmentTable extends Migration
     {
         Schema::table('cross_assessment', function (Blueprint $table) {
             $table->foreign(['idac'], 'fk_cross_as_relations_assessme')->references(['idac'])->on('assessment_criteria')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign(['idsprint'], 'fk_cross_as_relations_sprint')->references(['idsprint'])->on('sprint')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idplanning'], 'fk_cross_as_relations_planning')->references(['idplanning'])->on('planning')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idevaluation_team'], 'fk_cross_as_team_evaluated')->references(['idteam'])->on('team')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idevaluated_team'], 'fk_cross_as_team_evaluator')->references(['idteam'])->on('team')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
@@ -30,7 +30,7 @@ class AddForeignKeysToCrossAssessmentTable extends Migration
     {
         Schema::table('cross_assessment', function (Blueprint $table) {
             $table->dropForeign('fk_cross_as_relations_assessme');
-            $table->dropForeign('fk_cross_as_relations_sprint');
+            $table->dropForeign('fk_cross_as_relations_planning');
             $table->dropForeign('fk_cross_as_team_evaluated');
             $table->dropForeign('fk_cross_as_team_evaluator');
         });

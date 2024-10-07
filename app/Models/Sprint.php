@@ -20,9 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $goalsprint
  * 
  * @property Planning|null $planning
- * @property Collection|CrossAssessment[] $cross_assessments
- * @property Collection|PeerToPeerEvaluation[] $peer_to_peer_evaluations
- * @property Collection|SelfAssessment[] $self_assessments
  * @property Collection|SprintTrackingSpreadsheet[] $sprint_tracking_spreadsheets
  * @property Collection|WeeklyEvaSpreadsheet[] $weekly_eva_spreadsheets
  * @property Collection|UserStoriesSpreadsheet[] $user_stories_spreadsheets
@@ -53,21 +50,6 @@ class Sprint extends Model
 	public function planning()
 	{
 		return $this->belongsTo(Planning::class, 'idplanning');
-	}
-
-	public function cross_assessments()
-	{
-		return $this->hasMany(CrossAssessment::class, 'idsprint');
-	}
-
-	public function peer_to_peer_evaluations()
-	{
-		return $this->hasMany(PeerToPeerEvaluation::class, 'idsprint');
-	}
-
-	public function self_assessments()
-	{
-		return $this->hasMany(SelfAssessment::class, 'idsprint');
 	}
 
 	public function sprint_tracking_spreadsheets()

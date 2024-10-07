@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idp2p
  * @property int|null $idac
- * @property int|null $idsprint
+ * @property int|null $idplanning
  * @property int|null $idstudent_evaluator
  * @property int|null $idstudent_evaluated
  * @property Carbon|null $datep2p
  * 
  * @property AssessmentCriterion|null $assessment_criterion
- * @property Sprint|null $sprint
+ * @property Planning|null $planning
  * @property Student|null $student
  *
  * @package App\Models
@@ -35,7 +35,7 @@ class PeerToPeerEvaluation extends Model
 	protected $casts = [
 		'idp2p' => 'int',
 		'idac' => 'int',
-		'idsprint' => 'int',
+		'idplanning' => 'int',
 		'idstudent_evaluator' => 'int',
 		'idstudent_evaluated' => 'int',
 		'datep2p' => 'datetime'
@@ -43,7 +43,7 @@ class PeerToPeerEvaluation extends Model
 
 	protected $fillable = [
 		'idac',
-		'idsprint',
+		'idplanning',
 		'idstudent_evaluator',
 		'idstudent_evaluated',
 		'datep2p'
@@ -54,9 +54,9 @@ class PeerToPeerEvaluation extends Model
 		return $this->belongsTo(AssessmentCriterion::class, 'idac');
 	}
 
-	public function sprint()
+	public function planning()
 	{
-		return $this->belongsTo(Sprint::class, 'idsprint');
+		return $this->belongsTo(Planning::class, 'idplanning');
 	}
 
 	public function student()

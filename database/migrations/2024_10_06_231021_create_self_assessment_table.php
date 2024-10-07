@@ -14,12 +14,15 @@ class CreateSelfAssessmentTable extends Migration
     public function up()
     {
         Schema::create('self_assessment', function (Blueprint $table) {
-            $table->integer('idsa')->unique('self_assessment_pk');
+            // $table->integer('idsa')->primary();
+            $table->increments('idsa');
             $table->integer('idac')->nullable()->index('relationship_16_fk');
-            $table->integer('idsprint')->nullable()->index('relationship_19_fk');
+            $table->integer('idplanning')->nullable()->index('relationship_19_fk');
             $table->integer('idstudent')->nullable()->index('relationship_22_fk');
             $table->date('datesa')->nullable();
             $table->timestamps();
+
+            // $table->unique(['idsa'], 'self_assessment_pk');
         });
     }
 

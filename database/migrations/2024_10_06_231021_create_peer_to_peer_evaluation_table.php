@@ -14,15 +14,16 @@ class CreatePeerToPeerEvaluationTable extends Migration
     public function up()
     {
         Schema::create('peer_to_peer_evaluation', function (Blueprint $table) {
-            $table->integer('idp2p')->primary();
+            // $table->integer('idp2p')->primary();
+            $table->increments('idp2p');
             $table->integer('idac')->nullable()->index('relationship_17_fk');
-            $table->integer('idsprint')->nullable()->index('relationship_20_fk');
+            $table->integer('idplanning')->nullable()->index('relationship_20_fk');
             $table->integer('idstudent_evaluator')->nullable()->index('relationship_23_fk');
             $table->integer('idstudent_evaluated')->nullable()->index('relationship_25_fk');
             $table->date('datep2p')->nullable();
-
-            $table->unique(['idp2p'], 'peer_to_peer_evaluation_pk');
             $table->timestamps();
+
+            // $table->unique(['idp2p'], 'peer_to_peer_evaluation_pk');
         });
     }
 

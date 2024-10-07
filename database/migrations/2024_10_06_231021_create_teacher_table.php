@@ -14,7 +14,8 @@ class CreateTeacherTable extends Migration
     public function up()
     {
         Schema::create('teacher', function (Blueprint $table) {
-            $table->integer('idteacher')->unique('teacher_pk');
+            // $table->integer('idteacher')->primary();
+            $table->increments('idteacher');
             $table->integer('idadmin')->nullable()->index('relationship_1_fk');
             $table->string('nameteacher', 60)->nullable();
             $table->string('lastnameteacher', 60)->nullable();
@@ -23,6 +24,9 @@ class CreateTeacherTable extends Migration
             $table->string('profileteacher', 255)->nullable();
             $table->string('tokenteacher', 255)->nullable();
             $table->timestamps();
+
+
+            // $table->unique(['idteacher'], 'teacher_pk');
         });
     }
 

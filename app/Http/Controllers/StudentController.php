@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -14,9 +15,15 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
-        $student = Student::all();
-        return $student;
+        $students = Student::all();
+
+        if($students->isEmpty()){
+            $data = [
+                "message" => "No se encontraron estudiantes",
+                "status" => 200
+            ];
+            return response()->json($students, 200);
+        }
     }
 
     /**
@@ -37,7 +44,44 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:60',
+            'lastname' => 'required|string|max:60',
+            'email' => 'required|string|email|max:120|unique:student,emailstudent',
+            'password' => 'required|string|min:8',
+        ]);
+    
+        if ($validator->fails()) {
+            $data = [
+                'message' => 'Error en la validacion de los datos',
+                'errors' => $validator->errors(),
+                'status' => 400
+            ];
+            return response()->json($data, 400);
+        }
+    
+        // Crear estudiante
+        $student = Student::create([
+            'namestudent' => $request->name,
+            'lastnamestudent' => $request->lastname,
+            'emailstudent' => $request->email,
+            'passwdstudent' => bcrypt($request->password),
+        ]);
+    
+        if (!$student) {
+            $data = [
+                'message' => 'Error al crear el administrador',
+                'status' => 500
+            ];
+            return response()->json($data, 500);
+        }
+    
+        $data = [
+            'student' => $student,
+            'status' => 201
+        ];
+    
+        return response()->json($data, 201);
     }
 
     /**
