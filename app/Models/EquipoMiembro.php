@@ -51,4 +51,3 @@ class EquipoMiembro extends Model
         return $this->belongsTo(Actor::class, 'actor_id', 'idactor');
     }
 }
-s
