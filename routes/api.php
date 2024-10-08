@@ -30,6 +30,7 @@ Route::get('/roles', [RolesController::class, 'index']);
 Route::post('/roles', [RolesController::class, 'store']);
 
 Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
 
 Route::get('/criterions', [CriterionController::class, 'index']);
 
@@ -46,6 +47,7 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/selfAssessments', [SelfAssessmentController::class, 'index']);
 
 Route::get('/sisCode', [SiscodeController::class, 'index']);
+Route::post('/sisCode', [SiscodeController::class, 'store']);
 
 Route::get('/spaces', [SpaceController::class, 'index']);
 
@@ -60,6 +62,7 @@ Route::get('/teams', [TeamController::class, 'index']);
 Route::get('/teamMembers', [TeamMemberController::class, 'index']);
 
 Route::get('/tokens', [TokenController::class, 'index']);
+Route::post('/tokens', [TokenController::class, 'store']);
 
 Route::get('/trackings', [TrackingController::class, 'index']);
 

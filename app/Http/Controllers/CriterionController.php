@@ -23,6 +23,12 @@ class CriterionController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'criterion' => $criterions,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

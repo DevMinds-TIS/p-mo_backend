@@ -23,6 +23,12 @@ class TeamController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'team' => $teams,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

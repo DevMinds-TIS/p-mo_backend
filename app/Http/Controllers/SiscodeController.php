@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siscode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SiscodeController extends Controller
 {
@@ -16,13 +17,19 @@ class SiscodeController extends Controller
     {
         $sisCode = Siscode::all();
 
-        if($sisCode->isEmpty()){
+        if ($sisCode->isEmpty()) {
             $data = [
                 "message" => "No se encontraron códigos SISs",
                 "status" => 200
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'sisCode' => $sisCode,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**
@@ -43,7 +50,27 @@ class SiscodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos de la solicitud
+        $validator = Validator::make($request->all(), [
+            // 'idspace' => 'required|integer|exists:spaces,id',
+            // 'iduser' => 'required|integer|exists:users,id',
+            'siscode' => 'required|string|max:20|unique:siscode,siscode',
+        ]);
+
+        // Si la validación falla, devolver un error
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo registro en la tabla siscode
+        $siscode = Siscode::create([
+            // 'idspace' => $request->idspace,
+            // 'iduser' => $request->iduser,
+            'siscode' => $request->siscode,
+        ]);
+
+        // Devolver una respuesta exitosa
+        return response()->json(['message' => 'Código SIS creado exitosamente', 'siscode' => $siscode], 201);
     }
 
     /**

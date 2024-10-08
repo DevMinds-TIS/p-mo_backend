@@ -23,6 +23,12 @@ class SprintController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'sprint' => $sprints,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

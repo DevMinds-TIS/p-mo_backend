@@ -23,6 +23,12 @@ class PeerEvaluationController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'peerEvaluation' => $peerEvaluations,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

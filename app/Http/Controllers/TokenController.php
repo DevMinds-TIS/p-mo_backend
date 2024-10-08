@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Token;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TokenController extends Controller
 {
@@ -16,13 +17,19 @@ class TokenController extends Controller
     {
         $tokens = Token::all();
 
-        if($tokens->isEmpty()){
+        if ($tokens->isEmpty()) {
             $data = [
                 "message" => "No se encontraron códigos secretos para docentes",
                 "status" => 200
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'token' => $tokens,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**
@@ -43,7 +50,24 @@ class TokenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validatedData = Validator::make($request->all(), [
+            // 'iduser' => 'required|integer',
+            'teachertoken' => 'required|string|unique:tokens,teachertoken',
+        ]);
+
+        if ($validatedData->fails()) {
+            return response()->json(['errors' => $validatedData->errors()], 400);
+        }
+
+        // Crear un nuevo token en la tabla token
+        $token = Token::create([
+            // 'iduser' => $request->iduser,
+            'teachertoken' => $request->teachertoken,
+        ]);
+
+        // Devolver una respuesta exitosa
+        return response()->json(['message' => 'Token para docente creado exitosamente', 'teachertoken' => $token], 201);
     }
 
     /**

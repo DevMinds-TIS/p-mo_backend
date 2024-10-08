@@ -23,6 +23,12 @@ class WeeklyController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'weekly' => $weeklies,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

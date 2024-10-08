@@ -24,6 +24,12 @@ class RolesController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'role' => $roles,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

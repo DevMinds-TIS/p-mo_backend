@@ -23,6 +23,12 @@ class SpaceController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'space' => $spaces,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

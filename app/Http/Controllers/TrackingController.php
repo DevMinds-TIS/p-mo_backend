@@ -23,6 +23,12 @@ class TrackingController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'tracking' => $trackings,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

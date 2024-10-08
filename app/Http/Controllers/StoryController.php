@@ -23,6 +23,12 @@ class StoryController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'story' => $stories,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

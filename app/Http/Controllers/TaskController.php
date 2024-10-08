@@ -23,6 +23,12 @@ class TaskController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'task' => $tasks,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**

@@ -33,10 +33,10 @@ class Token extends Model
 		'iduser' => 'int'
 	];
 
-	protected $hidden = [
-		'idtoken',
-		'teachertoken'
-	];
+	// protected $hidden = [
+	// 	'idtoken',
+	// 	'teachertoken'
+	// ];
 
 	protected $fillable = [
 		'iduser',

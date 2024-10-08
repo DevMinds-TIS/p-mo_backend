@@ -23,6 +23,12 @@ class CrossEvaluationController extends Controller
             ];
             return response()->json($data, 200);
         }
+
+        $data = [
+            'crossEvaluation' => $crossEvaluations,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     /**
