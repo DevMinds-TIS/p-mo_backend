@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -16,7 +17,7 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
 
-        if($tasks->isEmpty()){
+        if ($tasks->isEmpty()) {
             $data = [
                 "message" => "No se encontraron tareas",
                 "status" => 200
@@ -49,7 +50,26 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idweeklie' => 'required|integer|exists:weeklies,idweeklie',
+            'iduser' => 'required|integer|exists:users,iduser',
+            'nametask' => 'required|string|max:60',
+            'starttask' => 'required|date',
+            'endtask' => 'nullable|date|after_or_equal:starttask',
+            'statustask' => 'required|string|max:60',
+            'scoretask' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear una nueva tarea con los datos validados
+        $task = Task::create($validator->validated());
+
+        // Responder con la tarea creada
+        return response()->json(['message' => 'Tarea creada exitosamente', 'task' => $task], 201);
     }
 
     /**

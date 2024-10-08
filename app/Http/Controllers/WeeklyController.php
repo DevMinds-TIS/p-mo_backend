@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Weekly;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class WeeklyController extends Controller
 {
@@ -16,7 +17,7 @@ class WeeklyController extends Controller
     {
         $weeklies = Weekly::all();
 
-        if($weeklies->isEmpty()){
+        if ($weeklies->isEmpty()) {
             $data = [
                 "message" => "No se encontraron planillas de evaluación semanales",
                 "status" => 200
@@ -49,7 +50,24 @@ class WeeklyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idsprint' => 'required|integer|exists:sprints,idsprint',
+            'goalweeklie' => 'required|string|max:90',
+            'startweeklie' => 'required|date',
+            'endweeklie' => 'nullable|date|after_or_equal:startweeklie',
+            'statusweeklie' => 'required|string|max:90',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear una nueva entrada semanal con los datos validados
+        $weekly = Weekly::create($validator->validated());
+
+        // Responder con la entrada semanal creada
+        return response()->json(['message' => 'Entrada semanal creada exitosamente', 'weekly' => $weekly], 201);
     }
 
     /**

@@ -61,6 +61,7 @@ Route::get('/stories', [StoryController::class, 'index']);
 Route::post('/stories', [StoryController::class, 'store']);
 
 Route::get('/tasks', [TaskController::class, 'index']);
+Route::post('/tasks', [TaskController::class, 'store']);
 
 Route::get('/teams', [TeamController::class, 'index']);
 Route::post('/teams', [TeamController::class, 'store']);
@@ -75,3 +76,4 @@ Route::get('/trackings', [TrackingController::class, 'index']);
 Route::post('/trackings', [TrackingController::class, 'store']);
 
 Route::get('/weeklies', [WeeklyController::class, 'index']);
+Route::post('/weeklies', [WeeklyController::class, 'store']);
