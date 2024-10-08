@@ -43,6 +43,7 @@ Route::get('/peerEvaluations', [PeerEvaluationController::class, 'index']);
 Route::get('/plannings', [PlanningController::class, 'index']);
 
 Route::get('/projects', [ProjectController::class, 'index']);
+Route::post('/projects', [ProjectController::class, 'store']);
 
 Route::get('/selfAssessments', [SelfAssessmentController::class, 'index']);
 
@@ -50,6 +51,7 @@ Route::get('/sisCode', [SiscodeController::class, 'index']);
 Route::post('/sisCode', [SiscodeController::class, 'store']);
 
 Route::get('/spaces', [SpaceController::class, 'index']);
+Route::post('/spaces', [SpaceController::class, 'store']);
 
 Route::get('/sprints', [SprintController::class, 'index']);
 
@@ -58,6 +60,7 @@ Route::get('/stories', [StoryController::class, 'index']);
 Route::get('/tasks', [TaskController::class, 'index']);
 
 Route::get('/teams', [TeamController::class, 'index']);
+Route::post('/teams', [TeamController::class, 'store']);
 
 Route::get('/teamMembers', [TeamMemberController::class, 'index']);
 

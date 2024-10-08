@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Space;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SpaceController extends Controller
 {
@@ -16,7 +17,7 @@ class SpaceController extends Controller
     {
         $spaces = Space::all();
 
-        if($spaces->isEmpty()){
+        if ($spaces->isEmpty()) {
             $data = [
                 "message" => "No se encontraron espacios de docentes",
                 "status" => 200
@@ -49,7 +50,25 @@ class SpaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idproject' => 'required|integer|exists:projects,idproject',
+            'namespace' => 'required|string|max:60',
+            'startspace' => 'required|date',
+            'endspace' => 'nullable|date|after_or_equal:startspace',
+            'starregistrationspace' => 'nullable|date',
+            'endregistrationspace' => 'nullable|date|after_or_equal:starregistrationspace',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo espacio con los datos validados
+        $space = Space::create($validator->validated());
+
+        // Responder con el espacio creado
+        return response()->json(['message' => 'Espacio creado exitosamente', 'space' => $space], 201);
     }
 
     /**

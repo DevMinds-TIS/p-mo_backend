@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,7 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        if($projects->isEmpty()){
+        if ($projects->isEmpty()) {
             $data = [
                 "message" => "No se encontraron proyectos",
                 "status" => 200
@@ -49,7 +50,30 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validatedData = Validator::make($request->all(), [
+            'iduser' => 'required|integer|exists:users,iduser',
+            'nameproject' => 'required|string|max:120',
+            'codeproject' => 'required|string|max:30|unique:projects,codeproject',
+            'startproject' => 'required|date',
+            'endproject' => 'nullable|date|after_or_equal:startproject',
+        ]);
+
+        if ($validatedData->fails()) {
+            return response()->json(['errors' => $validatedData->errors()], 400);
+        }
+
+        // Crear un nuevo proyecto con los datos validados
+        $project = Project::create([
+            'iduser' => $request->iduser,
+            'nameproject' => $request->nameproject,
+            'codeproject' => $request->codeproject,
+            'startproject' => $request->startproject,
+            'endproject' => $request->endproject,
+        ]);
+
+        // Responder con el proyecto creado
+        return response()->json(['message' => 'Proyecto creado exitosamente', 'project' => $project], 201);
     }
 
     /**

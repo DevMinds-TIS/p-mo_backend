@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeamController extends Controller
 {
@@ -16,7 +17,7 @@ class TeamController extends Controller
     {
         $teams = Team::all();
 
-        if($teams->isEmpty()){
+        if ($teams->isEmpty()) {
             $data = [
                 "message" => "No se encontraron grupo-empresas",
                 "status" => 200
@@ -49,7 +50,24 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idspace' => 'required|integer|exists:spaces,idspace',
+            'nameteam' => 'required|string|max:60|unique:teams,nameteam',
+            'companyteam' => 'nullable|string|max:10',
+            'emailteam' => 'nullable|string|email|max:120',
+            'logoteam' => 'nullable|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo equipo con los datos validados
+        $team = Team::create($validator->validated());
+
+        // Responder con el equipo creado
+        return response()->json(['message' => 'Equipo creado exitosamente', 'team' => $team], 201);
     }
 
     /**
