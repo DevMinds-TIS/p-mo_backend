@@ -3,6 +3,24 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CriterionController;
+use App\Http\Controllers\CrossEvaluationController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\PeerEvaluationController;
+use App\Http\Controllers\PlanningController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SelfAssessmentController;
+use App\Http\Controllers\SiscodeController;
+use App\Http\Controllers\SpaceController;
+use App\Http\Controllers\SprintController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TeamMemberController;
+use App\Http\Controllers\TokenController;
+use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\WeeklyController;
 
 
 
@@ -10,16 +28,5 @@ use App\Http\Controllers\RolesController;
 Route::get('/roles', [RolesController::class, 'index']);
 Route::post('/roles', [RolesController::class, 'store']);
 
-// use App\Http\Controllers\StudentController;
-// use App\Http\Controllers\TeacherController;
-// use App\Http\Controllers\AdminController;
-// use App\Http\Controllers\UserController;
-// use App\Http\Controllers\RolController;
+Route::get('/users', [UserController::class, 'index']);
 
-// Route::get('/admins', [AdminController::class, 'index']);
-// Route::get('/teachers', [TeacherController::class, 'index']);
-// Route::get('/students', [StudentController::class, 'index']);
-
-// Route::post('/admins', [AdminController::class, 'store']);
-// Route::post('/teachers', [TeacherController::class, 'store']);
-// Route::post('/students', [StudentController::class, 'store']);

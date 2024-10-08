@@ -22,7 +22,7 @@ class RolesController extends Controller
                 "message" => "No se encontraron roles",
                 "status" => 200
             ];
-            return response()->json($roles, 200);
+            return response()->json($data, 200);
         }
     }
 
