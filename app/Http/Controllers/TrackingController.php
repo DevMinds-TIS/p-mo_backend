@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tracking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TrackingController extends Controller
 {
@@ -16,7 +17,7 @@ class TrackingController extends Controller
     {
         $trackings = Tracking::all();
 
-        if($trackings->isEmpty()){
+        if ($trackings->isEmpty()) {
             $data = [
                 "message" => "No se encontraron planillas de seguimiento",
                 "status" => 200
@@ -49,7 +50,26 @@ class TrackingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idsprint' => 'required|integer|exists:sprints,idsprint',
+            'iduser' => 'required|integer|exists:users,iduser',
+            'nametracking' => 'required|string|max:90',
+            'deliverytracking' => 'nullable|date',
+            'returntracking' => 'nullable|date|after_or_equal:deliverytracking',
+            'statustracking' => 'required|string|max:90',
+            'commenttracking' => 'nullable|string|max:180',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo tracking con los datos validados
+        $tracking = Tracking::create($validator->validated());
+
+        // Responder con el tracking creado
+        return response()->json(['message' => 'Tracking creado exitosamente', 'tracking' => $tracking], 201);
     }
 
     /**

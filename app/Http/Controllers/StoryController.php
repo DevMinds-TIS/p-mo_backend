@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StoryController extends Controller
 {
@@ -16,7 +17,7 @@ class StoryController extends Controller
     {
         $stories = Story::all();
 
-        if($stories->isEmpty()){
+        if ($stories->isEmpty()) {
             $data = [
                 "message" => "No se encontraron historias de usuario",
                 "status" => 200
@@ -49,7 +50,25 @@ class StoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idsprint' => 'required|integer|exists:sprints,idsprint',
+            'iduser' => 'required|integer|exists:users,iduser',
+            'codestorie' => 'required|string|max:10',
+            'namestorie' => 'required|string|max:60',
+            'statusstorie' => 'required|string|max:60',
+            'pointstorie' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear una nueva historia con los datos validados
+        $story = Story::create($validator->validated());
+
+        // Responder con la historia creada
+        return response()->json(['message' => 'Historia creada exitosamente', 'story' => $story], 201);
     }
 
     /**

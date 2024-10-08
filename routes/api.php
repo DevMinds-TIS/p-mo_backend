@@ -58,6 +58,7 @@ Route::get('/sprints', [SprintController::class, 'index']);
 Route::post('/sprints', [SprintController::class, 'store']);
 
 Route::get('/stories', [StoryController::class, 'index']);
+Route::post('/stories', [StoryController::class, 'store']);
 
 Route::get('/tasks', [TaskController::class, 'index']);
 
@@ -71,5 +72,6 @@ Route::get('/tokens', [TokenController::class, 'index']);
 Route::post('/tokens', [TokenController::class, 'store']);
 
 Route::get('/trackings', [TrackingController::class, 'index']);
+Route::post('/trackings', [TrackingController::class, 'store']);
 
 Route::get('/weeklies', [WeeklyController::class, 'index']);
