@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sprint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SprintController extends Controller
 {
@@ -16,7 +17,7 @@ class SprintController extends Controller
     {
         $sprints = Sprint::all();
 
-        if($sprints->isEmpty()){
+        if ($sprints->isEmpty()) {
             $data = [
                 "message" => "No se encontraron sprints",
                 "status" => 200
@@ -49,7 +50,23 @@ class SprintController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idplanning' => 'required|integer|exists:planning,idplanning',
+            'startsprint' => 'required|date',
+            'endsprint' => 'nullable|date|after_or_equal:startsprint',
+            'goalsprint' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo sprint con los datos validados
+        $sprint = Sprint::create($validator->validated());
+
+        // Responder con el sprint creado
+        return response()->json(['message' => 'Sprint creado exitosamente', 'sprint' => $sprint], 201);
     }
 
     /**

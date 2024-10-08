@@ -41,6 +41,7 @@ Route::get('/documents', [DocumentController::class, 'index']);
 Route::get('/peerEvaluations', [PeerEvaluationController::class, 'index']);
 
 Route::get('/plannings', [PlanningController::class, 'index']);
+Route::post('/plannings', [PlanningController::class, 'store']);
 
 Route::get('/projects', [ProjectController::class, 'index']);
 Route::post('/projects', [ProjectController::class, 'store']);
@@ -54,6 +55,7 @@ Route::get('/spaces', [SpaceController::class, 'index']);
 Route::post('/spaces', [SpaceController::class, 'store']);
 
 Route::get('/sprints', [SprintController::class, 'index']);
+Route::post('/sprints', [SprintController::class, 'store']);
 
 Route::get('/stories', [StoryController::class, 'index']);
 
@@ -63,6 +65,7 @@ Route::get('/teams', [TeamController::class, 'index']);
 Route::post('/teams', [TeamController::class, 'store']);
 
 Route::get('/teamMembers', [TeamMemberController::class, 'index']);
+Route::post('/teamMembers', [TeamMemberController::class, 'store']);
 
 Route::get('/tokens', [TokenController::class, 'index']);
 Route::post('/tokens', [TokenController::class, 'store']);

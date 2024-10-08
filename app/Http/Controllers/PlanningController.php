@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Planning;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PlanningController extends Controller
 {
@@ -16,7 +17,7 @@ class PlanningController extends Controller
     {
         $plannings = Planning::all();
 
-        if($plannings->isEmpty()){
+        if ($plannings->isEmpty()) {
             $data = [
                 "message" => "No se encontraron planificaciones",
                 "status" => 200
@@ -49,7 +50,20 @@ class PlanningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idteam' => 'required|integer|exists:teams,idteam',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo plan con los datos validados
+        $planning = Planning::create($validator->validated());
+
+        // Responder con el plan creado
+        return response()->json(['message' => 'Plan creado exitosamente', 'planning' => $planning], 201);
     }
 
     /**

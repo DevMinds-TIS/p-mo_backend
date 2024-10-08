@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeamMemberController extends Controller
 {
@@ -16,7 +17,7 @@ class TeamMemberController extends Controller
     {
         $teamMembers = TeamMember::all();
 
-        if($teamMembers->isEmpty()){
+        if ($teamMembers->isEmpty()) {
             $data = [
                 "message" => "No se encontraron integrantes de las grupo-empresas",
                 "status" => 200
@@ -49,7 +50,22 @@ class TeamMemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del request
+        $validator = Validator::make($request->all(), [
+            'idteam' => 'required|integer|exists:teams,idteam',
+            'idrol' => 'required|integer|exists:roles,idrol',
+            'iduser' => 'required|integer|exists:users,iduser',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Crear un nuevo miembro del equipo con los datos validados
+        $teamMember = TeamMember::create($validator->validated());
+
+        // Responder con el miembro del equipo creado
+        return response()->json(['message' => 'Miembro del equipo creado exitosamente', 'teamMember' => $teamMember], 201);
     }
 
     /**
