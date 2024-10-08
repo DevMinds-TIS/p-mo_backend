@@ -20,18 +20,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $goalsprint
  * 
  * @property Planning|null $planning
- * @property Collection|Tracking[] $trackings
- * @property Collection|Story[] $stories
- * @property Collection|Weekly[] $weeklies
+ * @property Collection|SprintTrackingSpreadsheet[] $sprint_tracking_spreadsheets
+ * @property Collection|WeeklyEvaSpreadsheet[] $weekly_eva_spreadsheets
+ * @property Collection|UserStoriesSpreadsheet[] $user_stories_spreadsheets
  *
  * @package App\Models
  */
 class Sprint extends Model
 {
-	protected $table = 'sprints';
+	protected $table = 'sprint';
 	protected $primaryKey = 'idsprint';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idsprint' => 'int',
@@ -52,18 +52,18 @@ class Sprint extends Model
 		return $this->belongsTo(Planning::class, 'idplanning');
 	}
 
-	public function trackings()
+	public function sprint_tracking_spreadsheets()
 	{
-		return $this->hasMany(Tracking::class, 'idsprint');
+		return $this->hasMany(SprintTrackingSpreadsheet::class, 'idsprint');
 	}
 
-	public function stories()
+	public function weekly_eva_spreadsheets()
 	{
-		return $this->hasMany(Story::class, 'idsprint');
+		return $this->hasMany(WeeklyEvaSpreadsheet::class, 'idsprint');
 	}
 
-	public function weeklies()
+	public function user_stories_spreadsheets()
 	{
-		return $this->hasMany(Weekly::class, 'idsprint');
+		return $this->hasMany(UserStoriesSpreadsheet::class, 'idsprint');
 	}
 }

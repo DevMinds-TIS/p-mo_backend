@@ -13,38 +13,38 @@ use Illuminate\Database\Eloquent\Model;
  * Class Task
  * 
  * @property int $idtask
- * @property int|null $idweeklie
- * @property int|null $iduser
+ * @property int|null $idwes
+ * @property int|null $idstudent
  * @property string|null $nametask
  * @property Carbon|null $starttask
  * @property Carbon|null $endtask
  * @property string|null $statustask
  * @property int|null $scoretask
  * 
- * @property Weekly|null $weekly
- * @property User|null $user
+ * @property WeeklyEvaSpreadsheet|null $weekly_eva_spreadsheet
+ * @property Student|null $student
  *
  * @package App\Models
  */
 class Task extends Model
 {
-	protected $table = 'tasks';
+	protected $table = 'task';
 	protected $primaryKey = 'idtask';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idtask' => 'int',
-		'idweeklie' => 'int',
-		'iduser' => 'int',
+		'idwes' => 'int',
+		'idstudent' => 'int',
 		'starttask' => 'datetime',
 		'endtask' => 'datetime',
 		'scoretask' => 'int'
 	];
 
 	protected $fillable = [
-		'idweeklie',
-		'iduser',
+		'idwes',
+		'idstudent',
 		'nametask',
 		'starttask',
 		'endtask',
@@ -52,13 +52,13 @@ class Task extends Model
 		'scoretask'
 	];
 
-	public function weekly()
+	public function weekly_eva_spreadsheet()
 	{
-		return $this->belongsTo(Weekly::class, 'idweeklie');
+		return $this->belongsTo(WeeklyEvaSpreadsheet::class, 'idwes');
 	}
 
-	public function user()
+	public function student()
 	{
-		return $this->belongsTo(User::class, 'iduser');
+		return $this->belongsTo(Student::class, 'idstudent');
 	}
 }

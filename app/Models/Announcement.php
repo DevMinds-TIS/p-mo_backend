@@ -6,51 +6,56 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Announcement
  * 
- * @property int $ida
- * @property int|null $idspace
+ * @property int $idann
  * @property int|null $idproject
- * @property string|null $heada
- * @property string|null $bodya
- * @property string|null $scopea
+ * @property int|null $idspace
+ * @property string|null $titleann
+ * @property string|null $contentann
  * 
- * @property Space|null $space
  * @property Project|null $project
+ * @property Space|null $space
+ * @property Collection|Comment[] $comments
  *
  * @package App\Models
  */
 class Announcement extends Model
 {
 	protected $table = 'announcements';
-	protected $primaryKey = 'ida';
-	public $incrementing = true;
-	public $timestamps = true;
+	protected $primaryKey = 'idann';
+	public $incrementing = false;
+	public $timestamps = false;
 
 	protected $casts = [
-		'ida' => 'int',
-		'idspace' => 'int',
-		'idproject' => 'int'
+		'idann' => 'int',
+		'idproject' => 'int',
+		'idspace' => 'int'
 	];
 
 	protected $fillable = [
-		'idspace',
 		'idproject',
-		'heada',
-		'bodya',
-		'scopea'
+		'idspace',
+		'titleann',
+		'contentann'
 	];
+
+	public function project()
+	{
+		return $this->belongsTo(Project::class, 'idproject');
+	}
 
 	public function space()
 	{
 		return $this->belongsTo(Space::class, 'idspace');
 	}
 
-	public function project()
+	public function comments()
 	{
-		return $this->belongsTo(Project::class, 'idproject');
+		return $this->hasMany(Comment::class, 'idann');
 	}
 }

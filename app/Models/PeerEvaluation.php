@@ -10,36 +10,36 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SelfAssessment
+ * Class PeerEvaluation
  * 
- * @property int $idsa
+ * @property int $idpe
  * @property int|null $idcriteria
  * @property int|null $iduser
- * @property Carbon|null $datesa
+ * @property Carbon|null $datepe
  * 
  * @property Criterion|null $criterion
  * @property User|null $user
  *
  * @package App\Models
  */
-class SelfAssessment extends Model
+class PeerEvaluation extends Model
 {
-	protected $table = 'self_assessments';
-	protected $primaryKey = 'idsa';
+	protected $table = 'peer_evaluations';
+	protected $primaryKey = 'idpe';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idsa' => 'int',
+		'idpe' => 'int',
 		'idcriteria' => 'int',
 		'iduser' => 'int',
-		'datesa' => 'datetime'
+		'datepe' => 'datetime'
 	];
 
 	protected $fillable = [
 		'idcriteria',
 		'iduser',
-		'datesa'
+		'datepe'
 	];
 
 	public function criterion()

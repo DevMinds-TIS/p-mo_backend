@@ -14,35 +14,40 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idteam
  * @property int|null $idspace
+ * @property int|null $idplanning
  * @property string|null $nameteam
  * @property string|null $companyteam
  * @property string|null $emailteam
- * @property string|null $logoteam
+ * @property string|null $profileteam
  * 
  * @property Space|null $space
+ * @property Planning|null $planning
+ * @property Collection|CrossAssessment[] $cross_assessments
  * @property Collection|Planning[] $plannings
- * @property Collection|TeamMember[] $team_members
+ * @property Collection|Student[] $students
  *
  * @package App\Models
  */
 class Team extends Model
 {
-	protected $table = 'teams';
+	protected $table = 'team';
 	protected $primaryKey = 'idteam';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idteam' => 'int',
-		'idspace' => 'int'
+		'idspace' => 'int',
+		'idplanning' => 'int'
 	];
 
 	protected $fillable = [
 		'idspace',
+		'idplanning',
 		'nameteam',
 		'companyteam',
 		'emailteam',
-		'logoteam'
+		'profileteam'
 	];
 
 	public function space()
@@ -50,13 +55,23 @@ class Team extends Model
 		return $this->belongsTo(Space::class, 'idspace');
 	}
 
+	public function planning()
+	{
+		return $this->belongsTo(Planning::class, 'idplanning');
+	}
+
+	public function cross_assessments()
+	{
+		return $this->hasMany(CrossAssessment::class, 'idevaluated_team');
+	}
+
 	public function plannings()
 	{
 		return $this->hasMany(Planning::class, 'idteam');
 	}
 
-	public function team_members()
+	public function students()
 	{
-		return $this->hasMany(TeamMember::class, 'idteam');
+		return $this->hasMany(Student::class, 'idteam');
 	}
 }

@@ -14,49 +14,47 @@ use Illuminate\Database\Eloquent\Model;
  * Class Project
  * 
  * @property int $idproject
- * @property int|null $iduser
+ * @property int|null $idadmin
  * @property string|null $nameproject
  * @property string|null $codeproject
+ * @property string|null $invitationproject
+ * @property string|null $specificationproject
  * @property Carbon|null $startproject
  * @property Carbon|null $endproject
  * 
- * @property User|null $user
- * @property Collection|Announcement[] $announcements
+ * @property Admin|null $admin
  * @property Collection|Space[] $spaces
- * @property Collection|Document[] $documents
+ * @property Collection|Announcement[] $announcements
  *
  * @package App\Models
  */
 class Project extends Model
 {
-	protected $table = 'projects';
+	protected $table = 'project';
 	protected $primaryKey = 'idproject';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idproject' => 'int',
-		'iduser' => 'int',
+		'idadmin' => 'int',
 		'startproject' => 'datetime',
 		'endproject' => 'datetime'
 	];
 
 	protected $fillable = [
-		'iduser',
+		'idadmin',
 		'nameproject',
 		'codeproject',
+		'invitationproject',
+		'specificationproject',
 		'startproject',
 		'endproject'
 	];
 
-	public function user()
+	public function admin()
 	{
-		return $this->belongsTo(User::class, 'iduser');
-	}
-
-	public function announcements()
-	{
-		return $this->hasMany(Announcement::class, 'idproject');
+		return $this->belongsTo(Admin::class, 'idadmin');
 	}
 
 	public function spaces()
@@ -64,8 +62,8 @@ class Project extends Model
 		return $this->hasMany(Space::class, 'idproject');
 	}
 
-	public function documents()
+	public function announcements()
 	{
-		return $this->hasMany(Document::class, 'idproject');
+		return $this->hasMany(Announcement::class, 'idproject');
 	}
 }

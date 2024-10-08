@@ -6,38 +6,50 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Notification
+ * Class Token
  * 
- * @property int $idnotification
+ * @property int $idtoken
  * @property int|null $iduser
- * @property string|null $messagenotification
+ * @property string|null $teachertoken
  * 
  * @property User|null $user
+ * @property Collection|User[] $users
  *
  * @package App\Models
  */
-class Notification extends Model
+class Token extends Model
 {
-	protected $table = 'notifications';
-	protected $primaryKey = 'idnotification';
+	protected $table = 'tokens';
+	protected $primaryKey = 'idtoken';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idnotification' => 'int',
+		'idtoken' => 'int',
 		'iduser' => 'int'
+	];
+
+	protected $hidden = [
+		'idtoken',
+		'teachertoken'
 	];
 
 	protected $fillable = [
 		'iduser',
-		'messagenotification'
+		'teachertoken'
 	];
 
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'iduser');
+	}
+
+	public function users()
+	{
+		return $this->hasMany(User::class, 'idtoken');
 	}
 }

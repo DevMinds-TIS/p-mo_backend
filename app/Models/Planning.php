@@ -14,16 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idplanning
  * @property int|null $idteam
- * @property string|null $partaplanning
- * @property string|null $partbplanning
- * @property string|null $contractplanning
- * @property string|null $paymentplanning
  * 
  * @property Team|null $team
- * @property Collection|CrossAssessment[] $cross_assessments
- * @property Collection|Team[] $teams
- * @property Collection|PeerToPeerEvaluation[] $peer_to_peer_evaluations
- * @property Collection|SelfAssessment[] $self_assessments
+ * @property Collection|CrossEvaluation[] $cross_evaluations
+ * @property Collection|Document[] $documents
  * @property Collection|Sprint[] $sprints
  *
  * @package App\Models
@@ -32,8 +26,8 @@ class Planning extends Model
 {
 	protected $table = 'planning';
 	protected $primaryKey = 'idplanning';
-	public $incrementing = true;
-	public $timestamps = true;
+	public $incrementing = false;
+	public $timestamps = false;
 
 	protected $casts = [
 		'idplanning' => 'int',
@@ -41,11 +35,7 @@ class Planning extends Model
 	];
 
 	protected $fillable = [
-		'idteam',
-		'partaplanning',
-		'partbplanning',
-		'contractplanning',
-		'paymentplanning'
+		'idteam'
 	];
 
 	public function team()
@@ -53,24 +43,14 @@ class Planning extends Model
 		return $this->belongsTo(Team::class, 'idteam');
 	}
 
-	public function cross_assessments()
+	public function cross_evaluations()
 	{
-		return $this->hasMany(CrossAssessment::class, 'idplanning');
+		return $this->hasMany(CrossEvaluation::class, 'idplanning');
 	}
 
-	public function teams()
+	public function documents()
 	{
-		return $this->hasMany(Team::class, 'idplanning');
-	}
-
-	public function peer_to_peer_evaluations()
-	{
-		return $this->hasMany(PeerToPeerEvaluation::class, 'idplanning');
-	}
-
-	public function self_assessments()
-	{
-		return $this->hasMany(SelfAssessment::class, 'idplanning');
+		return $this->hasMany(Document::class, 'idplanning');
 	}
 
 	public function sprints()
