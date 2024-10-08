@@ -26,8 +26,8 @@ class SelfAssessment extends Model
 {
 	protected $table = 'self_assessments';
 	protected $primaryKey = 'idsa';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idsa' => 'int',

@@ -23,8 +23,8 @@ class Comment extends Model
 {
 	protected $table = 'comments';
 	protected $primaryKey = 'idcomment';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idcomment' => 'int',

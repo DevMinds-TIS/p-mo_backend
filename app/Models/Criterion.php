@@ -27,8 +27,8 @@ class Criterion extends Model
 {
 	protected $table = 'criteria';
 	protected $primaryKey = 'idcriteria';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idcriteria' => 'int',

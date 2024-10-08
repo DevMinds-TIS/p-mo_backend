@@ -33,8 +33,8 @@ class Space extends Model
 {
 	protected $table = 'spaces';
 	protected $primaryKey = 'idspace';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idspace' => 'int',

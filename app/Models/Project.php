@@ -31,8 +31,8 @@ class Project extends Model
 {
 	protected $table = 'projects';
 	protected $primaryKey = 'idproject';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idproject' => 'int',

@@ -26,8 +26,8 @@ class TeamMember extends Model
 {
 	protected $table = 'team_members';
 	protected $primaryKey = 'idteammember';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idteammember' => 'int',

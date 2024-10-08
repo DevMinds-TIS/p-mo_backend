@@ -26,8 +26,8 @@ class PeerEvaluation extends Model
 {
 	protected $table = 'peer_evaluations';
 	protected $primaryKey = 'idpe';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idpe' => 'int',

@@ -23,8 +23,8 @@ class Notification extends Model
 {
 	protected $table = 'notifications';
 	protected $primaryKey = 'idnotification';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idnotification' => 'int',

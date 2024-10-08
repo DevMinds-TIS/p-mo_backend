@@ -24,8 +24,8 @@ class Role extends Model
 {
 	protected $table = 'roles';
 	protected $primaryKey = 'idrol';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idrol' => 'int'

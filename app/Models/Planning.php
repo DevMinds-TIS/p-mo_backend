@@ -26,8 +26,8 @@ class Planning extends Model
 {
 	protected $table = 'planning';
 	protected $primaryKey = 'idplanning';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idplanning' => 'int',

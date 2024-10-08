@@ -45,8 +45,8 @@ class User extends Model
 {
 	protected $table = 'users';
 	protected $primaryKey = 'iduser';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'iduser' => 'int',

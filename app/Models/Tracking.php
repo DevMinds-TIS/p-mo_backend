@@ -32,8 +32,8 @@ class Tracking extends Model
 {
 	protected $table = 'tracking';
 	protected $primaryKey = 'idtracking';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idtracking' => 'int',

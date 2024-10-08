@@ -28,8 +28,8 @@ class Announcement extends Model
 {
 	protected $table = 'announcements';
 	protected $primaryKey = 'idann';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idann' => 'int',

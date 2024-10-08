@@ -27,8 +27,8 @@ class Siscode extends Model
 {
 	protected $table = 'siscode';
 	protected $primaryKey = 'idsiscode';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idsiscode' => 'int',

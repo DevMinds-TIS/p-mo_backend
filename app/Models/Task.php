@@ -30,8 +30,8 @@ class Task extends Model
 {
 	protected $table = 'tasks';
 	protected $primaryKey = 'idtask';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idtask' => 'int',

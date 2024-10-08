@@ -29,8 +29,8 @@ class Document extends Model
 {
 	protected $table = 'documents';
 	protected $primaryKey = 'iddocument';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'iddocument' => 'int',

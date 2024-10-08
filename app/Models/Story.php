@@ -28,8 +28,8 @@ class Story extends Model
 {
 	protected $table = 'stories';
 	protected $primaryKey = 'idstorie';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idstorie' => 'int',

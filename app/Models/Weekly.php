@@ -29,8 +29,8 @@ class Weekly extends Model
 {
 	protected $table = 'weeklies';
 	protected $primaryKey = 'idweeklie';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idweeklie' => 'int',

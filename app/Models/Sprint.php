@@ -30,8 +30,8 @@ class Sprint extends Model
 {
 	protected $table = 'sprints';
 	protected $primaryKey = 'idsprint';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idsprint' => 'int',

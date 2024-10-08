@@ -26,8 +26,8 @@ class CrossEvaluation extends Model
 {
 	protected $table = 'cross_evaluations';
 	protected $primaryKey = 'idce';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idce' => 'int',

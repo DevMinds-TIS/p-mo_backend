@@ -25,8 +25,8 @@ class Token extends Model
 {
 	protected $table = 'tokens';
 	protected $primaryKey = 'idtoken';
-	public $incrementing = false;
-	public $timestamps = false;
+	public $incrementing = true;
+	public $timestamps = true;
 
 	protected $casts = [
 		'idtoken' => 'int',
