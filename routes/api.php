@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CriterionController;
@@ -30,3 +31,36 @@ Route::post('/roles', [RolesController::class, 'store']);
 
 Route::get('/users', [UserController::class, 'index']);
 
+Route::get('/criterions', [CriterionController::class, 'index']);
+
+Route::get('/crossEvaluations', [CrossEvaluationController::class, 'index']);
+
+Route::get('/documents', [DocumentController::class, 'index']);
+
+Route::get('/peerEvaluations', [PeerEvaluationController::class, 'index']);
+
+Route::get('/plannings', [PlanningController::class, 'index']);
+
+Route::get('/projects', [ProjectController::class, 'index']);
+
+Route::get('/selfAssessments', [SelfAssessmentController::class, 'index']);
+
+Route::get('/sisCode', [SiscodeController::class, 'index']);
+
+Route::get('/spaces', [SpaceController::class, 'index']);
+
+Route::get('/sprints', [SprintController::class, 'index']);
+
+Route::get('/stories', [StoryController::class, 'index']);
+
+Route::get('/tasks', [TaskController::class, 'index']);
+
+Route::get('/teams', [TeamController::class, 'index']);
+
+Route::get('/teamMembers', [TeamMemberController::class, 'index']);
+
+Route::get('/tokens', [TokenController::class, 'index']);
+
+Route::get('/trackings', [TrackingController::class, 'index']);
+
+Route::get('/weeklies', [WeeklyController::class, 'index']);
