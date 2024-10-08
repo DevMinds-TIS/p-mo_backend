@@ -14,7 +14,8 @@ class CreateNotificationsTable extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->integer('idnotification')->unique('notifications_pk');
+            // $table->integer('idnotification')->unique('notifications_pk');
+            $table->increments('idnotification');
             $table->integer('iduser')->nullable()->index('relationship_33_fk');
             $table->string('messagenotification', 255)->nullable();
             $table->timestamps();

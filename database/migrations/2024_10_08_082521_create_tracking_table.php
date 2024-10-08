@@ -14,7 +14,8 @@ class CreateTrackingTable extends Migration
     public function up()
     {
         Schema::create('tracking', function (Blueprint $table) {
-            $table->integer('idtracking')->unique('tracking_pk');
+            // $table->integer('idtracking')->unique('tracking_pk');
+            $table->increments('idtracking');
             $table->integer('idsprint')->nullable()->index('relationship_18_fk');
             $table->integer('iduser')->nullable()->index('relationship_19_fk');
             $table->string('nametracking', 90)->nullable();

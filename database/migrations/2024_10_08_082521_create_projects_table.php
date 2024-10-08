@@ -14,7 +14,8 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->integer('idproject')->primary();
+            // $table->integer('idproject')->primary();
+            $table->increments('idproject');
             $table->integer('iduser')->nullable()->index('relationship_2_fk');
             $table->string('nameproject', 120)->nullable();
             $table->string('codeproject', 30)->nullable();
@@ -22,7 +23,7 @@ class CreateProjectsTable extends Migration
             $table->date('endproject')->nullable();
             $table->timestamps();
 
-            $table->unique(['idproject'], 'projects_pk');
+            // $table->unique(['idproject'], 'projects_pk');
         });
     }
 

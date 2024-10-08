@@ -14,7 +14,8 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->integer('idtask')->primary();
+            // $table->integer('idtask')->primary();
+            $table->increments('idtask');
             $table->integer('idweeklie')->nullable()->index('relationship_22_fk');
             $table->integer('iduser')->nullable()->index('relationship_23_fk');
             $table->string('nametask', 60)->nullable();
@@ -24,7 +25,7 @@ class CreateTasksTable extends Migration
             $table->integer('scoretask')->nullable();
             $table->timestamps();
 
-            $table->unique(['idtask'], 'tasks_pk');
+            // $table->unique(['idtask'], 'tasks_pk');
         });
     }
 

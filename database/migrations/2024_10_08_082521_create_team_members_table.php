@@ -14,13 +14,14 @@ class CreateTeamMembersTable extends Migration
     public function up()
     {
         Schema::create('team_members', function (Blueprint $table) {
-            $table->integer('idteammember')->primary();
+            // $table->integer('idteammember')->primary();
+            $table->increments('idteammember');
             $table->integer('idteam')->nullable()->index('relationship_5_fk');
             $table->integer('idrol')->nullable()->index('relationship_8_fk');
             $table->integer('iduser')->nullable()->index('relationship_9_fk');
             $table->timestamps();
 
-            $table->unique(['idteammember'], 'team_members_pk');
+            // $table->unique(['idteammember'], 'team_members_pk');
         });
     }
 

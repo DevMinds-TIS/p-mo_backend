@@ -14,7 +14,8 @@ class CreatePeerEvaluationsTable extends Migration
     public function up()
     {
         Schema::create('peer_evaluations', function (Blueprint $table) {
-            $table->integer('idpe')->unique('peer_evaluations_pk');
+            // $table->integer('idpe')->unique('peer_evaluations_pk');
+            $table->increments('idpe');
             $table->integer('idcriteria')->nullable()->index('relationship_26_fk');
             $table->integer('iduser')->nullable()->index('relationship_27_fk');
             $table->date('datepe')->nullable();

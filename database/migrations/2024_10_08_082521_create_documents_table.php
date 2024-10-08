@@ -14,7 +14,8 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->integer('iddocument')->primary();
+            // $table->integer('iddocument')->primary();
+            $table->increments('iddocument');
             $table->integer('idproject')->nullable()->index('relationship_11_fk');
             $table->integer('idspace')->nullable()->index('relationship_12_fk');
             $table->integer('idplanning')->nullable()->index('relationship_13_fk');
@@ -22,7 +23,7 @@ class CreateDocumentsTable extends Migration
             $table->string('pathdocument', 255)->nullable();
             $table->timestamps();
 
-            $table->unique(['iddocument'], 'documents_pk');
+            // $table->unique(['iddocument'], 'documents_pk');
         });
     }
 

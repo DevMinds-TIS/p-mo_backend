@@ -14,7 +14,8 @@ class CreateSiscodeTable extends Migration
     public function up()
     {
         Schema::create('siscode', function (Blueprint $table) {
-            $table->integer('idsiscode')->unique('siscode_pk');
+            // $table->integer('idsiscode')->unique('siscode_pk');
+            $table->increments('idsiscode');
             $table->integer('idspace')->nullable()->index('relationship_6_fk');
             $table->integer('iduser')->nullable()->index('relationship_34_fk');
             $table->string('siscode', 60)->nullable();

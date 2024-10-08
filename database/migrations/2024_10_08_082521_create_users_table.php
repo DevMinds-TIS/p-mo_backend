@@ -14,7 +14,8 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('iduser')->primary();
+            // $table->integer('iduser')->primary();
+            $table->increments('iduser');
             $table->integer('idrol')->nullable()->index('relationship_1_fk');
             $table->integer('idsiscode')->nullable()->index('relationship_7_fk');
             $table->integer('idtoken')->nullable()->index('relationship_10_fk');
@@ -26,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('profileuser', 255)->nullable();
             $table->timestamps();
 
-            $table->unique(['iduser'], 'users_pk');
+            // $table->unique(['iduser'], 'users_pk');
         });
     }
 

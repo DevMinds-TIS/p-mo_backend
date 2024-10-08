@@ -14,7 +14,8 @@ class CreateAnnouncementsTable extends Migration
     public function up()
     {
         Schema::create('announcements', function (Blueprint $table) {
-            $table->integer('idann')->unique('announcements_pk');
+            // $table->integer('idann')->unique('announcements_pk');
+            $table->increments('idann');
             $table->integer('idproject')->nullable();
             $table->integer('idspace')->nullable();
             $table->string('titleann', 90)->nullable();

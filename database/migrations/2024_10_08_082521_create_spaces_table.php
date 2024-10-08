@@ -14,7 +14,8 @@ class CreateSpacesTable extends Migration
     public function up()
     {
         Schema::create('spaces', function (Blueprint $table) {
-            $table->integer('idspace')->primary();
+            // $table->integer('idspace')->primary();
+            $table->increments('idspace');
             $table->integer('idproject')->nullable()->index('relationship_3_fk');
             $table->string('namespace', 60)->nullable();
             $table->date('startspace')->nullable();
@@ -23,7 +24,7 @@ class CreateSpacesTable extends Migration
             $table->date('endregistrationspace')->nullable();
             $table->timestamps();
 
-            $table->unique(['idspace'], 'spaces_pk');
+            // $table->unique(['idspace'], 'spaces_pk');
         });
     }
 

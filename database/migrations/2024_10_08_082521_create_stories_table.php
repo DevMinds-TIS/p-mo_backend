@@ -14,7 +14,8 @@ class CreateStoriesTable extends Migration
     public function up()
     {
         Schema::create('stories', function (Blueprint $table) {
-            $table->integer('idstorie')->unique('stories_pk');
+            // $table->integer('idstorie')->unique('stories_pk');
+            $table->increments('idstorie');
             $table->integer('idsprint')->nullable()->index('relationship_16_fk');
             $table->integer('iduser')->nullable()->index('relationship_17_fk');
             $table->string('codestorie', 10)->nullable();

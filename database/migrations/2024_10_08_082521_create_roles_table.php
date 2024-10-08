@@ -14,11 +14,12 @@ class CreateRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->integer('idrol')->primary();
+            // $table->integer('idrol')->primary();
+            $table->increments('idrol');
             $table->string('namerol', 20)->nullable();
             $table->timestamps();
 
-            $table->unique(['idrol'], 'roles_pk');
+            // $table->unique(['idrol'], 'roles_pk');
         });
     }
 

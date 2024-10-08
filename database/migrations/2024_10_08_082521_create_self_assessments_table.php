@@ -14,7 +14,8 @@ class CreateSelfAssessmentsTable extends Migration
     public function up()
     {
         Schema::create('self_assessments', function (Blueprint $table) {
-            $table->integer('idsa')->unique('self_assessments_pk');
+            // $table->integer('idsa')->unique('self_assessments_pk');
+            $table->increments('idsa');
             $table->integer('idcriteria')->nullable()->index('relationship_24_fk');
             $table->integer('iduser')->nullable()->index('relationship_25_fk');
             $table->date('datesa')->nullable();

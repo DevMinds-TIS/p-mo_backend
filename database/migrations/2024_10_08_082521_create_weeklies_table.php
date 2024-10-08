@@ -14,7 +14,8 @@ class CreateWeekliesTable extends Migration
     public function up()
     {
         Schema::create('weeklies', function (Blueprint $table) {
-            $table->integer('idweeklie')->unique('weeklies_pk');
+            // $table->integer('idweeklie')->unique('weeklies_pk');
+            $table->increments('idweeklie');
             $table->integer('idsprint')->nullable()->index('relationship_21_fk');
             $table->string('goalweeklie', 90)->nullable();
             $table->date('startweeklie')->nullable();

@@ -14,7 +14,8 @@ class CreatePlanningTable extends Migration
     public function up()
     {
         Schema::create('planning', function (Blueprint $table) {
-            $table->integer('idplanning')->unique('planning_pk');
+            // $table->integer('idplanning')->unique('planning_pk');
+            $table->increments('idplanning');
             $table->integer('idteam')->nullable();
             $table->timestamps();
         });

@@ -14,7 +14,8 @@ class CreateCrossEvaluationsTable extends Migration
     public function up()
     {
         Schema::create('cross_evaluations', function (Blueprint $table) {
-            $table->integer('idce')->unique('cross_evaluations_pk');
+            // $table->integer('idce')->unique('cross_evaluations_pk');
+            $table->increments('idce');
             $table->integer('idplanning')->nullable()->index('relationship_28_fk');
             $table->integer('idcriteria')->nullable()->index('relationship_29_fk2');
             $table->date('datece')->nullable();

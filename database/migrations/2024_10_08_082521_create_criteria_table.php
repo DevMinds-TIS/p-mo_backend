@@ -14,13 +14,14 @@ class CreateCriteriaTable extends Migration
     public function up()
     {
         Schema::create('criteria', function (Blueprint $table) {
-            $table->integer('idcriteria')->primary();
+            // $table->integer('idcriteria')->primary();
+            $table->increments('idcriteria');
             $table->string('namecriteria', 90)->nullable();
             $table->integer('scorecriteria')->nullable();
             $table->string('commentcriteria', 180)->nullable();
             $table->timestamps();
 
-            $table->unique(['idcriteria'], 'criteria_pk');
+            // $table->unique(['idcriteria'], 'criteria_pk');
         });
     }
 
