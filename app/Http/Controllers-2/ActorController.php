@@ -8,9 +8,52 @@ use App\Models\Actor;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Docente;
+use App\Models\Estudiante;
 
 class ActorController extends Controller
 {
+
+    public function getActorsWithType()
+    {
+        $actors = Actor::all()->map(function ($actor) {
+            // Comprobar si el actor es un docente
+            $docente = Docente::where('idactor', $actor->idactor)->first();
+            if ($docente) {
+                return [
+                    'id' => $actor->idactor,
+                    'nombreactor' => $actor->nombreactor,
+                    'apellidoactor' => $actor->apellidoactor,
+                    'correoactor' => $actor->correoactor,
+                    'tipo' => 'docente'
+                ];
+            }
+
+            // Comprobar si el actor es un estudiante
+            $estudiante = Estudiante::where('idactor', $actor->idactor)->first();
+            if ($estudiante) {
+                return [
+                    'id' => $actor->idactor,
+                    'nombreactor' => $actor->nombreactor,
+                    'apellidoactor' => $actor->apellidoactor,
+                    'correoactor' => $actor->correoactor,
+                    'tipo' => 'estudiante'
+                ];
+            }
+
+            // Si no es ni docente ni estudiante
+            return [
+                'id' => $actor->idactor,
+                'nombreactor' => $actor->nombreactor,
+                'apellidoactor' => $actor->apellidoactor,
+                'correoactor' => $actor->correoactor,
+                'tipo' => 'ninguno'
+            ];
+        });
+
+        return response()->json($actors, 200);
+    }
+
     public function index()
     {
         $actor = Actor::all();
@@ -234,4 +277,84 @@ class ActorController extends Controller
             'status' => 200
         ], 200);
     }
+
+    public function showE($id)
+    {
+        // Buscar el actor por su ID
+        $actor = Actor::find($id);
+
+        // Verificar si no se encontró el actor
+        if (!$actor) {
+            return response()->json([
+                'message' => 'Actor no encontrado',
+                'status' => 404
+            ], 404);
+        }
+
+        // Comprobar si el actor es un docente
+        $docente = Docente::where('idactor', $actor->idactor)->first();
+        if ($docente) {
+            $actorData = [
+                'id' => $actor->idactor,
+                'nombreactor' => $actor->nombreactor,
+                'apellidoactor' => $actor->apellidoactor,
+                'correoactor' => $actor->correoactor,
+                'tipo' => 'docente'
+            ];
+
+            return response()->json([
+                'actor' => $actorData,
+                'status' => 200
+            ], 200);
+        }
+
+        // Comprobar si el actor es un estudiante
+        $estudiante = Estudiante::where('idactor', $actor->idactor)->first();
+        if ($estudiante) {
+            $actorData = [
+                'id' => $actor->idactor,
+                'nombreactor' => $actor->nombreactor,
+                'apellidoactor' => $actor->apellidoactor,
+                'correoactor' => $actor->correoactor,
+                'tipo' => 'estudiante'
+            ];
+
+            return response()->json([
+                'actor' => $actorData,
+                'status' => 200
+            ], 200);
+        }
+
+        // Si no es ni docente ni estudiante
+        $actorData = [
+            'id' => $actor->idactor,
+            'nombreactor' => $actor->nombreactor,
+            'apellidoactor' => $actor->apellidoactor,
+            'correoactor' => $actor->correoactor,
+            'tipo' => 'ninguno'
+        ];
+
+        return response()->json([
+            'actor' => $actorData,
+            'status' => 200
+        ], 200);
+    }
+
+    public function showSummary()
+    {
+        // Obtener todos los actores
+        $actores = Actor::all();
+
+        // Mapear los actores para obtener solo el ID y el correo
+        $resumenActores = $actores->map(function ($actor) {
+            return [
+                'id' => $actor->idactor,
+                'correoactor' => $actor->correoactor,
+            ];
+        });
+
+        return response()->json($resumenActores, 200);
+    }
+
+
 }
