@@ -15,23 +15,27 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $role = $request->query('role'); // Obtener el parámetro de consulta 'role' si existe
 
-        if ($users->isEmpty()) {
-            $data = [
-                "message" => "No se encontraron usuarios",
-                "status" => 200
-            ];
-            return response()->json($data, 200);
+        if ($role == 'teacher') {
+            $users = User::where('idrol', 2)->get();
+        } else {
+            $users = User::all();
         }
 
-        $data = [
+        if ($users->isEmpty()) {
+            return response()->json([
+                "message" => "No se encontraron usuarios",
+                "status" => 200
+            ], 200);
+        }
+
+        return response()->json([
             'user' => $users,
             'status' => 200
-        ];
-        return response()->json($data, 200);
+        ], 200);
     }
 
     /**
@@ -78,14 +82,14 @@ class UserController extends Controller
             $teacherValidator = Validator::make($request->all(), [
                 'teachertoken' => 'required|string|exists:tokens,teachertoken',
             ]);
-        
+
             if ($teacherValidator->fails()) {
                 return response()->json(['errors' => $teacherValidator->errors()], 400);
             }
-        
+
             // Buscar el token correspondiente
             $token = Token::where('teachertoken', $request->teachertoken)->first();
-        
+
             // Asignar el idtoken
             if ($token) {
                 $userData['idtoken'] = $token->idtoken;
@@ -96,21 +100,21 @@ class UserController extends Controller
                 'siscode' => 'required|string|exists:siscode,siscode',
                 'use_iduser' => 'required|integer|exists:users,iduser,idrol,2',
             ]);
-        
+
             if ($studentValidator->fails()) {
                 return response()->json(['errors' => $studentValidator->errors()], 400);
             }
-        
+
             // Buscar el siscode correspondiente
             $siscodeRecord = Siscode::where('siscode', $request->siscode)->first();
             if ($siscodeRecord) {
                 $userData['idsiscode'] = $siscodeRecord->id;
             }
-        
+
             // Asignar use_iduser
             $userData['use_iduser'] = $request->use_iduser;
-        } 
-        
+        }
+
         // Crear el usuario
         $user = User::create($userData);
 
