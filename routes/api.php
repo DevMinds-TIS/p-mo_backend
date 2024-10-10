@@ -24,9 +24,6 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\WeeklyController;
 
 
-
-<<<<<<< HEAD
-
 Route::get('/roles', [RolesController::class, 'index']);
 Route::post('/roles', [RolesController::class, 'store']);
 
@@ -78,7 +75,6 @@ Route::post('/trackings', [TrackingController::class, 'store']);
 
 Route::get('/weeklies', [WeeklyController::class, 'index']);
 Route::post('/weeklies', [WeeklyController::class, 'store']);
-=======
 Route::get('/proyectos', [ProjectController::class, 'index']);
 
 Route::post('/proyecto', [ProjectController::class, 'store']);
@@ -86,29 +82,28 @@ Route::get('/proyecto/{id}', [ProjectController::class, 'show']);
 Route::get('/proyectos/{id}', [ProjectController::class, 'show2']);
 Route::patch('/proyecto/{id}', [ProjectController::class, 'updatePartial']);
 
-//rutas para Equipo
-Route::get('/equipo', [EquipoController::class, 'index']);
-Route::post('/equipo', [EquipoController::class, 'store']);
-Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
-Route::put('/equipos/{id}', [EquipoController::class, 'update']);
-Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
-Route::get('/equiposS/buscar', [EquipoController::class, 'search']);
-Route::get('/equipotable', [EquipoController::class, 'indexTabla']);
+// ------------------------------------------------------------------------------------------------------------------
+// Route::get('/equipo', [EquipoController::class, 'index']);
+// Route::post('/equipo', [EquipoController::class, 'store']);
+// Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
+// Route::put('/equipos/{id}', [EquipoController::class, 'update']);
+// Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
+// Route::get('/equiposS/buscar', [EquipoController::class, 'search']);
+// Route::get('/equipotable', [EquipoController::class, 'indexTabla']);
 
-Route::get('/equipos/usuario/{id}', [EquipoController::class, 'obtenerEquiposPorUsuario']);
+// Route::get('/equipos/usuario/{id}', [EquipoController::class, 'obtenerEquiposPorUsuario']);
 
-//rutas para docente
+// //rutas para docente
 
-Route::get('/docentes', [DocenteController::class, 'index']);
-Route::post('/docentes', [DocenteController::class, 'store']);
+// Route::get('/docentes', [DocenteController::class, 'index']);
+// Route::post('/docentes', [DocenteController::class, 'store']);
 
-//rutas para ESTUDIANTE
+// //rutas para ESTUDIANTE
 
-Route::get('/estudiantes', [EstudianteController::class, 'index']);
-Route::post('/estudiantes', [EstudianteController::class, 'store']);
+// Route::get('/estudiantes', [EstudianteController::class, 'index']);
+// Route::post('/estudiantes', [EstudianteController::class, 'store']);
 
-//vista completa de docemte
-Route::get('/actors', [ActorController::class, 'getActorsWithType']);
-Route::get('/actors/{id}', [ActorController::class, 'showE']);
-Route::get('/summary', [ActorController::class, 'showSummary']);
->>>>>>> develop
+// //vista completa de docemte
+// Route::get('/actors', [ActorController::class, 'getActorsWithType']);
+// Route::get('/actors/{id}', [ActorController::class, 'showE']);
+// Route::get('/summary', [ActorController::class, 'showSummary']);
