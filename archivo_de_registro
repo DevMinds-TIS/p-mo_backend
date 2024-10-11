@@ -165,3 +165,29 @@
 	
 2024-09-27 22:34:25.084 GMT [14596] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
 	
+2024-10-08 13:52:22.378 GMT [28112] LOG:  iniciando PostgreSQL 12.20, compiled by Visual C++ build 1940, 64-bit
+2024-10-08 13:52:22.381 GMT [28112] LOG:  escuchando en la dirección IPv6 «::1», port 5432
+2024-10-08 13:52:22.382 GMT [28112] LOG:  escuchando en la dirección IPv4 «127.0.0.1», port 5432
+2024-10-08 13:52:22.453 GMT [30492] LOG:  el sistema de bases de datos fue interrumpido; última vez en funcionamiento en 2024-10-01 14:59:01 GMT
+2024-10-08 13:52:23.808 GMT [30492] LOG:  el sistema de bases de datos no fue apagado apropiadamente; se está efectuando la recuperación automática
+2024-10-08 13:52:23.816 GMT [30492] LOG:  redo comienza en 0/1DDB560
+2024-10-08 13:52:23.816 GMT [30492] LOG:  largo de registro no válido en 0/1DDB648: se esperaba 24, se obtuvo 0
+2024-10-08 13:52:23.816 GMT [30492] LOG:  redo listo en 0/1DDB610
+2024-10-08 13:52:23.887 GMT [28112] LOG:  el sistema de bases de datos está listo para aceptar conexiones
+2024-10-08 14:33:01.433 GMT [30492] ERROR:  la sintaxis de entrada no es vÃ¡lida para tipo bigint: Â«undefinedÂ»
+2024-10-08 14:33:01.433 GMT [30492] SENTENCIA:  select * from "proyecto" where "proyecto"."idproyecto" = $1 limit 1
+2024-10-08 14:33:02.475 GMT [13556] ERROR:  la sintaxis de entrada no es vÃ¡lida para tipo bigint: Â«undefinedÂ»
+2024-10-08 14:33:02.475 GMT [13556] SENTENCIA:  select * from "proyecto" where "proyecto"."idproyecto" = $1 limit 1
+2024-10-08 14:33:15.554 GMT [18592] ERROR:  la sintaxis de entrada no es vÃ¡lida para tipo bigint: Â«undefinedÂ»
+2024-10-08 14:33:15.554 GMT [18592] SENTENCIA:  select * from "proyecto" where "proyecto"."idproyecto" = $1 limit 1
+2024-10-08 14:33:15.730 GMT [13644] ERROR:  la sintaxis de entrada no es vÃ¡lida para tipo bigint: Â«undefinedÂ»
+2024-10-08 14:33:15.730 GMT [13644] SENTENCIA:  select * from "proyecto" where "proyecto"."idproyecto" = $1 limit 1
+2024-10-08 14:48:15.012 GMT [30920] ERROR:  no existe la relaciÃ³n Â«actoresÂ» en carÃ¡cter 15
+2024-10-08 14:48:15.012 GMT [30920] SENTENCIA:  select * from actores
+	
+2024-10-08 14:58:21.958 GMT [30920] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-10-08 14:58:21.960 GMT [24340] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	
+2024-10-08 14:58:21.962 GMT [11428] LOG:  no se pudo recibir datos del cliente: An existing connection was forcibly closed by the remote host.
+	

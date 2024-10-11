@@ -63,3 +63,4 @@ Route::post('/estudiantes', [EstudianteController::class, 'store']);
 Route::get('/actors', [ActorController::class, 'getActorsWithType']);
 Route::get('/actors/{id}', [ActorController::class, 'showE']);
 Route::get('/summary', [ActorController::class, 'showSummary']);
+
