@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RolesRequest;
+use App\Http\Requests\Api\UpdateRolesRequest;
+use App\Http\Resources\Api\RolesResource;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        return Role::all();
+        return RolesResource::collection(Role::all());
     }
 
     /**
@@ -37,13 +39,7 @@ class RolesController extends Controller
      */
     public function store(RolesRequest $request)
     {
-        // Registrar un nuevo rol
-        $role = Role::create($request->all());
-
-        return response()->json([
-            "msg" => "Registro de un nuevo rol exitoso",
-            "role" => $role,
-        ]);
+        return new RolesResource(Role::create($request->all()));
     }
 
     /**
@@ -52,9 +48,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $rol)
     {
-        //
+        return new RolesResource($rol);
     }
 
     /**
@@ -75,9 +71,10 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRolesRequest $request, Role $rol)
     {
-        //
+        $rol->update($request->all());
+        return new RolesResource($rol);
     }
 
     /**
@@ -86,8 +83,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $rol)
     {
-        //
+        $rol->delete();
+        return new RolesResource($rol);
     }
 }

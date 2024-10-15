@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
         $user = User::create($userData);
 
         // Genera el token con SANCTUM
-        $token = $user->createToken($user->emailuser)->plainTextToken;
+        // $token = $user->createToken($user->emailuser)->plainTextToken;
 
         // Guardar al usuario y su rol
         $role_user = RoleUser::create([
@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
         return response()->json([
             "msg" => "Registro de usuario exitoso",
             "roleUser" => $role_user,
-            "token" => $token
+            // "token" => $token
         ]);
     }
 }

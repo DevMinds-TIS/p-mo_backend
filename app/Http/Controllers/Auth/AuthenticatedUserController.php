@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginUserRequest;
+use App\Http\Requests\Auth\LogoutUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -26,6 +27,15 @@ class AuthenticatedUserController extends Controller
             "msg" => "Inicio de sesión exitoso",
             "user" => $user,
             "token" => $token
+        ]);
+    }
+
+    public function logout(LogoutUserRequest $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'msg' => 'Cierre de sesión exitoso'
         ]);
     }
 }

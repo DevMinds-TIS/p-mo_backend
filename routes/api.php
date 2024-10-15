@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Route;
 Route::post("login",[AuthenticatedUserController::class, "login"]);
 Route::post("register",[RegisteredUserController::class, "register"]);
 
+Route::group(["middleware" => ["auth:sanctum"]], function(){
+    Route::post("logout",[AuthenticatedUserController::class, "logout"]);
+});
+
 Route::get("roles", [RolesController::class, "index"]);
+Route::get("roles/{rol}", [RolesController::class, "show"]);
 Route::post("roles", [RolesController::class, "store"]);
+Route::patch("roles/{rol}", [RolesController::class, "update"]);
+Route::delete("roles/{rol}", [RolesController::class, "destroy"]);
 
 // use App\Http\Controllers\RolesController;
 // use App\Http\Controllers\UserController;
