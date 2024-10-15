@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('iduser')->unique('users_pk');
             $table->integer('idsiscode')->nullable()->index('relationship_7_fk');
-            $table->integer('idtoken')->nullable()->index('relationship_10_fk');
+            $table->integer('idpermission')->nullable()->index('relationship_10_fk');
             $table->integer('use_iduser')->nullable()->index('relationship_34_fk2');
             $table->string('nameuser', 60)->nullable();
             $table->string('lastnameuser', 60)->nullable();

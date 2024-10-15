@@ -1,7 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedUserController;
 use Illuminate\Support\Facades\Route;
+
+Route::post("login",[AuthenticatedUserController::class, "login"]);
+Route::post("register",[RegisteredUserController::class, "register"]);
+
+Route::get("roles", [RolesController::class, "index"]);
+Route::post("roles", [RolesController::class, "store"]);
 
 // use App\Http\Controllers\RolesController;
 // use App\Http\Controllers\UserController;

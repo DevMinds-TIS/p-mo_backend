@@ -14,7 +14,7 @@ class AddForeignKeysToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign(['idtoken'], 'fk_users_relations_tokens')->references(['idtoken'])->on('tokens')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idpermission'], 'fk_users_relations_permissi')->references(['idpermission'])->on('permissions')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['use_iduser'], 'fk_users_relations_users')->references(['iduser'])->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idsiscode'], 'fk_users_relations_siscode')->references(['idsiscode'])->on('siscode')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
@@ -28,7 +28,7 @@ class AddForeignKeysToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('fk_users_relations_tokens');
+            $table->dropForeign('fk_users_relations_permissi');
             $table->dropForeign('fk_users_relations_users');
             $table->dropForeign('fk_users_relations_siscode');
         });
