@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CriterionsController;
 use App\Http\Controllers\Api\DocumentsController;
 use App\Http\Controllers\Api\PermissionsController;
 use App\Http\Controllers\Api\PlanningsController;
@@ -31,10 +32,11 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("documents", DocumentsController::class);
     Route::apiResource("plannings", PlanningsController::class);
     Route::apiResource("teams", TeamsController::class);
+    Route::apiResource("team-member", TeamMemberController::class);
     Route::apiResource("sprints", SprintsController::class);
     Route::apiResource("trackings", TrackingsController::class);
     Route::apiResource("weeklies", WeekliesController::class);
     Route::apiResource("stories", StoriesController::class);
     Route::apiResource("tasks", TasksController::class);
-    Route::apiResource("team-member", TeamMemberController::class);
+    Route::apiResource("criterions", CriterionsController::class);
 });
