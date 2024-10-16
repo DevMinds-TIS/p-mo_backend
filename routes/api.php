@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\PermissionsController;
 use App\Http\Controllers\Api\PlanningsController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\RoleUserController;
 use App\Http\Controllers\Api\SelfAssessmentsController;
 use App\Http\Controllers\Api\SiscodeController;
 use App\Http\Controllers\Api\SprintsController;
@@ -28,6 +29,7 @@ Route::post("register", [RegisteredUserController::class, "register"]);
 Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::post("logout", [AuthenticatedUserController::class, "logout"]);
     Route::apiResource("roles", RolesController::class);
+    Route::apiResource("role-user", RoleUserController::class);
     Route::apiResource("users", UsersController::class);
     Route::apiResource("permissions", PermissionsController::class);
     Route::apiResource("siscode", SiscodeController::class);
