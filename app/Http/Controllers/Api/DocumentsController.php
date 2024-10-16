@@ -48,7 +48,14 @@ class DocumentsController extends Controller
     public function update(DocumentsRequest $request, $id)
     {
         $document = Document::findOrFail($id);
-        $document->update($request->all());
+        if ($request->hasFile('pathdocument')) {
+            $file = $request->file('pathdocument');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('documents', $filename, 'public');
+            $document->pathdocument = $path;
+        }
+        $document->update($request->except('pathdocument'));
+        // $document->update($request->all());
         return new DocumentsResource($document);
     }
 
