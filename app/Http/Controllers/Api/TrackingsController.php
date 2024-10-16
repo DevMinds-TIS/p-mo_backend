@@ -16,8 +16,7 @@ class TrackingsController extends Controller
 
     public function store(TrackingsRequest $request)
     {
-        $tracking = Tracking::create($request->validated());
-        return new TrackingResource($tracking);
+        return new TrackingResource(Tracking::create($request->all()));
     }
 
     public function show($id)

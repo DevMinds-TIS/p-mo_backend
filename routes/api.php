@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\SiscodeController;
 use App\Http\Controllers\Api\SprintsController;
 use App\Http\Controllers\Api\StoriesController;
 use App\Http\Controllers\Api\TasksController;
+use App\Http\Controllers\Api\TeamMemberController;
 use App\Http\Controllers\Api\TeamsController;
 use App\Http\Controllers\Api\TrackingsController;
 use App\Http\Controllers\Api\UsersController;
@@ -35,4 +36,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("weeklies", WeekliesController::class);
     Route::apiResource("stories", StoriesController::class);
     Route::apiResource("tasks", TasksController::class);
+    Route::apiResource("team-member", TeamMemberController::class);
 });
