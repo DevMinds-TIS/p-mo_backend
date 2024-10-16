@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisteredUserRequest;
 use App\Models\RoleUser;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -20,6 +21,11 @@ class RegisteredUserController extends Controller
         // Registrar un nuevo usuario
         $userData = $request->all();
         $userData['passworduser'] = bcrypt($request->passworduser);
+        // Si el rol es estudiante, buscar y asignar el idsiscode
+        if ($request->input('idrol') == 3) {
+            $siscode = DB::table('siscode')->where('siscode', $request->input('siscode'))->first();
+            $userData['idsiscode'] = $siscode->idsiscode;
+        }
         $user = User::create($userData);
 
         // Genera el token con SANCTUM

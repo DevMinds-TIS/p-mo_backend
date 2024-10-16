@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\PermissionsController;
 use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\SiscodeController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedUserController;
@@ -17,3 +18,4 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
 
 Route::apiResource("users", UsersController::class);
 Route::apiResource("permissions", PermissionsController::class);
+Route::apiResource("siscode", SiscodeController::class);

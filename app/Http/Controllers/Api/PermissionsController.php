@@ -36,6 +36,6 @@ class PermissionsController extends Controller
     {
         $permission = Permission::findOrFail($id);
         $permission->delete();
-        return response()->json(['message' => 'Rol eliminado exitosamente']);
+        return response()->json(['message' => 'Permiso eliminado exitosamente']);
     }
 }
