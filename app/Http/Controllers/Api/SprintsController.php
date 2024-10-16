@@ -17,8 +17,7 @@ class SprintsController extends Controller
 
     public function store(SprintsRequest $request)
     {
-        $sprint = Sprint::create($request->validated());
-        return new SprintsResource($sprint);
+        return new SprintsResource(Sprint::create($request->all()));
     }
 
     public function show($id)
