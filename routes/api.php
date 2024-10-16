@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PermissionsController;
 use App\Http\Controllers\Api\PlanningsController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\SelfAssessmentsController;
 use App\Http\Controllers\Api\SiscodeController;
 use App\Http\Controllers\Api\SprintsController;
 use App\Http\Controllers\Api\StoriesController;
@@ -39,4 +40,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("stories", StoriesController::class);
     Route::apiResource("tasks", TasksController::class);
     Route::apiResource("criterions", CriterionsController::class);
+    Route::apiResource("self-assessments", SelfAssessmentsController::class);
 });
