@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RolesResource extends JsonResource
@@ -18,6 +19,8 @@ class RolesResource extends JsonResource
         return [
             "id" => $this->idrol,
             "name" => $this->namerol,
+            "created_at" => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
+            "updated_at" => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
         ];
     }
 }
