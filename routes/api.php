@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DocumentsController;
 use App\Http\Controllers\Api\PermissionsController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\RolesController;
@@ -18,6 +19,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("users", UsersController::class);
     Route::apiResource("permissions", PermissionsController::class);
     Route::apiResource("siscode", SiscodeController::class);
+    Route::apiResource("projects", ProjectsController::class);
+    Route::apiResource("documents", DocumentsController::class);
 });
-
-Route::apiResource("projects", ProjectsController::class);
