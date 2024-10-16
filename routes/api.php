@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PlanningsController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\SiscodeController;
+use App\Http\Controllers\Api\SprintsController;
 use App\Http\Controllers\Api\TeamsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -25,4 +26,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("documents", DocumentsController::class);
     Route::apiResource("plannings", PlanningsController::class);
     Route::apiResource("teams", TeamsController::class);
+    Route::apiResource("sprints", SprintsController::class);
 });
