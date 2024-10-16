@@ -23,8 +23,19 @@ class UsersController extends Controller
     public function update(UsersRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        // $user->update($request->validated());
-        $user->update($request);
+        // Verificar si se ha cargado un archivo para el perfil de usuario
+        if ($request->hasFile('profileuser')) {
+            // Obtener el archivo
+            $file = $request->file('profileuser');
+            // Generar un nombre único para el archivo
+            $filename = time() . '_' . $file->getClientOriginalName();
+            // Guardar el archivo en la ubicación deseada
+            $path = $file->storeAs('profiles', $filename, 'public');
+            // Actualizar el campo profileuser con la ruta del archivo
+            $user->profileuser = $path;
+        }
+        // $user->update($request->all());
+        $user->update($request->except('profileuser'));
         return new UsersResource($user);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class UsersRequest extends FormRequest
 {
@@ -21,13 +22,28 @@ class UsersRequest extends FormRequest
         $rules = [
             'nameuser' => 'required|string|max:60',
             'lastnameuser' => 'required|string|max:60',
-            'emailuser' => 'required|string|email|max:120|unique:users,emailuser,' . $this->iduser,
+            'emailuser' => 'required|string|email|max:120|unique:users,emailuser',
             'passworduser' => 'required|string|min:8',
             'profileuser' => 'nullable|image|max:2048',
+            'idrol' => 'required|integer|exists:roles,idrol',
         ];
 
-        if ($this->input('role') === 'estudiante') {
-            $rules['use_iduser'] = 'required|exists:users,iduser'; // Docente existente
+        if ($this->input('idrol') === 3) {
+            $rules["use_iduser"] = [
+                "required",
+                "integer",
+                function ($attribute, $value, $fail) {
+                    $roleUser = DB::table("role_user")
+                        ->where("iduser", $value)
+                        ->where("idrol", 2)
+                        ->first();
+
+                    if (!$roleUser) {
+                        $fail("El docente asignado no existe o no tiene el rol de docente.");
+                    }
+                },
+            ];
+            // $rules['use_iduser'] = 'required|exists:users,iduser';
         }
 
         return $rules;

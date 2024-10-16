@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\DocumentsController;
 use App\Http\Controllers\Api\PermissionsController;
+use App\Http\Controllers\Api\PlanningsController;
 use App\Http\Controllers\Api\ProjectsController;
 use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\SiscodeController;
@@ -21,4 +22,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("siscode", SiscodeController::class);
     Route::apiResource("projects", ProjectsController::class);
     Route::apiResource("documents", DocumentsController::class);
+    Route::apiResource("plannings", PlanningsController::class);
 });
