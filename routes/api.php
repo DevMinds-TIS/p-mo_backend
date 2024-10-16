@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CriterionsController;
+use App\Http\Controllers\Api\CrossEvaluationsController;
 use App\Http\Controllers\Api\DocumentsController;
 use App\Http\Controllers\Api\PeerEvaluationsController;
 use App\Http\Controllers\Api\PermissionsController;
@@ -43,4 +44,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("criterions", CriterionsController::class);
     Route::apiResource("self-assessments", SelfAssessmentsController::class);
     Route::apiResource("peer-evaluations", PeerEvaluationsController::class);
+    Route::apiResource("cross-evaluations", CrossEvaluationsController::class);
 });
