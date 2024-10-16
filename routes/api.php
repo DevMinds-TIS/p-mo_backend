@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\SiscodeController;
 use App\Http\Controllers\Api\SprintsController;
 use App\Http\Controllers\Api\TeamsController;
+use App\Http\Controllers\Api\TrackingsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedUserController;
@@ -27,4 +28,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("plannings", PlanningsController::class);
     Route::apiResource("teams", TeamsController::class);
     Route::apiResource("sprints", SprintsController::class);
+    Route::apiResource("trackings", TrackingsController::class);
 });
