@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\SprintsController;
 use App\Http\Controllers\Api\TeamsController;
 use App\Http\Controllers\Api\TrackingsController;
 use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\WeekliesController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedUserController;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,5 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::apiResource("teams", TeamsController::class);
     Route::apiResource("sprints", SprintsController::class);
     Route::apiResource("trackings", TrackingsController::class);
+    Route::apiResource("weeklies", WeekliesController::class);
 });
