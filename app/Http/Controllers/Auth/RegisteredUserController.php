@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisteredUserRequest;
 use App\Models\RoleUser;
+use App\Models\Siscode;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -37,10 +38,15 @@ class RegisteredUserController extends Controller
             "idrol" => $request->idrol
         ]);
 
+        $update = Siscode::create([
+            "iduser" => $user->iduser,
+        ]);
+
         return response()->json([
             "msg" => "Registro de usuario exitoso",
             "roleUser" => $role_user,
             // "token" => $token
+            "siscode" => $update,
         ]);
     }
 }

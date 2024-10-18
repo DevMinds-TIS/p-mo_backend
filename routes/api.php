@@ -22,15 +22,22 @@ use App\Http\Controllers\Api\WeekliesController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedUserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::post("login", [AuthenticatedUserController::class, "login"]);
 Route::post("register", [RegisteredUserController::class, "register"]);
+Route::apiResource("role-user", RoleUserController::class);
+Route::apiResource("users", UsersController::class);
+
+Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
+    return $request->user()->load(['roles', 'user']);
+});
 
 Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::post("logout", [AuthenticatedUserController::class, "logout"]);
     Route::apiResource("roles", RolesController::class);
-    Route::apiResource("role-user", RoleUserController::class);
-    Route::apiResource("users", UsersController::class);
+    // Route::apiResource("role-user", RoleUserController::class);
+    // Route::apiResource("users", UsersController::class);
     Route::apiResource("permissions", PermissionsController::class);
     Route::apiResource("siscode", SiscodeController::class);
     Route::apiResource("projects", ProjectsController::class);
