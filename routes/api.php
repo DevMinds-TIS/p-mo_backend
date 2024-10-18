@@ -51,9 +51,12 @@ Route::get('/equipos/usuario/{id}', [EquipoController::class, 'obtenerEquiposPor
 
 //rutas para docente
 
-Route::get('/docentes', [DocenteController::class, 'index']);
-Route::post('/docentes', [DocenteController::class, 'store']);
+Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('/docentes', [DocenteController::class, 'index']);
+    Route::post('/docentes', [DocenteController::class, 'store']);
+    
+});
 //rutas para ESTUDIANTE
 
 Route::get('/estudiantes', [EstudianteController::class, 'index']);
