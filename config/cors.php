@@ -15,9 +15,10 @@ return [
     |
     */
 
-    'paths' => ['*'],
+    // 'paths' => ['*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['GET, PUT, POST, DELETE, OPTIONS'],
 
     'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
 
@@ -25,7 +26,7 @@ return [
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
+    'exposed_headers' => ['Origin, Content-Type, X-Auth-Token , Authorization'],
 
     'max_age' => 0,
 

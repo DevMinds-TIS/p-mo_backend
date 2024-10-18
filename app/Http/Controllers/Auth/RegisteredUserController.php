@@ -3,41 +3,50 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisteredUserRequest;
+use App\Models\RoleUser;
+use App\Models\Siscode;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
     /**
-     * Handle an incoming registration request.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function register(RegisteredUserRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // Registrar un nuevo usuario
+        $userData = $request->all();
+        $userData['passworduser'] = bcrypt($request->passworduser);
+        // Si el rol es estudiante, buscar y asignar el idsiscode
+        if ($request->input('idrol') == 3) {
+            $siscode = DB::table('siscode')->where('siscode', $request->input('siscode'))->first();
+            $userData['idsiscode'] = $siscode->idsiscode;
+        }
+        $user = User::create($userData);
+
+        // Genera el token con SANCTUM
+        // $token = $user->createToken($user->emailuser)->plainTextToken;
+
+        // Guardar al usuario y su rol
+        $role_user = RoleUser::create([
+            "iduser" => $user->iduser,
+            "idrol" => $request->idrol
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        $update = Siscode::create([
+            "iduser" => $user->iduser,
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return response()->noContent();
+        return response()->json([
+            "msg" => "Registro de usuario exitoso",
+            "roleUser" => $role_user,
+            // "token" => $token
+            "siscode" => $update,
+        ]);
     }
 }

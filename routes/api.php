@@ -1,65 +1,57 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CriterionsController;
+use App\Http\Controllers\Api\CrossEvaluationsController;
+use App\Http\Controllers\Api\DocumentsController;
+use App\Http\Controllers\Api\PeerEvaluationsController;
+use App\Http\Controllers\Api\PermissionsController;
+use App\Http\Controllers\Api\PlanningsController;
+use App\Http\Controllers\Api\ProjectsController;
+use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\RoleUserController;
+use App\Http\Controllers\Api\SelfAssessmentsController;
+use App\Http\Controllers\Api\SiscodeController;
+use App\Http\Controllers\Api\SprintsController;
+use App\Http\Controllers\Api\StoriesController;
+use App\Http\Controllers\Api\TasksController;
+use App\Http\Controllers\Api\TeamMemberController;
+use App\Http\Controllers\Api\TeamsController;
+use App\Http\Controllers\Api\TrackingsController;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Api\WeekliesController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedUserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
+Route::post("login", [AuthenticatedUserController::class, "login"]);
+Route::post("register", [RegisteredUserController::class, "register"]);
+Route::apiResource("role-user", RoleUserController::class);
+Route::apiResource("users", UsersController::class);
 
-use App\Http\Controllers\ActorController;
-use App\Http\Controllers\DocenteController;
-use App\Http\Controllers\EstudianteController;
-use App\Http\Controllers\GrupoController;
-use App\Http\Controllers\EquipoController;
+Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
+    return $request->user()->load(['roles', 'user']);
+});
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProjectController;
-// Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-//prueva
-// Rutas para ActorController
-Route::get('/actores', [ActorController::class, 'index']);
-Route::get('/actores/{id}', [ActorController::class, 'show']);
-Route::post('/actores', [ActorController::class, 'store']);
-Route::put('/actores/{id}', [ActorController::class, 'update']);
-Route::patch('/actores/{id}', [ActorController::class, 'updatePartial']);
-Route::delete('/actores/{id}', [ActorController::class, 'delete']);
-Route::get('/actores/buscar', [ActorController::class, 'search']);
-
-//login 
-Route::post('/login', [AuthController::class, 'login']);
-
-
-//rutas para PROYECTO
-
-Route::get('/proyectos', [ProjectController::class, 'index']);
-
-Route::post('/proyecto', [ProjectController::class, 'store']);
-Route::get('/proyecto/{id}', [ProjectController::class, 'show']);
-Route::get('/proyectos/{id}', [ProjectController::class, 'show2']);
-Route::patch('/proyecto/{id}', [ProjectController::class, 'updatePartial']);
-
-//rutas para Equipo
-Route::get('/equipo', [EquipoController::class, 'index']);
-Route::post('/equipo', [EquipoController::class, 'store']);
-Route::get('/equipos/{id}', [EquipoController::class, 'show']);//agregado
-Route::put('/equipos/{id}', [EquipoController::class, 'update']);
-Route::delete('/equipos/{id}', [EquipoController::class, 'delete']);
-Route::get('/equiposS/buscar', [EquipoController::class, 'search']);
-Route::get('/equipotable', [EquipoController::class, 'indexTabla']);
-
-Route::get('/equipos/usuario/{id}', [EquipoController::class, 'obtenerEquiposPorUsuario']);
-
-//rutas para docente
-
-Route::get('/docentes', [DocenteController::class, 'index']);
-Route::post('/docentes', [DocenteController::class, 'store']);
-
-//rutas para ESTUDIANTE
-
-Route::get('/estudiantes', [EstudianteController::class, 'index']);
-Route::post('/estudiantes', [EstudianteController::class, 'store']);
-
-//vista completa de docemte
-Route::get('/actors', [ActorController::class, 'getActorsWithType']);
-Route::get('/actors/{id}', [ActorController::class, 'showE']);
-Route::get('/summary', [ActorController::class, 'showSummary']);
+Route::group(["middleware" => ["auth:sanctum"]], function () {
+    Route::post("logout", [AuthenticatedUserController::class, "logout"]);
+    Route::apiResource("roles", RolesController::class);
+    // Route::apiResource("role-user", RoleUserController::class);
+    // Route::apiResource("users", UsersController::class);
+    Route::apiResource("permissions", PermissionsController::class);
+    Route::apiResource("siscode", SiscodeController::class);
+    Route::apiResource("projects", ProjectsController::class);
+    Route::apiResource("documents", DocumentsController::class);
+    Route::apiResource("plannings", PlanningsController::class);
+    Route::apiResource("teams", TeamsController::class);
+    Route::apiResource("team-member", TeamMemberController::class);
+    Route::apiResource("sprints", SprintsController::class);
+    Route::apiResource("trackings", TrackingsController::class);
+    Route::apiResource("weeklies", WeekliesController::class);
+    Route::apiResource("stories", StoriesController::class);
+    Route::apiResource("tasks", TasksController::class);
+    Route::apiResource("criterions", CriterionsController::class);
+    Route::apiResource("self-assessments", SelfAssessmentsController::class);
+    Route::apiResource("peer-evaluations", PeerEvaluationsController::class);
+    Route::apiResource("cross-evaluations", CrossEvaluationsController::class);
+});
