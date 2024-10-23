@@ -28,6 +28,7 @@ Route::post("login", [AuthenticatedUserController::class, "login"]);
 Route::post("register", [RegisteredUserController::class, "register"]);
 Route::apiResource("role-user", RoleUserController::class);
 Route::apiResource("users", UsersController::class);
+Route::apiResource("siscode", SiscodeController::class);
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user()->load(['roles', 'user']);
