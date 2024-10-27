@@ -25,10 +25,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::post("login", [AuthenticatedUserController::class, "login"]);
-Route::post("register", [RegisteredUserController::class, "register"]);
+Route::post("register-admin", [RegisteredUserController::class, "registerAdmin"]);
+Route::post("register-student", [RegisteredUserController::class, "registerStudent"]);
+Route::post("register-teacher", [RegisteredUserController::class, "registerTeacher"]);
 Route::apiResource("role-user", RoleUserController::class);
 Route::apiResource("users", UsersController::class);
-Route::apiResource("siscode", SiscodeController::class);
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user()->load(['roles', 'user']);

@@ -28,23 +28,23 @@ class UsersRequest extends FormRequest
             'idrol' => 'required|integer|exists:roles,idrol',
         ];
 
-        if ($this->input('idrol') === 3) {
-            $rules["use_iduser"] = [
-                "required",
-                "integer",
-                function ($attribute, $value, $fail) {
-                    $roleUser = DB::table("role_user")
-                        ->where("iduser", $value)
-                        ->where("idrol", 2)
-                        ->first();
+        // if ($this->input('idrol') === 3) {
+        //     $rules["use_iduser"] = [
+        //         "required",
+        //         "integer",
+        //         function ($attribute, $value, $fail) {
+        //             $roleUser = DB::table("role_user")
+        //                 ->where("iduser", $value)
+        //                 ->where("idrol", 2)
+        //                 ->first();
 
-                    if (!$roleUser) {
-                        $fail("El docente asignado no existe o no tiene el rol de docente.");
-                    }
-                },
-            ];
-            // $rules['use_iduser'] = 'required|exists:users,iduser';
-        }
+        //             if (!$roleUser) {
+        //                 $fail("El docente asignado no existe o no tiene el rol de docente.");
+        //             }
+        //         },
+        //     ];
+        //     // $rules['use_iduser'] = 'required|exists:users,iduser';
+        // }
 
         return $rules;
     }
