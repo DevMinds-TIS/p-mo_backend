@@ -7,18 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TrackingResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
-            'ID' => $this->idtracking,
-            'ID Sprint' => $this->idsprint,
-            'ID Usuario' => $this->iduser,
+            'ID_Seguimiento' => $this->idtracking,
+            'ID-Sprint' => $this->idsprint,
+            'ID_Usuario' => $this->iduser,
             'Nombre' => $this->nametracking,
             'Fecha_Envió' => Carbon::parse($this->deliverytracking)->format('d/m/Y'),
             'Fecha_Recepción' => Carbon::parse($this->returntracking)->format('d/m/Y'),

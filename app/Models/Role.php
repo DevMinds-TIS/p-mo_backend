@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idrol
  * @property string|null $namerol
+ * @property string|null $iconrol
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -28,7 +29,8 @@ class Role extends Model
 	protected $primaryKey = 'idrol';
 
 	protected $fillable = [
-		'namerol'
+		'namerol',
+		'iconrol'
 	];
 
 	public function users()

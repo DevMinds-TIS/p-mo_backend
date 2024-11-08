@@ -7,17 +7,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
-            'ID' => $this->idproject,
-            'ID Usuario' => $this->iduser,
+            'ID_Proyecto' => $this->idproject,
+            'ID_Usuario' => $this->iduser,
             'Proyecto' => $this->nameproject,
             'Código' => $this->codeproject,
             'Fecha_Inicio' => Carbon::parse($this->startproject)->format('d/m/Y'),

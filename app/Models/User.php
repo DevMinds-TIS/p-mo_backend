@@ -38,9 +38,11 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Collection|SelfAssessment[] $self_assessments
  * @property Collection|Siscode[] $siscodes
  * @property Collection|TeamMember[] $team_members
- * @property Collection|Project[] $projects
+ * @property Collection|Team[] $teams
  * @property Collection|Tracking[] $trackings
  * @property Collection|User[] $users
+ * @property Collection|Project[] $projects
+ * @property Collection|Space[] $spaces
  * @property Collection|Story[] $stories
  * @property Collection|Task[] $tasks
  *
@@ -49,7 +51,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
 	use HasApiTokens, HasFactory, Notifiable;
-
+	
 	protected $table = 'users';
 	protected $primaryKey = 'iduser';
 
@@ -122,9 +124,9 @@ class User extends Authenticatable
 		return $this->hasMany(TeamMember::class, 'iduser');
 	}
 
-	public function projects()
+	public function teams()
 	{
-		return $this->hasMany(Project::class, 'iduser');
+		return $this->hasMany(Team::class, 'iduser');
 	}
 
 	public function trackings()
@@ -135,6 +137,16 @@ class User extends Authenticatable
 	public function users()
 	{
 		return $this->hasMany(User::class, 'use_iduser');
+	}
+
+	public function projects()
+	{
+		return $this->hasMany(Project::class, 'iduser');
+	}
+
+	public function spaces()
+	{
+		return $this->hasMany(Space::class, 'iduser');
 	}
 
 	public function stories()

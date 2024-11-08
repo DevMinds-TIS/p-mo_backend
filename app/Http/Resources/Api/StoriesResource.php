@@ -7,18 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class StoriesResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
-            'ID' => $this->idstorie,
-            'ID Semana' => $this->idweeklie,
-            'ID Usuario' => $this->iduser,
+            'ID_Historia' => $this->idstorie,
+            'ID_Semana' => $this->idweeklie,
+            'ID_Usuario' => $this->iduser,
             'Código_HU' => $this->codestorie,
             'Nombre_HU' => $this->namestorie,
             'Estado' => $this->statusstorie,

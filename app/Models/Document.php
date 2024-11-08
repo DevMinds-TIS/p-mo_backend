@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $idtracking
  * @property int|null $idstorie
  * @property int|null $idtask
+ * @property string|null $namedocument
  * @property string|null $pathdocument
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -53,6 +54,7 @@ class Document extends Model
 		'idtracking',
 		'idstorie',
 		'idtask',
+		'namedocument',
 		'pathdocument'
 	];
 

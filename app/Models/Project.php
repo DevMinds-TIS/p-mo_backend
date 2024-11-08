@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $iduser
  * @property string|null $nameproject
  * @property string|null $codeproject
+ * @property string|null $termproject
  * @property Carbon|null $startproject
  * @property Carbon|null $endproject
  * @property Carbon|null $created_at
@@ -44,6 +45,7 @@ class Project extends Model
 		'iduser',
 		'nameproject',
 		'codeproject',
+		'termproject',
 		'startproject',
 		'endproject'
 	];

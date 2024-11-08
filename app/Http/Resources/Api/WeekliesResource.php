@@ -7,17 +7,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class WeekliesResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
-            'ID' => $this->idweeklie,
-            'ID Sprint' => $this->idsprint,
+            'ID_Semana' => $this->idweeklie,
+            'ID_Sprint' => $this->idsprint,
             'Objetivo' => $this->goalweeklie,
             'Fecha_Inicio' => Carbon::parse($this->startweeklie)->format('d/m/Y'),
             'Fecha_Fin' => Carbon::parse($this->endweeklie)->format('d/m/Y'),

@@ -19,23 +19,20 @@ class RoleUserController extends Controller
         return new RoleUserResource(RoleUser::create($request->all()));
     }
 
-    public function show($id)
+    public function show(RoleUser $roleUser)
     {
-        $rolUser = RoleUser::findOrFail($id);
-        return new RoleUserResource($rolUser);
+        return new RoleUserResource($roleUser);
     }
 
-    public function update(RoleUserRequest $request, $id)
+    public function update(RoleUserRequest $request, RoleUser $roleUser)
     {
-        $rolUser = RoleUser::findOrFail($id);
-        $rolUser->update($request->all());
-        return new RoleUserResource($rolUser);
+        $roleUser->update($request->all());
+        return new RoleUserResource($roleUser);
     }
 
-    public function destroy($id)
+    public function destroy(RoleUser $roleUser)
     {
-        $rolUser = RoleUser::findOrFail($id);
-        $rolUser->delete();
+        $roleUser->delete();
         return response()->json(['message' => 'El rol del usuario ah eliminado exitosamente']);
     }
 }

@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginUserRequest;
-use App\Http\Requests\Auth\RegisteredStudentRequest;
-use App\Http\Requests\Auth\RegisteredTeacherRequest;
-use App\Http\Requests\Auth\RegisteredAdminRequest;
+use App\Http\Requests\Auth\RegisterStudentRequest;
+use App\Http\Requests\Auth\RegisterTeacherRequest;
+use App\Http\Requests\Auth\RegisterAdminRequest;
 use App\Models\RoleUser;
-use App\Models\Siscode;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
-    public function registerAdmin(RegisteredAdminRequest $request)
+    public function registerAdmin(RegisterAdminRequest $request)
     {
         $userData = $request->all();
         $userData['passworduser'] = bcrypt($request->passworduser);
@@ -39,7 +38,7 @@ class RegisteredUserController extends Controller
         ]);
     }
 
-    public function registerStudent(RegisteredStudentRequest $request)
+    public function registerStudent(RegisterStudentRequest $request)
     {
         $userData = $request->all();
         $userData['passworduser'] = bcrypt($request->passworduser);
@@ -75,7 +74,7 @@ class RegisteredUserController extends Controller
     }
 
 
-    public function registerTeacher(RegisteredTeacherRequest $request)
+    public function registerTeacher(RegisterTeacherRequest $request)
     {
         $userData = $request->all();
         $userData['passworduser'] = bcrypt($request->passworduser);
