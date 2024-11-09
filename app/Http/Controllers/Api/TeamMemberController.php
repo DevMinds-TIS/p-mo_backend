@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\TeamMemberRequest;
 use App\Http\Resources\Api\TeamMemberResource;
 use App\Models\TeamMember;
-use Illuminate\Http\Request;
 
 class TeamMemberController extends Controller
 {
@@ -20,22 +19,19 @@ class TeamMemberController extends Controller
         return new TeamMemberResource(TeamMember::create($request->all()));
     }
 
-    public function show($id)
+    public function show(TeamMember $teamMember)
     {
-        $teamMember = TeamMember::findOrFail($id);
         return new TeamMemberResource($teamMember);
     }
 
-    public function update(TeamMemberRequest $request, $id)
+    public function update(TeamMemberRequest $request, TeamMember $teamMember)
     {
-        $teamMember = TeamMember::findOrFail($id);
         $teamMember->update($request->all());
         return new TeamMemberResource($teamMember);
     }
 
-    public function destroy($id)
+    public function destroy(TeamMember $teamMember)
     {
-        $teamMember = TeamMember::findOrFail($id);
         $teamMember->delete();
         return response()->json(['message' => 'Miembro del equipo eliminado exitosamente']);
     }

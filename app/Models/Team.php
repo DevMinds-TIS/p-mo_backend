@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idteam
  * @property int|null $idspace
+ * @property int|null $iduser
  * @property string|null $nameteam
  * @property string|null $companyteam
  * @property string|null $emailteam
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * 
  * @property Space|null $space
+ * @property User|null $user
  * @property Collection|CrossEvaluation[] $cross_evaluations
  * @property Collection|Planning[] $plannings
  * @property Collection|TeamMember[] $team_members
@@ -35,11 +37,13 @@ class Team extends Model
 	protected $primaryKey = 'idteam';
 
 	protected $casts = [
-		'idspace' => 'int'
+		'idspace' => 'int',
+		'iduser' => 'int'
 	];
 
 	protected $fillable = [
 		'idspace',
+		'iduser',
 		'nameteam',
 		'companyteam',
 		'emailteam',
@@ -49,6 +53,11 @@ class Team extends Model
 	public function space()
 	{
 		return $this->belongsTo(Space::class, 'idspace');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'iduser');
 	}
 
 	public function cross_evaluations()

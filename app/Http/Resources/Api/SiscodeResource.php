@@ -7,19 +7,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class SiscodeResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
-            'ID' => $this->idsiscode,
-            'Espacio docente' => $this->idspace,
-            'ID User' => $this->iduser,
-            'Código SIS' => $this->siscode,
+            'ID_Siscode' => $this->idsiscode,
+            'ID_Espacio' => $this->idspace,
+            'ID_User' => $this->iduser,
+            'Código_SIS' => $this->siscode,
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
         ];

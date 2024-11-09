@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\WeekliesRequest;
 use App\Http\Resources\Api\WeekliesResource;
 use App\Models\Weekly;
-use Illuminate\Http\Request;
 
 class WeekliesController extends Controller
 {
@@ -20,22 +19,19 @@ class WeekliesController extends Controller
         return new WeekliesResource(Weekly::create($request->all()));
     }
 
-    public function show($id)
+    public function show(Weekly $weeklie)
     {
-        $weeklie = Weekly::findOrFail($id);
         return new WeekliesResource($weeklie);
     }
 
-    public function update(WeekliesRequest $request, $id)
+    public function update(WeekliesRequest $request, Weekly $weeklie)
     {
-        $weeklie = Weekly::findOrFail($id);
         $weeklie->update($request->all());
         return new WeekliesResource($weeklie);
     }
 
-    public function destroy($id)
+    public function destroy(Weekly $weeklie)
     {
-        $weeklie = Weekly::findOrFail($id);
         $weeklie->delete();
         return response()->json(['message' => 'Semana eliminada exitosamente']);
     }

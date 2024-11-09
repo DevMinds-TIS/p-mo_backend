@@ -19,22 +19,19 @@ class StoriesController extends Controller
         return new StoriesResource(Story::create($request->all()));
     }
 
-    public function show($id)
+    public function show(Story $story)
     {
-        $story = Story::findOrFail($id);
         return new StoriesResource($story);
     }
 
-    public function update(StoriesRequest $request, $id)
+    public function update(StoriesRequest $request, Story $story)
     {
-        $story = Story::findOrFail($id);
         $story->update($request->all());
         return new StoriesResource($story);
     }
 
-    public function destroy($id)
+    public function destroy(Story $story)
     {
-        $story = Story::findOrFail($id);
         $story->delete();
         return response()->json(['message' => 'Historia eliminada exitosamente']);
     }

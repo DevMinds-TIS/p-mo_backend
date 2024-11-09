@@ -15,19 +15,22 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idspace
  * @property int|null $idproject
+ * @property int|null $iduser
  * @property string|null $namespace
  * @property Carbon|null $startspace
  * @property Carbon|null $endspace
+ * @property int|null $limitspace
  * @property Carbon|null $starregistrationspace
  * @property Carbon|null $endregistrationspace
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
  * @property Project|null $project
+ * @property User|null $user
  * @property Collection|Document[] $documents
  * @property Collection|Siscode[] $siscodes
- * @property Collection|Announcement[] $announcements
  * @property Collection|Team[] $teams
+ * @property Collection|Announcement[] $announcements
  *
  * @package App\Models
  */
@@ -38,17 +41,21 @@ class Space extends Model
 
 	protected $casts = [
 		'idproject' => 'int',
+		'iduser' => 'int',
 		'startspace' => 'datetime',
 		'endspace' => 'datetime',
+		'limitspace' => 'int',
 		'starregistrationspace' => 'datetime',
 		'endregistrationspace' => 'datetime'
 	];
 
 	protected $fillable = [
 		'idproject',
+		'iduser',
 		'namespace',
 		'startspace',
 		'endspace',
+		'limitspace',
 		'starregistrationspace',
 		'endregistrationspace'
 	];
@@ -56,6 +63,11 @@ class Space extends Model
 	public function project()
 	{
 		return $this->belongsTo(Project::class, 'idproject');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'iduser');
 	}
 
 	public function documents()
@@ -68,13 +80,13 @@ class Space extends Model
 		return $this->hasMany(Siscode::class, 'idspace');
 	}
 
-	public function announcements()
-	{
-		return $this->hasMany(Announcement::class, 'idspace');
-	}
-
 	public function teams()
 	{
 		return $this->hasMany(Team::class, 'idspace');
+	}
+
+	public function announcements()
+	{
+		return $this->hasMany(Announcement::class, 'idspace');
 	}
 }

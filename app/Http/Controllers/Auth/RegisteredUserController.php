@@ -1,124 +1,30 @@
 <?php
 
-// namespace App\Http\Controllers\Auth;
-
-// use App\Http\Controllers\Controller;
-// use App\Http\Requests\Auth\RegisteredUserRequest;
-// use App\Models\RoleUser;
-// use App\Models\Siscode;
-// use App\Models\User;
-// use Illuminate\Support\Facades\DB;
-
-// class RegisteredUserController extends Controller
-// {
-    // public function register(RegisteredUserRequest $request)
-    // {
-    //     // Registrar un nuevo usuario
-    //     $userData = $request->all();
-    //     $userData['passworduser'] = bcrypt($request->passworduser);
-    //     // Si el rol es estudiante, buscar y asignar el idsiscode
-    //     if ($request->input('idrol') == 3) {
-    //         $siscode = DB::table('siscode')->where('siscode', $request->input('siscode'))->first();
-    //         $userData['idsiscode'] = $siscode->idsiscode;
-    //     }
-    //     $user = User::create($userData);
-
-    //     // Genera el token con SANCTUM
-    //     $token = $user->createToken($user->emailuser)->plainTextToken;
-
-    //     // Guardar al usuario y su rol
-    //     $role_user = RoleUser::create([
-    //         "iduser" => $user->iduser,
-    //         "idrol" => $request->idrol
-    //     ]);
-
-    //     $update = Siscode::create([
-    //         "iduser" => $user->iduser,
-    //     ]);
-
-    //     return response()->json([
-    //         "msg" => "Registro de usuario exitoso",
-    //         "roleUser" => $role_user,
-    //         "token" => $token,
-    //         "siscode" => $update,
-    //     ]);
-    // }
-//-----------------------------------
-//     public function register(RegisteredUserRequest $request)
-//     {
-//         // Registrar un nuevo usuario
-//         $userData = $request->all();
-//         $userData['passworduser'] = bcrypt($request->passworduser);
-
-//         if ($request->input('idrol') == 3) {
-//             $siscode = DB::table('siscode')->where('siscode', $request->input('siscode'))->first();
-//             $userData['idsiscode'] = $siscode->idsiscode;
-//         }
-
-//         $user = User::create($userData);
-
-//         // Genera el token con SANCTUM
-//         // $token = $user->createToken($user->emailuser)->plainTextToken;
-
-//         // Guardar al usuario y su rol
-//         $role_user = RoleUser::create([
-//             "iduser" => $user->iduser,
-//             "idrol" => $request->idrol
-//         ]);
-
-//         // Actualizar el siscode existente con el iduser
-//         DB::table('siscode')
-//             ->where('siscode', $request->input('siscode'))
-//             ->update(['iduser' => $user->iduser]);
-
-//         return response()->json([
-//             "msg" => "Registro de usuario exitoso",
-//             "roleUser" => $role_user,
-//             // "token" => $token,
-//         ]);
-//     }
-// }
-
-
-
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginUserRequest;
-use App\Http\Requests\Auth\RegisteredUserRequest;
+use App\Http\Requests\Auth\RegisterStudentRequest;
+use App\Http\Requests\Auth\RegisterTeacherRequest;
+use App\Http\Requests\Auth\RegisterAdminRequest;
 use App\Models\RoleUser;
-use App\Models\Siscode;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
-    public function register(RegisteredUserRequest $request)
+    public function registerAdmin(RegisterAdminRequest $request)
     {
-        // Registrar un nuevo usuario
         $userData = $request->all();
         $userData['passworduser'] = bcrypt($request->passworduser);
 
-        if ($request->input('idrol') == 3) {
-            $siscode = DB::table('siscode')->where('siscode', $request->input('siscode'))->first();
-            $userData['idsiscode'] = $siscode->idsiscode;
-        }
-
         $user = User::create($userData);
 
-        // Guardar al usuario y su rol
         $role_user = RoleUser::create([
             "iduser" => $user->iduser,
             "idrol" => $request->idrol
         ]);
 
-        // Actualizar el siscode existente con el iduser
-        DB::table('siscode')
-            ->where('siscode', $request->input('siscode'))
-            ->update(['iduser' => $user->iduser]);
-
-        // Llamar al método de inicio de sesión desde AuthenticatedUserController
         $loginResponse = app(AuthenticatedUserController::class)->login(
             new LoginUserRequest([
                 'emailuser' => $request->emailuser,
@@ -127,8 +33,78 @@ class RegisteredUserController extends Controller
         );
 
         return response()->json([
-            "msg" => "Registro de usuario exitoso",
-            "roleUser" => $role_user,
+            "msg" => "Registro de administrador exitoso",
+            "token" => $loginResponse->getData()->token
+        ]);
+    }
+
+    public function registerStudent(RegisterStudentRequest $request)
+    {
+        $userData = $request->all();
+        $userData['passworduser'] = bcrypt($request->passworduser);
+
+        $siscode = DB::table('siscode')->where('siscode', $request->input('siscode'))->first();
+        $userData['idsiscode'] = $siscode->idsiscode;
+
+        $roleUser = DB::table("role_user")->where("iduser", $request->input('use_iduser'))->where("idrol", 2)->first();
+        if (!$roleUser) {
+            return response()->json(["msg" => "El docente asignado no existe o no tiene el rol de docente."], 400);
+        }
+
+        $user = User::create($userData);
+
+        RoleUser::create([
+            "iduser" => $user->iduser,
+            "idrol" => $request->idrol
+        ]);
+
+        DB::table('siscode')->where('siscode', $request->input('siscode'))->update(['iduser' => $user->iduser]);
+
+        $loginResponse = app(AuthenticatedUserController::class)->login(
+            new LoginUserRequest([
+                'emailuser' => $request->emailuser,
+                'passworduser' => $request->passworduser
+            ])
+        );
+
+        return response()->json([
+            "msg" => "Registro de estudiante exitoso",
+            "token" => $loginResponse->getData()->token
+        ]);
+    }
+
+
+    public function registerTeacher(RegisterTeacherRequest $request)
+    {
+        $userData = $request->all();
+        $userData['passworduser'] = bcrypt($request->passworduser);
+
+        $permission = DB::table('permissions')->where('teacherpermission', $request->input('teacherpermission'))->first();
+        if (!$permission) {
+            return response()->json(["msg" => "Permiso de profesor inválido."], 400);
+        }
+        $userData['idpermission'] = $permission->idpermission;
+
+        $user = User::create($userData);
+
+        RoleUser::create([
+            "iduser" => $user->iduser,
+            "idrol" => $request->idrol
+        ]);
+
+        DB::table('permissions')->where('idpermission', $permission->idpermission)->update([
+            'iduser' => $user->iduser,
+        ]);
+
+        $loginResponse = app(AuthenticatedUserController::class)->login(
+            new LoginUserRequest([
+                'emailuser' => $request->emailuser,
+                'passworduser' => $request->passworduser
+            ])
+        );
+
+        return response()->json([
+            "msg" => "Registro de profesor exitoso",
             "token" => $loginResponse->getData()->token
         ]);
     }

@@ -19,22 +19,19 @@ class SiscodeController extends Controller
         return new SiscodeResource(Siscode::create($request->all()));
     }
 
-    public function show($id)
+    public function show(Siscode $siscode)
     {
-        $siscode = Siscode::findOrFail($id);
         return new SiscodeResource($siscode);
     }
 
-    public function update(SiscodeRequest $request, $id)
+    public function update(SiscodeRequest $request, Siscode $siscode)
     {
-        $siscode = Siscode::findOrFail($id);
         $siscode->update($request->all());
         return new SiscodeResource($siscode);
     }
 
-    public function destroy($id)
+    public function destroy(Siscode $siscode)
     {
-        $siscode = Siscode::findOrFail($id);
         $siscode->delete();
         return response()->json(['message' => 'Código SIS eliminado exitosamente']);
     }
