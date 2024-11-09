@@ -14,13 +14,13 @@ class SpaceResource extends JsonResource
             'ID_Proyecto' => $this->idproject,
             'ID_Usuario' => $this->iduser,
             'Nombre' => $this->namespace,
-            'Fecha_Inicio' => Carbon::parse($this->startspace)->format('d/m/Y'),
-            'Fecha_Fin' => Carbon::parse($this->endspace)->format('d/m/Y'),
+            'Fecha_Inicio' => Carbon::parse($this->startspace)->format('Y-m-d'),
+            'Fecha_Fin' => Carbon::parse($this->endspace)->format('Y-m-d'),
             'Limite_Equipo' => $this->limitspace,
-            'Inicio_Registro' => Carbon::parse($this->starregistrationspace)->format('d/m/Y'),
-            'Fin_Registro' => Carbon::parse($this->endregistrationspace)->format('d/m/Y'),
-            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
+            'Inicio_Registro' => Carbon::parse($this->starregistrationspace)->format('Y-m-d'),
+            'Fin_Registro' => Carbon::parse($this->endregistrationspace)->format('Y-m-d'),
+            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d - H:i:s'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d - H:i:s'),
         ];
     }
 }
