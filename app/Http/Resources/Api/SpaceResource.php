@@ -4,6 +4,7 @@ namespace App\Http\Resources\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class SpaceResource extends JsonResource
 {
@@ -19,6 +20,7 @@ class SpaceResource extends JsonResource
             'Limite_Equipo' => $this->limitspace,
             'Inicio_Registro' => Carbon::parse($this->starregistrationspace)->format('Y-m-d'),
             'Fin_Registro' => Carbon::parse($this->endregistrationspace)->format('Y-m-d'),
+            'Inscritos' => DB::table('siscode')->where('idspace', $this->idspace)->count(),
             'created_at' => Carbon::parse($this->created_at)->format('Y-m-d - H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d - H:i:s'),
         ];
