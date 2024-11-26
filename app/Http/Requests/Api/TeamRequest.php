@@ -15,10 +15,11 @@ class TeamRequest extends FormRequest
     {
         return [
             'idspace' => 'nullable|integer|exists:spaces,idspace',
-            'nameteam' => 'required|string|max:60',
-            'companyteam' => 'required|string|max:10',
+            'iduser' => 'nullable|integer|exists:users,iduser',
+            'nameteam' => 'nullable|string|max:60',
+            'companyteam' => 'nullable|string|max:10',
             'emailteam' => 'nullable|string|email|max:120',
-            'logoteam' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logoteam' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
         ];
     }
 

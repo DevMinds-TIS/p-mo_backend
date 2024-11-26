@@ -20,33 +20,17 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    // public function update(UserRequest $request, User $user)
-    // {
-    //     if ($request->filled('passworduser')) {
-    //         $user->passworduser = bcrypt($request->passworduser);
-    //     }
-
-    //     if ($request->hasFile('profileuser')) {
-    //         $timestamp = now()->format('YmdHis');
-    //         $originalName = $request->file('profileuser')->getClientOriginalName();
-    //         $profilePath = $request->file('profileuser')->storeAs('profiles', $timestamp . '_' . $originalName, 'public');
-    //         $user->profileuser = $profilePath;
-    //     }
-
-    //     $user->update($request->except(['passworduser', 'profileuser']) + ['passworduser' => $user->passworduser]);
-
-    //     return new UserResource($user);
-    // }
-
     public function update(UserRequest $request, User $user)
     {
-        Log::info('Inicio del método update', ['user_id' => $user->id]);
+        Log::info('Inicio del método update', ['user_id' => $user->iduser]);
 
+        // Actualizar la contraseña si está presente
         if ($request->filled('passworduser')) {
             Log::info('La solicitud contiene passworduser', ['passworduser' => $request->passworduser]);
             $user->passworduser = bcrypt($request->passworduser);
         }
 
+        // Actualizar la imagen de perfil si está presente
         if ($request->hasFile('profileuser')) {
             $timestamp = now()->format('YmdHis');
             $originalName = $request->file('profileuser')->getClientOriginalName();
@@ -57,39 +41,25 @@ class UserController extends Controller
             Log::info('Ruta del perfil guardada', ['profilePath' => $profilePath]);
         }
 
-        $dataToUpdate = $request->except(['passworduser', 'profileuser']) + ['passworduser' => $user->passworduser];
-        Log::info('Datos a actualizar', ['dataToUpdate' => $dataToUpdate]);
+        // Actualizar otros datos del usuario
+        $user->nameuser = $request->input('nameuser', $user->nameuser);
+        $user->lastnameuser = $request->input('lastnameuser', $user->lastnameuser);
+        $user->use_iduser = $request->input('use_iduser', $user->use_iduser);
 
-        $user->update($dataToUpdate);
+        Log::info('Datos a actualizar', [
+            'nameuser' => $user->nameuser,
+            'lastnameuser' => $user->lastnameuser,
+            'use_iduser' => $user->use_iduser,
+            'passworduser' => $user->passworduser,
+            'profileuser' => $user->profileuser,
+        ]);
+
+        $user->save();
 
         Log::info('Usuario actualizado', ['user' => $user]);
 
         return new UserResource($user);
     }
-
-
-
-    // public function update(UserRequest $request, User $user)
-    // {
-    //     // Verificar si se ha cargado un archivo para el perfil de usuario
-    //     // if ($request->hasFile('profileuser')) {
-    //     //     // Obtener el archivo
-    //     //     $file = $request->file('profileuser');
-    //     //     // Generar un nombre único para el archivo
-    //     //     $filename = time() . '_' . $file->getClientOriginalName();
-    //     //     // Guardar el archivo en la ubicación deseada
-    //     //     $path = $file->storeAs('profiles', $filename, 'public');
-    //     //     // Actualizar el campo profileuser con la ruta del archivo
-    //     //     $user->profileuser = $path;
-    //     // }
-    //     if ($request->filled('passworduser')) {
-    //         $user->passworduser = bcrypt($request->passworduser);
-    //     }
-    //     $user->update($request->except(['passworduser']) + ['passworduser' => $user->passworduser]);
-    //     // $data = $request->except(['passworduser', 'profileuser']);
-    //     // $user->update($data + ['passworduser' => $user->passworduser]);
-    //     return new UserResource($user);
-    // }
 
     public function destroy(User $user)
     {

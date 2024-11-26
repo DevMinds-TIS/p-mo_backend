@@ -20,7 +20,7 @@ class RegisterStudentRequest extends FormRequest
             'passworduser' => 'required|string|min:8',
             'idrol' => 'required|integer|exists:roles,idrol',
             'siscode' => 'required|string|exists:siscode,siscode',
-            'use_iduser' => 'required|integer|exists:users, iduser',
+            'use_iduser' => 'required|integer|exists:users,iduser',
         ];
     }
 }

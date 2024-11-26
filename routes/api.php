@@ -22,6 +22,8 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WeekliesController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedUserController;
+use App\Http\Controllers\Api\MailController;
+use App\Http\Resources\Api\UserResource;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -31,17 +33,20 @@ Route::post("register-student", [RegisteredUserController::class, "registerStude
 Route::post("register-teacher", [RegisteredUserController::class, "registerTeacher"]);
 Route::apiResource("role-user", RoleUserController::class);
 Route::apiResource("users", UserController::class);
+Route::apiResource("permissions", PermissionsController::class);
 
-Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
-    return $request->user()->load(['roles', 'user']);
+// Route::get('sendEmail', [MailController::class, 'sendEmail']);
+Route::post('sendEmail', [MailController::class, 'sendEmail']);
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return new UserResource($request->user()->load(['roles', 'user']));
 });
+
 
 Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::post("logout", [AuthenticatedUserController::class, "logout"]);
     Route::apiResource("roles", RoleController::class);
-    // Route::apiResource("role-user", RoleUserController::class);
-    // Route::apiResource("users", UsersController::class);
-    Route::apiResource("permissions", PermissionsController::class);
+    // Route::apiResource("permissions", PermissionsController::class);
     Route::apiResource("siscode", SiscodeController::class);
     Route::apiResource("projects", ProjectController::class);
     Route::apiResource("documents", DocumentController::class);

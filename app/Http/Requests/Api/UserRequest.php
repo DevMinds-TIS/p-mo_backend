@@ -15,31 +15,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'nameuser' => 'required|string|max:60',
-            'lastnameuser' => 'required|string|max:60',
+            'nameuser' => 'nullable|string|max:60',
+            'lastnameuser' => 'nullable|string|max:60',
             'emailuser' => 'nullable|string|email|max:120|unique:users,emailuser',
             'passworduser' => 'nullable|string|min:8',
             'profileuser' => 'nullable|image|max:2048',
             'use_iduser' => 'nullable|integer',
         ];
-
-        // if ($this->input('idrol') === 3) {
-        //     $rules["use_iduser"] = [
-        //         "required",
-        //         "integer",
-        //         function ($attribute, $value, $fail) {
-        //             $roleUser = DB::table("role_user")
-        //                 ->where("iduser", $value)
-        //                 ->where("idrol", 2)
-        //                 ->first();
-
-        //             if (!$roleUser) {
-        //                 $fail("El docente asignado no existe o no tiene el rol de docente.");
-        //             }
-        //         },
-        //     ];
-        //     // $rules['use_iduser'] = 'required|exists:users,iduser';
-        // }
 
         return $rules;
     }
