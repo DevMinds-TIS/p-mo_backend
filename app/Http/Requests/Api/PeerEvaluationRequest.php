@@ -16,7 +16,7 @@ class PeerEvaluationRequest extends FormRequest
         return [
             'idcriteria' => 'nullable|integer|exists:criteria,idcriteria',
             'iduser' => 'nullable|integer|exists:users,iduser',
-            'datepe' => 'nullable|date_format:Y-m-d',
+            'datepe' => 'nullable|date',
         ];
     }
 
@@ -27,7 +27,7 @@ class PeerEvaluationRequest extends FormRequest
             'idcriteria.exists' => 'El criterio seleccionado no existe.',
             'iduser.integer' => 'El ID del usuario debe ser un número entero.',
             'iduser.exists' => 'El usuario seleccionado no existe.',
-            'datepe.date_format' => 'La fecha de la evaluación de pares debe tener el formato Año-Mes-Día.',
+            'datepe.date' => 'La fecha debe ser una fecha válida.',
         ];
     }
 }

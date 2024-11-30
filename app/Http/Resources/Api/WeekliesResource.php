@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Api;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class WeekliesResource extends JsonResource
@@ -12,12 +11,12 @@ class WeekliesResource extends JsonResource
         return [
             'ID_Semana' => $this->idweeklie,
             'ID_Sprint' => $this->idsprint,
-            'Objetivo' => $this->goalweeklie,
-            'Fecha_Inicio' => Carbon::parse($this->startweeklie)->format('d/m/Y'),
-            'Fecha_Fin' => Carbon::parse($this->endweeklie)->format('d/m/Y'),
-            'Estado' => $this->statusweeklie,
-            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
+            'ID_Estado' => $this->idstatus,
+            'Objetivo_Semanal' => $this->goalweeklie,
+            'Fecha_Inicio' => $this->startweeklie ? $this->startweeklie->format('Y-m-d') : null,
+            'Fecha_Fin' => $this->endweeklie ? $this->endweeklie->format('Y-m-d') : null,
+            'created_at' => $this->created_at->format('d/m/Y - H:i:s'),
+            'updated_at' => $this->updated_at->format('d/m/Y - H:i:s'),
         ];
     }
 }

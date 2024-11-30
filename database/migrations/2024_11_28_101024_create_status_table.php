@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionsTable extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->increments('idpermission')->unique('tokens_pk');
-            $table->integer('iduser')->nullable()->index('relationship_35_fk');
-            $table->string('teacherpermission', 255)->nullable();
+        Schema::create('status', function (Blueprint $table) {
+            $table->increments('idstatus')->unique('status_pk');
+            $table->string('namestatus', 90)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('status');
     }
 }

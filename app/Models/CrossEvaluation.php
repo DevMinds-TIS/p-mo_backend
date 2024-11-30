@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Planning|null $planning
  * @property Criterion|null $criterion
  * @property Team|null $team
+ * @property Collection|Score[] $scores
  *
  * @package App\Models
  */
@@ -58,5 +60,10 @@ class CrossEvaluation extends Model
 	public function team()
 	{
 		return $this->belongsTo(Team::class, 'idteam');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany(Score::class, 'idce');
 	}
 }

@@ -16,17 +16,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idtracking
  * @property int|null $idsprint
  * @property int|null $iduser
+ * @property int|null $idstatus
  * @property string|null $nametracking
  * @property Carbon|null $deliverytracking
  * @property Carbon|null $returntracking
- * @property string|null $statustracking
  * @property string|null $commenttracking
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
  * @property Sprint|null $sprint
  * @property User|null $user
+ * @property Status|null $status
  * @property Collection|Document[] $documents
+ * @property Collection|Score[] $scores
  *
  * @package App\Models
  */
@@ -38,6 +40,7 @@ class Tracking extends Model
 	protected $casts = [
 		'idsprint' => 'int',
 		'iduser' => 'int',
+		'idstatus' => 'int',
 		'deliverytracking' => 'datetime',
 		'returntracking' => 'datetime'
 	];
@@ -45,10 +48,10 @@ class Tracking extends Model
 	protected $fillable = [
 		'idsprint',
 		'iduser',
+		'idstatus',
 		'nametracking',
 		'deliverytracking',
 		'returntracking',
-		'statustracking',
 		'commenttracking'
 	];
 
@@ -62,8 +65,18 @@ class Tracking extends Model
 		return $this->belongsTo(User::class, 'iduser');
 	}
 
+	public function status()
+	{
+		return $this->belongsTo(Status::class, 'idstatus');
+	}
+
 	public function documents()
 	{
 		return $this->hasMany(Document::class, 'idtracking');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany(Score::class, 'idtracking');
 	}
 }

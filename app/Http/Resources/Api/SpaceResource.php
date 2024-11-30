@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Api;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 
@@ -14,15 +13,15 @@ class SpaceResource extends JsonResource
             'ID_Espacio' => $this->idspace,
             'ID_Proyecto' => $this->idproject,
             'ID_Usuario' => $this->iduser,
-            'Nombre' => $this->namespace,
-            'Fecha_Inicio' => Carbon::parse($this->startspace)->format('Y-m-d'),
-            'Fecha_Fin' => Carbon::parse($this->endspace)->format('Y-m-d'),
-            'Limite_Equipo' => $this->limitspace,
-            'Inicio_Registro' => Carbon::parse($this->starregistrationspace)->format('Y-m-d'),
-            'Fin_Registro' => Carbon::parse($this->endregistrationspace)->format('Y-m-d'),
+            'Nombre_Espacio' => $this->namespace,
             'Inscritos' => DB::table('siscode')->where('idspace', $this->idspace)->count(),
-            'created_at' => Carbon::parse($this->created_at)->format('Y-m-d - H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('Y-m-d - H:i:s'),
+            'Fecha_Inicio' => $this->startspace ? $this->startspace->format('Y-m-d') : null,
+            'Fecha_Fin' => $this->endspace ? $this->endspace->format('Y-m-d') : null,
+            'Límite_Espacio' => $this->limitspace,
+            'Fecha_Inicio_Registro' => $this->starregistrationspace ? $this->starregistrationspace->format('Y-m-d') : null,
+            'Fecha_Fin_Registro' => $this->endregistrationspace ? $this->endregistrationspace->format('Y-m-d') : null,
+            'created_at' => $this->created_at->format('d/m/Y - H:i:s'),
+            'updated_at' => $this->updated_at->format('d/m/Y - H:i:s'),
         ];
     }
 }

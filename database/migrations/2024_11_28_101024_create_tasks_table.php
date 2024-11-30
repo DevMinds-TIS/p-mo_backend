@@ -17,10 +17,10 @@ class CreateTasksTable extends Migration
             $table->increments('idtask')->unique('tasks_pk');
             $table->integer('idstorie')->nullable()->index('relationship_22_fk');
             $table->integer('iduser')->nullable()->index('relationship_23_fk');
+            $table->integer('idstatus')->nullable()->index('relationship_47_fk');
             $table->string('nametask', 60)->nullable();
             $table->date('starttask')->nullable();
             $table->date('endtask')->nullable();
-            $table->string('statustask', 60)->nullable();
             $table->integer('scoretask')->nullable();
             $table->timestamps();
         });

@@ -16,10 +16,10 @@ class TrackingRequest extends FormRequest
         return [
             'idsprint' => 'nullable|integer|exists:sprints,idsprint',
             'iduser' => 'nullable|integer|exists:users,iduser',
-            'nametracking' => 'nullable|string|max:90',
-            'deliverytracking' => 'nullable|date_format:Y-m-d',
-            'returntracking' => 'nullable|date_format:Y-m-d|after_or_equal:deliverytracking',
-            'statustracking' => 'nullable|string|max:90',
+            'idstatus' => 'nullable|integer|exists:statuses,idstatus',
+            'nametracking' => 'required|string|max:90',
+            'deliverytracking' => 'nullable|date',
+            'returntracking' => 'nullable|date|after_or_equal:deliverytracking',
             'commenttracking' => 'nullable|string|max:180',
         ];
     }
@@ -31,17 +31,16 @@ class TrackingRequest extends FormRequest
             'idsprint.exists' => 'El sprint seleccionado no existe.',
             'iduser.integer' => 'El ID del usuario debe ser un número entero.',
             'iduser.exists' => 'El usuario seleccionado no existe.',
+            'idstatus.integer' => 'El ID del estado debe ser un número entero.',
+            'idstatus.exists' => 'El estado seleccionado no existe.',
             'nametracking.required' => 'El nombre del tracking es obligatorio.',
             'nametracking.string' => 'El nombre del tracking debe ser una cadena de texto.',
-            'nametracking.max' => 'El nombre del tracking no puede superar los 90 caracteres.',
-            'deliverytracking.date_format' => 'La fecha de entrega del tracking debe tener el formato Año-Mes-Día.',
-            'returntracking.date_format' => 'La fecha de devolución del tracking debe tener el formato Año-Mes-Día.',
-            'returntracking.after_or_equal' => 'La fecha de devolución del tracking debe ser igual o posterior a la fecha de entrega.',
-            'statustracking.string' => 'El estado del tracking debe ser una cadena de texto.',
-            'statustracking.max' => 'El estado del tracking no puede superar los 90 caracteres.',
-            'commenttracking.string' => 'El comentario del tracking debe ser una cadena de texto.',
-            'commenttracking.max' => 'El comentario del tracking no puede superar los 180 caracteres.',
+            'nametracking.max' => 'El nombre del tracking no debe superar los 90 caracteres.',
+            'deliverytracking.date' => 'La fecha de entrega debe ser una fecha válida.',
+            'returntracking.date' => 'La fecha de devolución debe ser una fecha válida.',
+            'returntracking.after_or_equal' => 'La fecha de devolución debe ser igual o posterior a la fecha de entrega.',
+            'commenttracking.string' => 'El comentario debe ser una cadena de texto.',
+            'commenttracking.max' => 'El comentario no debe superar los 180 caracteres.',
         ];
-    
     }
 }

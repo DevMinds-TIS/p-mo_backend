@@ -20,6 +20,9 @@ class TeamRequest extends FormRequest
             'companyteam' => 'nullable|string|max:10',
             'emailteam' => 'nullable|string|email|max:120',
             'logoteam' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
+            'repositoryteam' => 'nullable|string|max:255',
+            'localdeployteam' => 'nullable|string|max:255',
+            'externaldeployteam' => 'nullable|string|max:255',
         ];
     }
 
@@ -28,17 +31,25 @@ class TeamRequest extends FormRequest
         return [
             'idspace.integer' => 'El ID del espacio debe ser un número entero.',
             'idspace.exists' => 'El espacio seleccionado no existe.',
+            'iduser.integer' => 'El ID del usuario debe ser un número entero.',
+            'iduser.exists' => 'El usuario seleccionado no existe.',
             'nameteam.required' => 'El nombre del equipo es obligatorio.',
             'nameteam.string' => 'El nombre del equipo debe ser una cadena de texto.',
-            'nameteam.max' => 'El nombre del equipo no puede superar los 60 caracteres.',
-            'companyteam.string' => 'La empresa del equipo debe ser una cadena de texto.',
-            'companyteam.max' => 'La empresa del equipo no puede superar los 10 caracteres.',
+            'nameteam.max' => 'El nombre del equipo no debe superar los 60 caracteres.',
+            'companyteam.string' => 'La razón social debe ser una cadena de texto.',
+            'companyteam.max' => 'La razón social no debe superar los 10 caracteres.',
+            'emailteam.required' => 'El correo electrónico del equipo es obligatorio.',
             'emailteam.string' => 'El correo electrónico del equipo debe ser una cadena de texto.',
-            'emailteam.email' => 'El correo electrónico del equipo debe ser una dirección válida.',
-            'emailteam.max' => 'El correo electrónico del equipo no puede superar los 120 caracteres.',
-            'logoteam.image' => 'El logo del equipo debe ser una imagen.',
-            'logoteam.mimes' => 'El logo del equipo debe ser de tipo: jpeg, png, jpg, gif.',
-            'logoteam.max' => 'El logo del equipo no debe superar los 2 MB.',
+            'emailteam.email' => 'El correo electrónico del equipo debe ser una dirección de correo válida.',
+            'emailteam.max' => 'El correo electrónico del equipo no debe superar los 120 caracteres.',
+            'logoteam.string' => 'El logo del equipo debe ser una cadena de texto.',
+            'logoteam.max' => 'El logo del equipo no debe superar los 255 caracteres.',
+            'repositoryteam.string' => 'El repositorio del equipo debe ser una cadena de texto.',
+            'repositoryteam.max' => 'El repositorio del equipo no debe superar los 255 caracteres.',
+            'localdeployteam.string' => 'El despliegue local del equipo debe ser una cadena de texto.',
+            'localdeployteam.max' => 'El despliegue local del equipo no debe superar los 255 caracteres.',
+            'externaldeployteam.string' => 'El despliegue externo del equipo debe ser una cadena de texto.',
+            'externaldeployteam.max' => 'El despliegue externo del equipo no debe superar los 255 caracteres.',
         ];
     }
 }

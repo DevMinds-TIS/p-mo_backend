@@ -16,6 +16,7 @@ class AddForeignKeysToAnnouncementsTable extends Migration
         Schema::table('announcements', function (Blueprint $table) {
             $table->foreign(['idproject'], 'fk_announce_relations_projects')->references(['idproject'])->on('projects')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idspace'], 'fk_announce_relations_spaces')->references(['idspace'])->on('spaces')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idstatus'], 'fk_announce_relations_status')->references(['idstatus'])->on('status')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -29,6 +30,7 @@ class AddForeignKeysToAnnouncementsTable extends Migration
         Schema::table('announcements', function (Blueprint $table) {
             $table->dropForeign('fk_announce_relations_projects');
             $table->dropForeign('fk_announce_relations_spaces');
+            $table->dropForeign('fk_announce_relations_status');
         });
     }
 }

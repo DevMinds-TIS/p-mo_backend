@@ -16,15 +16,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idstorie
  * @property int|null $idweeklie
  * @property int|null $iduser
+ * @property int|null $idstatus
  * @property string|null $codestorie
  * @property string|null $namestorie
- * @property string|null $statusstorie
  * @property int|null $pointstorie
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
  * @property Weekly|null $weekly
  * @property User|null $user
+ * @property Status|null $status
  * @property Collection|Document[] $documents
  * @property Collection|Task[] $tasks
  *
@@ -38,15 +39,16 @@ class Story extends Model
 	protected $casts = [
 		'idweeklie' => 'int',
 		'iduser' => 'int',
+		'idstatus' => 'int',
 		'pointstorie' => 'int'
 	];
 
 	protected $fillable = [
 		'idweeklie',
 		'iduser',
+		'idstatus',
 		'codestorie',
 		'namestorie',
-		'statusstorie',
 		'pointstorie'
 	];
 
@@ -58,6 +60,11 @@ class Story extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'iduser');
+	}
+
+	public function status()
+	{
+		return $this->belongsTo(Status::class, 'idstatus');
 	}
 
 	public function documents()

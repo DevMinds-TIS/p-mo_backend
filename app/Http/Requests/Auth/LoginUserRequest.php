@@ -2,20 +2,15 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\UserRequest;
 
-class LoginUserRequest extends FormRequest
+class LoginUserRequest extends UserRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
     public function rules()
     {
-        return [
+        return array_merge(parent::rules(), [
             "emailuser" => "required|string|email|max:120",
             "passworduser" => "required|string|min:8"
-        ];
+        ]);
     }
 }

@@ -17,4 +17,12 @@ class PlanningRequest extends FormRequest
             'idteam' => 'nullable|integer|exists:teams,idteam',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'idteam.integer' => 'El ID del equipo debe ser un número entero.',
+            'idteam.exists' => 'El equipo seleccionado no existe.',
+        ];
+    }
 }

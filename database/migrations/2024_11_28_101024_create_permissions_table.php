@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationsTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->increments('idnotification')->unique('notifications_pk');
-            $table->integer('iduser')->nullable()->index('relationship_33_fk');
-            $table->string('messagenotification', 255)->nullable();
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('idpermission')->unique('tokens_pk');
+            $table->integer('iduser')->nullable()->index('relationship_35_fk');
+            $table->string('teacherpermission', 10)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('permissions');
     }
 }

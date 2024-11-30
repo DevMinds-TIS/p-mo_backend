@@ -15,10 +15,10 @@ class WeekliesRequest extends FormRequest
     {
         return [
             'idsprint' => 'nullable|integer|exists:sprints,idsprint',
+            'idstatus' => 'nullable|integer|exists:statuses,idstatus',
             'goalweeklie' => 'nullable|string|max:90',
-            'startweeklie' => 'nullable|date_format:Y-m-d',
-            'endweeklie' => 'nullable|date_format:Y-m-d|after_or_equal:startweeklie',
-            'statusweeklie' => 'nullable|string|max:90',
+            'startweeklie' => 'nullable|date',
+            'endweeklie' => 'nullable|date|after_or_equal:startweeklie',
         ];
     }
 
@@ -27,13 +27,13 @@ class WeekliesRequest extends FormRequest
         return [
             'idsprint.integer' => 'El ID del sprint debe ser un número entero.',
             'idsprint.exists' => 'El sprint seleccionado no existe.',
-            'goalweeklie.string' => 'El objetivo semanal debe ser una cadena de texto.',
-            'goalweeklie.max' => 'El objetivo semanal no puede superar los 90 caracteres.',
-            'startweeklie.date_format' => 'La fecha de inicio semanal debe tener el formato Año-Mes-Día.',
-            'endweeklie.date_format' => 'La fecha de fin semanal debe tener el formato Año-Mes-Día.',
-            'endweeklie.after_or_equal' => 'La fecha de fin semanal debe ser igual o posterior a la fecha de inicio.',
-            'statusweeklie.string' => 'El estado semanal debe ser una cadena de texto.',
-            'statusweeklie.max' => 'El estado semanal no puede superar los 90 caracteres.',
+            'idstatus.integer' => 'El ID del estado debe ser un número entero.',
+            'idstatus.exists' => 'El estado seleccionado no existe.',
+            'goalweeklie.string' => 'El objetivo del weekly debe ser una cadena de texto.',
+            'goalweeklie.max' => 'El objetivo del weekly no debe superar los 90 caracteres.',
+            'startweeklie.date' => 'La fecha de inicio del weekly debe ser una fecha válida.',
+            'endweeklie.date' => 'La fecha de finalización del weekly debe ser una fecha válida.',
+            'endweeklie.after_or_equal' => 'La fecha de finalización del weekly debe ser igual o posterior a la fecha de inicio.',
         ];
     }
 }

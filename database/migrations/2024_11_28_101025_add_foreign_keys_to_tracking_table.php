@@ -16,6 +16,7 @@ class AddForeignKeysToTrackingTable extends Migration
         Schema::table('tracking', function (Blueprint $table) {
             $table->foreign(['idsprint'], 'fk_tracking_relations_sprints')->references(['idsprint'])->on('sprints')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['iduser'], 'fk_tracking_relations_users')->references(['iduser'])->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idstatus'], 'fk_tracking_relations_status')->references(['idstatus'])->on('status')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -29,6 +30,7 @@ class AddForeignKeysToTrackingTable extends Migration
         Schema::table('tracking', function (Blueprint $table) {
             $table->dropForeign('fk_tracking_relations_sprints');
             $table->dropForeign('fk_tracking_relations_users');
+            $table->dropForeign('fk_tracking_relations_status');
         });
     }
 }

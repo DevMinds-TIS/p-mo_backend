@@ -21,6 +21,9 @@ class CreateTeamsTable extends Migration
             $table->string('companyteam', 10)->nullable();
             $table->string('emailteam', 120)->nullable();
             $table->string('logoteam', 255)->nullable();
+            $table->string('repositoryteam', 255)->nullable();
+            $table->string('localdeployteam', 255)->nullable();
+            $table->string('externaldeployteam', 255)->nullable();
             $table->timestamps();
         });
     }

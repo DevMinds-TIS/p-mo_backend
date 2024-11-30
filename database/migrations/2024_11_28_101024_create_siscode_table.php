@@ -17,7 +17,7 @@ class CreateSiscodeTable extends Migration
             $table->increments('idsiscode')->unique('siscode_pk');
             $table->integer('idspace')->nullable()->index('relationship_6_fk');
             $table->integer('iduser')->nullable()->index('relationship_34_fk');
-            $table->string('siscode', 60)->nullable();
+            $table->string('siscode', 10)->nullable();
             $table->timestamps();
         });
     }

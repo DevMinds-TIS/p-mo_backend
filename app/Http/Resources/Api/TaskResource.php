@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Api;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskResource extends JsonResource
@@ -13,13 +12,13 @@ class TaskResource extends JsonResource
             'ID_Tarea' => $this->idtask,
             'ID_Historia' => $this->idstorie,
             'ID_Usuario' => $this->iduser,
-            'Nombre' => $this->nametask,
-            'Fecha_Inicio' => Carbon::parse($this->starttask)->format('d/m/Y'),
-            'Fecha_Fin' => Carbon::parse($this->endtask)->format('d/m/Y'),
-            'Estado' => $this->statustask,
-            'Puntaje' => $this->scoretask,
-            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
+            'ID_Estado' => $this->idstatus,
+            'Nombre_Tarea' => $this->nametask,
+            'Fecha_Inicio' => $this->starttask ? $this->starttask->format('Y-m-d') : null,
+            'Fecha_Fin' => $this->endtask ? $this->endtask->format('Y-m-d') : null,
+            'Puntuación_Tarea' => $this->scoretask,
+            'created_at' => $this->created_at->format('d/m/Y - H:i:s'),
+            'updated_at' => $this->updated_at->format('d/m/Y - H:i:s'),
         ];
     }
 }
