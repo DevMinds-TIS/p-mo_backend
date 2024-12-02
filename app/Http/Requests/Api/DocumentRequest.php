@@ -20,8 +20,9 @@ class DocumentRequest extends FormRequest
             'idtracking' => 'nullable|integer|exists:trackings,idtracking',
             'idstorie' => 'nullable|integer|exists:stories,idstorie',
             'idtask' => 'nullable|integer|exists:tasks,idtask',
-            'namedocument' => 'nullable|string|max:30',
-            'pathdocument' => 'nullable|file|mimes:pdf,xlsx,docx,png,jpeg,jpg|max:10240',
+            'idteam' => 'nullable|integer|exists:teams,idteam',
+            'namedocument' => 'required|string|max:90',
+            'pathdocument' => 'required|string|max:255',
         ];
     }
 
@@ -40,9 +41,12 @@ class DocumentRequest extends FormRequest
             'idstorie.exists' => 'La historia seleccionada no existe.',
             'idtask.integer' => 'El ID de la tarea debe ser un número entero.',
             'idtask.exists' => 'La tarea seleccionada no existe.',
-            'pathdocument.file' => 'El documento debe ser un archivo.',
-            'pathdocument.mimes' => 'El documento debe ser un archivo de tipo: pdf, xlsx, docx, png, jpeg, jpg.',
-            'pathdocument.max' => 'El documento no debe superar los 10 MB.',
+            'namedocument.required' => 'El nombre del documento es obligatorio.',
+            'namedocument.string' => 'El nombre del documento debe ser una cadena de texto.',
+            'namedocument.max' => 'El nombre del documento no debe superar los 90 caracteres.',
+            'pathdocument.required' => 'La ruta del documento es obligatoria.',
+            'pathdocument.string' => 'La ruta del documento debe ser una cadena de texto.',
+            'pathdocument.max' => 'La ruta del documento no debe superar los 255 caracteres.',
         ];
     }
 }

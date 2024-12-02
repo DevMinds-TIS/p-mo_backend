@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Criterion|null $criterion
  * @property User|null $user
  * @property Planning|null $planning
+ * @property Collection|Score[] $scores
  *
  * @package App\Models
  */
@@ -58,5 +60,10 @@ class SelfAssessment extends Model
 	public function planning()
 	{
 		return $this->belongsTo(Planning::class, 'idplanning');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany(Score::class, 'idsa');
 	}
 }

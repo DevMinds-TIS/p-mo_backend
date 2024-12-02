@@ -2,18 +2,13 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\UserRequest;
 
-class RegisterStudentRequest extends FormRequest
+class RegisterStudentRequest extends UserRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
     public function rules()
     {
-        return [
+        return array_merge(parent::rules(), [
             'nameuser' => 'required|string|max:60',
             'lastnameuser' => 'required|string|max:60',
             'emailuser' => 'required|string|email|max:120|unique:users,emailuser',
@@ -21,6 +16,6 @@ class RegisterStudentRequest extends FormRequest
             'idrol' => 'required|integer|exists:roles,idrol',
             'siscode' => 'required|string|exists:siscode,siscode',
             'use_iduser' => 'required|integer|exists:users,iduser',
-        ];
+        ]);
     }
 }

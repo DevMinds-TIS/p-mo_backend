@@ -19,6 +19,7 @@ class CreateCrossEvaluationsTable extends Migration
             $table->integer('idcriteria')->nullable()->index('relationship_29_fk2');
             $table->integer('idteam')->nullable()->index('relationship_38_fk');
             $table->date('datece')->nullable();
+            $table->string('permissionce', 10)->nullable();
             $table->timestamps();
         });
     }

@@ -29,8 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property User|null $user
  * @property Collection|Document[] $documents
  * @property Collection|Siscode[] $siscodes
- * @property Collection|Team[] $teams
  * @property Collection|Announcement[] $announcements
+ * @property Collection|Team[] $teams
  *
  * @package App\Models
  */
@@ -80,13 +80,13 @@ class Space extends Model
 		return $this->hasMany(Siscode::class, 'idspace');
 	}
 
-	public function teams()
-	{
-		return $this->hasMany(Team::class, 'idspace');
-	}
-
 	public function announcements()
 	{
 		return $this->hasMany(Announcement::class, 'idspace');
+	}
+
+	public function teams()
+	{
+		return $this->hasMany(Team::class, 'idspace');
 	}
 }

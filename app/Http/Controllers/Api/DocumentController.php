@@ -29,6 +29,7 @@ class DocumentController extends Controller
                 'idtracking' => $request->input('idtracking'),
                 'idstorie' => $request->input('idstorie'),
                 'idtask' => $request->input('idtask'),
+                'idteam' => $request->input('idteam'),
                 'pathdocument' => $path,
                 'namedocument' => $request->input('namedocument')
             ]);

@@ -20,6 +20,7 @@ class AddForeignKeysToDocumentsTable extends Migration
             $table->foreign(['idtracking'], 'fk_document_relations_tracking')->references(['idtracking'])->on('tracking')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idstorie'], 'fk_document_relations_stories')->references(['idstorie'])->on('stories')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['idtask'], 'fk_document_relations_tasks')->references(['idtask'])->on('tasks')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idteam'], 'fk_document_relations_teams')->references(['idteam'])->on('teams')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -37,6 +38,7 @@ class AddForeignKeysToDocumentsTable extends Migration
             $table->dropForeign('fk_document_relations_tracking');
             $table->dropForeign('fk_document_relations_stories');
             $table->dropForeign('fk_document_relations_tasks');
+            $table->dropForeign('fk_document_relations_teams');
         });
     }
 }

@@ -17,28 +17,52 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $user->load('user');
         return new UserResource($user);
     }
+
+    // public function update(UserRequest $request, User $user)
+    // {
+    //     Log::info('Inicio del método update', ['user_id' => $user->iduser]);
+
+    //     // Manejo de archivo del perfil del usuario
+    //     if ($request->hasFile('profileuser')) {
+    //         $file = $request->file('profileuser');
+    //         $filename = time() . '_' . $file->getClientOriginalName();
+    //         $path = $file->storeAs('profiles', $filename, 'public');
+    //         $user->profileuser = $path;
+    //     }
+
+    //     Log::info('Datos del usuario antes de actualizar', ['user_data' => $user]);
+
+    //     // Actualizar el usuario con los datos restantes
+    //     $user->update($request->except('profileuser', 'passworduser'));
+
+    //     // Actualizar la contraseña si está presente
+    //     if ($request->filled('passworduser')) {
+    //         Log::info('La solicitud contiene passworduser', ['passworduser' => $request->passworduser]);
+    //         $user->passworduser = bcrypt($request->passworduser);
+    //     }
+
+    //     Log::info('Datos actualizados del usuario', ['user' => $user]);
+
+    //     return new UserResource($user);
+    // }
 
     public function update(UserRequest $request, User $user)
     {
         Log::info('Inicio del método update', ['user_id' => $user->iduser]);
 
-        // Actualizar la contraseña si está presente
-        if ($request->filled('passworduser')) {
-            Log::info('La solicitud contiene passworduser', ['passworduser' => $request->passworduser]);
-            $user->passworduser = bcrypt($request->passworduser);
-        }
+        // Log adicional para verificar los datos recibidos
+        Log::info('Datos recibidos para actualizar el usuario', $request->all());
 
-        // Actualizar la imagen de perfil si está presente
+        // Manejo de archivo del perfil del usuario
         if ($request->hasFile('profileuser')) {
-            $timestamp = now()->format('YmdHis');
-            $originalName = $request->file('profileuser')->getClientOriginalName();
-            Log::info('Archivo de perfil encontrado', ['originalName' => $originalName, 'timestamp' => $timestamp]);
-
-            $profilePath = $request->file('profileuser')->storeAs('profiles', $timestamp . '_' . $originalName, 'public');
-            $user->profileuser = $profilePath;
-            Log::info('Ruta del perfil guardada', ['profilePath' => $profilePath]);
+            $file = $request->file('profileuser');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('profiles', $filename, 'public');
+            $user->profileuser = $path;
+            Log::info('Archivo de perfil actualizado', ['profileuser' => $path]);
         }
 
         // Actualizar otros datos del usuario
@@ -46,17 +70,20 @@ class UserController extends Controller
         $user->lastnameuser = $request->input('lastnameuser', $user->lastnameuser);
         $user->use_iduser = $request->input('use_iduser', $user->use_iduser);
 
-        Log::info('Datos a actualizar', [
+        // Actualizar la contraseña si está presente
+        if ($request->filled('passworduser')) {
+            $user->passworduser = bcrypt($request->input('passworduser'));
+        }
+
+        $user->save();
+
+        Log::info('Datos actualizados del usuario', [
             'nameuser' => $user->nameuser,
             'lastnameuser' => $user->lastnameuser,
             'use_iduser' => $user->use_iduser,
             'passworduser' => $user->passworduser,
             'profileuser' => $user->profileuser,
         ]);
-
-        $user->save();
-
-        Log::info('Usuario actualizado', ['user' => $user]);
 
         return new UserResource($user);
     }

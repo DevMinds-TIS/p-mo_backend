@@ -15,6 +15,7 @@ class AddForeignKeysToWeekliesTable extends Migration
     {
         Schema::table('weeklies', function (Blueprint $table) {
             $table->foreign(['idsprint'], 'fk_weeklies_relations_sprints')->references(['idsprint'])->on('sprints')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idstatus'], 'fk_weeklies_relations_status')->references(['idstatus'])->on('status')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -27,6 +28,7 @@ class AddForeignKeysToWeekliesTable extends Migration
     {
         Schema::table('weeklies', function (Blueprint $table) {
             $table->dropForeign('fk_weeklies_relations_sprints');
+            $table->dropForeign('fk_weeklies_relations_status');
         });
     }
 }

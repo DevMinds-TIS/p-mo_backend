@@ -21,7 +21,8 @@ class CreateDocumentsTable extends Migration
             $table->integer('idtracking')->nullable()->index('relationship_20_fk');
             $table->integer('idstorie')->nullable()->index('relationship_39_fk');
             $table->integer('idtask')->nullable()->index('relationship_40_fk');
-            $table->string('namedocument', 30)->nullable();
+            $table->integer('idteam')->nullable()->index('relationship_60_fk');
+            $table->string('namedocument', 90)->nullable();
             $table->string('pathdocument', 255)->nullable();
             $table->timestamps();
         });

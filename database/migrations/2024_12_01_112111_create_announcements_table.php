@@ -17,6 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->increments('idann')->unique('announcements_pk');
             $table->integer('idproject')->nullable();
             $table->integer('idspace')->nullable();
+            $table->integer('idstatus')->nullable()->index('relationship_52_fk');
             $table->string('titleann', 90)->nullable();
             $table->string('contentann', 255)->nullable();
             $table->timestamps();

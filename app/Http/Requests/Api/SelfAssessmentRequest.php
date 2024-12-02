@@ -16,8 +16,8 @@ class SelfAssessmentRequest extends FormRequest
         return [
             'idcriteria' => 'nullable|integer|exists:criteria,idcriteria',
             'iduser' => 'nullable|integer|exists:users,iduser',
-            'idplanning' => 'nullable|integer|exists:plannings,idplanning',
-            'datesa' => 'nullable|date_format:Y-m-d',
+            'idplanning' => 'nullable|integer|exists:planning,idplanning',
+            'datesa' => 'nullable|date',
         ];
     }
 
@@ -30,7 +30,7 @@ class SelfAssessmentRequest extends FormRequest
             'iduser.exists' => 'El usuario seleccionado no existe.',
             'idplanning.integer' => 'El ID de la planificación debe ser un número entero.',
             'idplanning.exists' => 'La planificación seleccionada no existe.',
-            'datesa.date_format' => 'La fecha de autoevaluación debe tener el formato Año-Mes-Día.',
+            'datesa.date' => 'La fecha debe ser una fecha válida.',
         ];
     }
 }

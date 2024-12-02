@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Criterion|null $criterion
  * @property User|null $user
+ * @property Collection|Score[] $scores
  *
  * @package App\Models
  */
@@ -49,5 +51,10 @@ class PeerEvaluation extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'iduser');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany(Score::class, 'idpe');
 	}
 }
