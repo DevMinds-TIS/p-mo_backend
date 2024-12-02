@@ -61,7 +61,6 @@ class SpaceController extends Controller
 
     public function show(Space $space)
     {
-        $space = Space::findOrFail($space->idspace);
         return new SpaceResource($space);
     }
 

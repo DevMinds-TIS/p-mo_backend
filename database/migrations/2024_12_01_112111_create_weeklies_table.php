@@ -16,10 +16,10 @@ class CreateWeekliesTable extends Migration
         Schema::create('weeklies', function (Blueprint $table) {
             $table->increments('idweeklie')->unique('weeklies_pk');
             $table->integer('idsprint')->nullable()->index('relationship_21_fk');
+            $table->integer('idstatus')->nullable()->index('relationship_46_fk');
             $table->string('goalweeklie', 90)->nullable();
             $table->date('startweeklie')->nullable();
             $table->date('endweeklie')->nullable();
-            $table->string('statusweeklie', 90)->nullable();
             $table->timestamps();
         });
     }

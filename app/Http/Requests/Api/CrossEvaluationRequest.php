@@ -14,13 +14,13 @@ class CrossEvaluationRequest extends FormRequest
     public function rules()
     {
         return [
-            'idplanning' => 'nullable|integer|exists:plannings,idplanning',
+            'idplanning' => 'nullable|integer|exists:planning,idplanning',
             'idcriteria' => 'nullable|integer|exists:criteria,idcriteria',
             'idteam' => 'nullable|integer|exists:teams,idteam',
-            'datece' => 'nullable|date_format:Y-m-d',
+            'datece' => 'nullable|date',
         ];
     }
-
+    
     public function messages()
     {
         return [
@@ -30,7 +30,7 @@ class CrossEvaluationRequest extends FormRequest
             'idcriteria.exists' => 'El criterio seleccionado no existe.',
             'idteam.integer' => 'El ID del equipo debe ser un número entero.',
             'idteam.exists' => 'El equipo seleccionado no existe.',
-            'datece.date_format' => 'La fecha de la evaluación cruzada debe tener el formato Año-Mes-Día.',
+            'datece.date' => 'La fecha debe ser una fecha válida.',
         ];
     }
 }

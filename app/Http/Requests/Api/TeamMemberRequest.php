@@ -14,18 +14,16 @@ class TeamMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'idteam' => 'required|integer|exists:teams,idteam',
-            'iduser' => 'required|integer|exists:users,iduser',
+            'idteam' => 'nullable|integer|exists:teams,idteam',
+            'iduser' => 'nullable|integer|exists:users,iduser',
         ];
     }
 
     public function messages()
     {
         return [
-            'idteam.required' => 'El ID del equipo es obligatorio.',
             'idteam.integer' => 'El ID del equipo debe ser un número entero.',
             'idteam.exists' => 'El equipo seleccionado no existe.',
-            'iduser.required' => 'El ID del usuario es obligatorio.',
             'iduser.integer' => 'El ID del usuario debe ser un número entero.',
             'iduser.exists' => 'El usuario seleccionado no existe.',
         ];

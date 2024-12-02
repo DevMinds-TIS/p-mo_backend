@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $idtracking
  * @property int|null $idstorie
  * @property int|null $idtask
+ * @property int|null $idteam
  * @property string|null $namedocument
  * @property string|null $pathdocument
  * @property Carbon|null $created_at
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Tracking|null $tracking
  * @property Story|null $story
  * @property Task|null $task
+ * @property Team|null $team
  *
  * @package App\Models
  */
@@ -44,7 +46,8 @@ class Document extends Model
 		'idplanning' => 'int',
 		'idtracking' => 'int',
 		'idstorie' => 'int',
-		'idtask' => 'int'
+		'idtask' => 'int',
+		'idteam' => 'int'
 	];
 
 	protected $fillable = [
@@ -54,6 +57,7 @@ class Document extends Model
 		'idtracking',
 		'idstorie',
 		'idtask',
+		'idteam',
 		'namedocument',
 		'pathdocument'
 	];
@@ -86,5 +90,10 @@ class Document extends Model
 	public function task()
 	{
 		return $this->belongsTo(Task::class, 'idtask');
+	}
+
+	public function team()
+	{
+		return $this->belongsTo(Team::class, 'idteam');
 	}
 }

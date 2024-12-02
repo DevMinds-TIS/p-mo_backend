@@ -10,7 +10,6 @@ use App\Http\Requests\Auth\RegisterAdminRequest;
 use App\Models\RoleUser;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class RegisteredUserController extends Controller
 {

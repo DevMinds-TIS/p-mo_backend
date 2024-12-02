@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCriteriaTable extends Migration
+class CreateCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCriteriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('criteria', function (Blueprint $table) {
-            $table->increments('idcriteria')->unique('criteria_pk');
-            $table->string('namecriteria', 90)->nullable();
-            $table->integer('scorecriteria')->nullable();
-            $table->string('commentcriteria', 180)->nullable();
+        Schema::create('category', function (Blueprint $table) {
+            $table->increments('idcategory')->unique('category_pk');
+            $table->string('namecategory', 20)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateCriteriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criteria');
+        Schema::dropIfExists('category');
     }
 }

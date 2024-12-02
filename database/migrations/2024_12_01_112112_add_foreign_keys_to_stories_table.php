@@ -16,6 +16,7 @@ class AddForeignKeysToStoriesTable extends Migration
         Schema::table('stories', function (Blueprint $table) {
             $table->foreign(['idweeklie'], 'fk_stories_relations_weeklies')->references(['idweeklie'])->on('weeklies')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['iduser'], 'fk_stories_relations_users')->references(['iduser'])->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idstatus'], 'fk_stories_relations_status')->references(['idstatus'])->on('status')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -29,6 +30,7 @@ class AddForeignKeysToStoriesTable extends Migration
         Schema::table('stories', function (Blueprint $table) {
             $table->dropForeign('fk_stories_relations_weeklies');
             $table->dropForeign('fk_stories_relations_users');
+            $table->dropForeign('fk_stories_relations_status');
         });
     }
 }

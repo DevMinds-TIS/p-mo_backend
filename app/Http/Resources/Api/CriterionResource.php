@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Api;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CriterionResource extends JsonResource
@@ -11,11 +10,12 @@ class CriterionResource extends JsonResource
     {
         return [
             'ID_Criterio' => $this->idcriteria,
-            'Nombre' => $this->namecriteria,
-            'Puntaje' => $this->scorecriteria,
-            'Justificación' => $this->commentcriteria,
-            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
+            'ID_Categoría' => $this->idcategory,
+            'Nombre_Criterio' => $this->namecriteria,
+            'Puntuación_Criterio' => $this->scorecriteria,
+            'Comentario_Criterio' => $this->commentcriteria,
+            'created_at' => $this->created_at->format('d/m/Y - H:i:s'),
+            'updated_at' => $this->updated_at->format('d/m/Y - H:i:s'),
         ];
     }
 }

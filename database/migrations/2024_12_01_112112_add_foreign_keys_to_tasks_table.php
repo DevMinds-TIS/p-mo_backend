@@ -16,6 +16,7 @@ class AddForeignKeysToTasksTable extends Migration
         Schema::table('tasks', function (Blueprint $table) {
             $table->foreign(['idstorie'], 'fk_tasks_relations_stories')->references(['idstorie'])->on('stories')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign(['iduser'], 'fk_tasks_relations_users')->references(['iduser'])->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign(['idstatus'], 'fk_tasks_relations_status')->references(['idstatus'])->on('status')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -29,6 +30,7 @@ class AddForeignKeysToTasksTable extends Migration
         Schema::table('tasks', function (Blueprint $table) {
             $table->dropForeign('fk_tasks_relations_stories');
             $table->dropForeign('fk_tasks_relations_users');
+            $table->dropForeign('fk_tasks_relations_status');
         });
     }
 }

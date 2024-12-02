@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $updated_at
  * 
  * @property Planning|null $planning
+ * @property Collection|Score[] $scores
  * @property Collection|Tracking[] $trackings
  * @property Collection|Weekly[] $weeklies
  *
@@ -48,6 +49,11 @@ class Sprint extends Model
 	public function planning()
 	{
 		return $this->belongsTo(Planning::class, 'idplanning');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany(Score::class, 'idsprint');
 	}
 
 	public function trackings()

@@ -17,9 +17,9 @@ class CreateStoriesTable extends Migration
             $table->increments('idstorie')->unique('stories_pk');
             $table->integer('idweeklie')->nullable()->index('relationship_16_fk');
             $table->integer('iduser')->nullable()->index('relationship_17_fk');
+            $table->integer('idstatus')->nullable()->index('relationship_48_fk');
             $table->string('codestorie', 10)->nullable();
             $table->string('namestorie', 60)->nullable();
-            $table->string('statusstorie', 60)->nullable();
             $table->integer('pointstorie')->nullable();
             $table->timestamps();
         });

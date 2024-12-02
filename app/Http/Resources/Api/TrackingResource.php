@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Api;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TrackingResource extends JsonResource
@@ -11,15 +10,16 @@ class TrackingResource extends JsonResource
     {
         return [
             'ID_Seguimiento' => $this->idtracking,
-            'ID-Sprint' => $this->idsprint,
+            'ID_Sprint' => $this->idsprint,
             'ID_Usuario' => $this->iduser,
-            'Nombre' => $this->nametracking,
-            'Fecha_Envió' => Carbon::parse($this->deliverytracking)->format('d/m/Y'),
-            'Fecha_Recepción' => Carbon::parse($this->returntracking)->format('d/m/Y'),
-            'Estado' => $this->statustracking,
-            'Comentario' => $this->commenttracking,
-            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),
+            'ID_Estado' => $this->idstatus,
+            'ID_Equipo' => $this->idteam,
+            'Nombre_Tracking' => $this->nametracking,
+            'Fecha_Entrega' => $this->deliverytracking ? $this->deliverytracking->format('Y-m-d') : null,
+            'Fecha_Devolución' => $this->returntracking ? $this->returntracking->format('Y-m-d') : null,
+            'Comentario_Tracking' => $this->commenttracking,
+            'created_at' => $this->created_at->format('d/m/Y - H:i:s'),
+            'updated_at' => $this->updated_at->format('d/m/Y - H:i:s'),
         ];
     }
 }

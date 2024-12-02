@@ -14,9 +14,9 @@ class SprintRequest extends FormRequest
     public function rules()
     {
         return [
-            'idplanning' => 'nullable|integer|exists:plannings,idplanning',
-            'startsprint' => 'nullable|date_format:Y-m-d',
-            'endsprint' => 'nullable|date_format:Y-m-d|after_or_equal:startsprint',
+            'idplanning' => 'nullable|integer|exists:planning,idplanning',
+            'startsprint' => 'nullable|date',
+            'endsprint' => 'nullable|date|after_or_equal:startsprint',
             'goalsprint' => 'nullable|string|max:255',
         ];
     }
@@ -26,11 +26,11 @@ class SprintRequest extends FormRequest
         return [
             'idplanning.integer' => 'El ID de la planificación debe ser un número entero.',
             'idplanning.exists' => 'La planificación seleccionada no existe.',
-            'startsprint.date_format' => 'La fecha de inicio del sprint debe tener el formato Año-Mes-Día.',
-            'endsprint.date_format' => 'La fecha de fin del sprint debe tener el formato Año-Mes-Día.',
-            'endsprint.after_or_equal' => 'La fecha de fin del sprint debe ser igual o posterior a la fecha de inicio.',
+            'startsprint.date' => 'La fecha de inicio del sprint debe ser una fecha válida.',
+            'endsprint.date' => 'La fecha de finalización del sprint debe ser una fecha válida.',
+            'endsprint.after_or_equal' => 'La fecha de finalización del sprint debe ser igual o posterior a la fecha de inicio.',
             'goalsprint.string' => 'El objetivo del sprint debe ser una cadena de texto.',
-            'goalsprint.max' => 'El objetivo del sprint no puede superar los 255 caracteres.',
+            'goalsprint.max' => 'El objetivo del sprint no debe superar los 255 caracteres.',
         ];
     }
 }
