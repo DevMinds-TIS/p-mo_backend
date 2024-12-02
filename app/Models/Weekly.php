@@ -24,8 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Sprint|null $sprint
  * @property Status|null $status
- * @property Collection|Score[] $scores
  * @property Collection|Story[] $stories
+ * @property Collection|Score[] $scores
  *
  * @package App\Models
  */
@@ -59,13 +59,13 @@ class Weekly extends Model
 		return $this->belongsTo(Status::class, 'idstatus');
 	}
 
-	public function scores()
-	{
-		return $this->hasMany(Score::class, 'idweeklie');
-	}
-
 	public function stories()
 	{
 		return $this->hasMany(Story::class, 'idweeklie');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany(Score::class, 'idweeklie');
 	}
 }

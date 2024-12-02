@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class TeamResource extends JsonResource
 {
@@ -15,6 +16,7 @@ class TeamResource extends JsonResource
             'Nombre_Equipo' => $this->nameteam,
             'Razón_Social' => $this->companyteam,
             'Correo_Equipo' => $this->emailteam,
+            'Integrantes' => DB::table('team_members')->where('idteam', $this->idteam)->count(),
             'Logo_Equipo' => $this->logoteam,
             'Repositorio_Equipo' => $this->repositoryteam,
             'Despliegue_Local' => $this->localdeployteam,

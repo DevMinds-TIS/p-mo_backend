@@ -21,7 +21,7 @@ class UserRequest extends FormRequest
             'lastnameuser' => 'nullable|string|max:60',
             'emailuser' => 'nullable|string|email|max:120|unique:users,emailuser',
             'passworduser' => 'nullable|string|min:8|max:255',
-            'profileuser' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048',
+            'profileuser' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico,webp|max:2048',
             'idrol' => 'nullable|integer|exists:roles,idrol',
             'teacherpermission' => 'nullable|string|exists:permissions,teacherpermission',
             'siscode' => 'nullable|string|exists:siscode,siscode',

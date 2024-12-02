@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $idcriteria
  * @property int|null $idteam
  * @property Carbon|null $datece
+ * @property string|null $permissionce
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
@@ -44,7 +45,8 @@ class CrossEvaluation extends Model
 		'idplanning',
 		'idcriteria',
 		'idteam',
-		'datece'
+		'datece',
+		'permissionce'
 	];
 
 	public function planning()

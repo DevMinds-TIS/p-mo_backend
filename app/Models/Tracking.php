@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $idsprint
  * @property int|null $iduser
  * @property int|null $idstatus
+ * @property int|null $idteam
  * @property string|null $nametracking
  * @property Carbon|null $deliverytracking
  * @property Carbon|null $returntracking
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Sprint|null $sprint
  * @property User|null $user
  * @property Status|null $status
+ * @property Team|null $team
  * @property Collection|Document[] $documents
  * @property Collection|Score[] $scores
  *
@@ -41,6 +43,7 @@ class Tracking extends Model
 		'idsprint' => 'int',
 		'iduser' => 'int',
 		'idstatus' => 'int',
+		'idteam' => 'int',
 		'deliverytracking' => 'datetime',
 		'returntracking' => 'datetime'
 	];
@@ -49,6 +52,7 @@ class Tracking extends Model
 		'idsprint',
 		'iduser',
 		'idstatus',
+		'idteam',
 		'nametracking',
 		'deliverytracking',
 		'returntracking',
@@ -68,6 +72,11 @@ class Tracking extends Model
 	public function status()
 	{
 		return $this->belongsTo(Status::class, 'idstatus');
+	}
+
+	public function team()
+	{
+		return $this->belongsTo(Team::class, 'idteam');
 	}
 
 	public function documents()

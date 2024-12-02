@@ -31,21 +31,22 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Siscode|null $siscode
  * @property Permission|null $permission
  * @property User|null $user
+ * @property Collection|FinalEvaluation[] $final_evaluations
  * @property Collection|Notification[] $notifications
  * @property Collection|PeerEvaluation[] $peer_evaluations
  * @property Collection|Permission[] $permissions
  * @property Collection|Role[] $roles
- * @property Collection|Score[] $scores
  * @property Collection|Story[] $stories
- * @property Collection|Task[] $tasks
+ * @property Collection|Score[] $scores
  * @property Collection|SelfAssessment[] $self_assessments
  * @property Collection|Siscode[] $siscodes
  * @property Collection|Tracking[] $trackings
+ * @property Collection|TeamMember[] $team_members
+ * @property Collection|User[] $users
  * @property Collection|Project[] $projects
  * @property Collection|Space[] $spaces
  * @property Collection|Team[] $teams
- * @property Collection|User[] $users
- * @property Collection|TeamMember[] $team_members
+ * @property Collection|Task[] $tasks
  *
  * @package App\Models
  */
@@ -88,6 +89,11 @@ class User extends Authenticatable
 		return $this->belongsTo(User::class, 'use_iduser');
 	}
 
+	public function final_evaluations()
+	{
+		return $this->hasMany(FinalEvaluation::class, 'iduser');
+	}
+
 	public function notifications()
 	{
 		return $this->hasMany(Notification::class, 'iduser');
@@ -110,19 +116,14 @@ class User extends Authenticatable
 					->withTimestamps();
 	}
 
-	public function scores()
-	{
-		return $this->hasMany(Score::class, 'iduser');
-	}
-
 	public function stories()
 	{
 		return $this->hasMany(Story::class, 'iduser');
 	}
 
-	public function tasks()
+	public function scores()
 	{
-		return $this->hasMany(Task::class, 'iduser');
+		return $this->hasMany(Score::class, 'iduser');
 	}
 
 	public function self_assessments()
@@ -140,6 +141,16 @@ class User extends Authenticatable
 		return $this->hasMany(Tracking::class, 'iduser');
 	}
 
+	public function team_members()
+	{
+		return $this->hasMany(TeamMember::class, 'iduser');
+	}
+
+	public function users()
+	{
+		return $this->hasMany(User::class, 'use_iduser');
+	}
+
 	public function projects()
 	{
 		return $this->hasMany(Project::class, 'iduser');
@@ -155,13 +166,8 @@ class User extends Authenticatable
 		return $this->hasMany(Team::class, 'iduser');
 	}
 
-	public function users()
+	public function tasks()
 	{
-		return $this->hasMany(User::class, 'use_iduser');
-	}
-
-	public function team_members()
-	{
-		return $this->hasMany(TeamMember::class, 'iduser');
+		return $this->hasMany(Task::class, 'iduser');
 	}
 }

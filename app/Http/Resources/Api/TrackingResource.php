@@ -13,6 +13,7 @@ class TrackingResource extends JsonResource
             'ID_Sprint' => $this->idsprint,
             'ID_Usuario' => $this->iduser,
             'ID_Estado' => $this->idstatus,
+            'ID_Equipo' => $this->idteam,
             'Nombre_Tracking' => $this->nametracking,
             'Fecha_Entrega' => $this->deliverytracking ? $this->deliverytracking->format('Y-m-d') : null,
             'Fecha_Devolución' => $this->returntracking ? $this->returntracking->format('Y-m-d') : null,

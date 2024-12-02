@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Api;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class UserResource extends JsonResource
 {
@@ -11,7 +12,6 @@ class UserResource extends JsonResource
         return [
             'ID_Usuario' => $this->iduser,
             'ID_Siscode' => $this->idsiscode,
-            // 'ID_Siscode' => new SiscodeResource($this->idsiscode),
             'ID_Permiso' => $this->idpermission,
             'ID_Docente' => $this->use_iduser,
             'Nombre' => $this->nameuser,
@@ -27,6 +27,7 @@ class UserResource extends JsonResource
                 ];
             }),
             'Docente' => new UserResource($this->whenLoaded('user')),
+            'ID_Espacio' => DB::table('siscode')->where('idspace', $this->idspace)->value('idspace'),
             'Permiso_Docente' => $this->teacherpermission,
             'Código_SIS' => $this->siscode,
             'created_at' => $this->created_at->format('d/m/Y - H:i:s'),

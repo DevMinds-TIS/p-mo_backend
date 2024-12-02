@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Category|null $category
  * @property Collection|CrossEvaluation[] $cross_evaluations
+ * @property Collection|FinalEvaluation[] $final_evaluations
  * @property Collection|PeerEvaluation[] $peer_evaluations
  * @property Collection|SelfAssessment[] $self_assessments
  *
@@ -53,6 +54,11 @@ class Criterion extends Model
 	public function cross_evaluations()
 	{
 		return $this->hasMany(CrossEvaluation::class, 'idcriteria');
+	}
+
+	public function final_evaluations()
+	{
+		return $this->hasMany(FinalEvaluation::class, 'idcriteria');
 	}
 
 	public function peer_evaluations()

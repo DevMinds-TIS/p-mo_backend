@@ -9,7 +9,7 @@ class SiscodeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'ID_SISCO' => $this->idsiscode,
+            'ID_Siscode' => $this->idsiscode,
             'ID_Espacio' => $this->idspace,
             'ID_Usuario' => $this->iduser,
             'Código_SIS' => $this->siscode,

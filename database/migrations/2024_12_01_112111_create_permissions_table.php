@@ -16,7 +16,7 @@ class CreatePermissionsTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('idpermission')->unique('tokens_pk');
             $table->integer('iduser')->nullable()->index('relationship_35_fk');
-            $table->string('teacherpermission', 10)->nullable();
+            $table->string('teacherpermission', 255)->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class DocumentResource extends JsonResource
             'ID_Seguimiento' => $this->idtracking,
             'ID_Historia' => $this->idstorie,
             'ID_Tarea' => $this->idtask,
+            'ID_Equipo' => $this->idteam,
             'Nombre_Documento' => $this->namedocument,
             'Ruta_Documento' => $this->pathdocument,
             'created_at' => $this->created_at->format('d/m/Y - H:i:s'),

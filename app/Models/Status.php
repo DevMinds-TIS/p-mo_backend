@@ -20,10 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Collection|Notification[] $notifications
  * @property Collection|Story[] $stories
- * @property Collection|Task[] $tasks
  * @property Collection|Tracking[] $trackings
- * @property Collection|Announcement[] $announcements
  * @property Collection|Weekly[] $weeklies
+ * @property Collection|Announcement[] $announcements
+ * @property Collection|Task[] $tasks
  *
  * @package App\Models
  */
@@ -46,14 +46,14 @@ class Status extends Model
 		return $this->hasMany(Story::class, 'idstatus');
 	}
 
-	public function tasks()
-	{
-		return $this->hasMany(Task::class, 'idstatus');
-	}
-
 	public function trackings()
 	{
 		return $this->hasMany(Tracking::class, 'idstatus');
+	}
+
+	public function weeklies()
+	{
+		return $this->hasMany(Weekly::class, 'idstatus');
 	}
 
 	public function announcements()
@@ -61,8 +61,8 @@ class Status extends Model
 		return $this->hasMany(Announcement::class, 'idstatus');
 	}
 
-	public function weeklies()
+	public function tasks()
 	{
-		return $this->hasMany(Weekly::class, 'idstatus');
+		return $this->hasMany(Task::class, 'idstatus');
 	}
 }
