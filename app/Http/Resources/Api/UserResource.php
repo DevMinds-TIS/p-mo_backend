@@ -31,6 +31,7 @@ class UserResource extends JsonResource
                     'Imagen_Perfil' => $this->user->profileuser,
                 ];
             }),
+            //array de correos
             'Imagen_Perfil' => $this->profileuser,
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y - H:i:s'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y - H:i:s'),

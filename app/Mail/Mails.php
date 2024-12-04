@@ -32,6 +32,8 @@ class Mails extends Mailable
     {
         return $this->subject('Código secreto')
                     ->view('emails.sendEmails')
+                    ->with('details', $this->details)
+                    ->view('emails.sendAvisos')
                     ->with('details', $this->details);
     }
 }

@@ -37,6 +37,7 @@ Route::apiResource("permissions", PermissionsController::class);
 
 // Route::get('sendEmail', [MailController::class, 'sendEmail']);
 Route::post('sendEmail', [MailController::class, 'sendEmail']);
+Route::post('sendAvisos', [MailController::class, 'sendAvisos']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return new UserResource($request->user()->load(['roles', 'user']));
