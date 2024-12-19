@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginUserRequest;
 use App\Http\Requests\Auth\LogoutUserRequest;
+use App\Http\Resources\Api\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -25,7 +26,7 @@ class AuthenticatedUserController extends Controller
 
         return response()->json([
             "msg" => "Inicio de sesión exitoso",
-            "user" => $user,
+            "user" => new UserResource($user), // Usar el recurso aquí
             "token" => $token
         ]);
     }

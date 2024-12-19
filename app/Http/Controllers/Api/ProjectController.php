@@ -27,6 +27,9 @@ class ProjectController extends Controller
             'specification' => 'Pliego de especificaciones'
         ];
 
+        // Log adicional para verificar los archivos recibidos
+        Log::info('Archivos recibidos:', $request->allFiles());
+
         // Guardar documentos
         foreach ($documents as $field => $documentName) {
             if ($request->hasFile($field)) {
@@ -49,6 +52,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+        $project->load('documents');
         return new ProjectResource($project);
     }
 

@@ -21,34 +21,6 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    // public function update(UserRequest $request, User $user)
-    // {
-    //     Log::info('Inicio del método update', ['user_id' => $user->iduser]);
-
-    //     // Manejo de archivo del perfil del usuario
-    //     if ($request->hasFile('profileuser')) {
-    //         $file = $request->file('profileuser');
-    //         $filename = time() . '_' . $file->getClientOriginalName();
-    //         $path = $file->storeAs('profiles', $filename, 'public');
-    //         $user->profileuser = $path;
-    //     }
-
-    //     Log::info('Datos del usuario antes de actualizar', ['user_data' => $user]);
-
-    //     // Actualizar el usuario con los datos restantes
-    //     $user->update($request->except('profileuser', 'passworduser'));
-
-    //     // Actualizar la contraseña si está presente
-    //     if ($request->filled('passworduser')) {
-    //         Log::info('La solicitud contiene passworduser', ['passworduser' => $request->passworduser]);
-    //         $user->passworduser = bcrypt($request->passworduser);
-    //     }
-
-    //     Log::info('Datos actualizados del usuario', ['user' => $user]);
-
-    //     return new UserResource($user);
-    // }
-
     public function update(UserRequest $request, User $user)
     {
         Log::info('Inicio del método update', ['user_id' => $user->iduser]);
